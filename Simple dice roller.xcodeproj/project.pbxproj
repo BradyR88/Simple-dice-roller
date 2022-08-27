@@ -11,6 +11,13 @@
 		73B2517528B9301400246515 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2517428B9301400246515 /* ContentView.swift */; };
 		73B2517728B9301400246515 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B2517628B9301400246515 /* Assets.xcassets */; };
 		73B2517A28B9301400246515 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B2517928B9301400246515 /* Preview Assets.xcassets */; };
+		73B2518128B9305A00246515 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518028B9305A00246515 /* ViewModel.swift */; };
+		73B2518328B930DD00246515 /* Constance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518228B930DD00246515 /* Constance.swift */; };
+		73B2518528B9320600246515 /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518428B9320600246515 /* Dice.swift */; };
+		73B2518728B93E6E00246515 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518628B93E6E00246515 /* Extensions.swift */; };
+		73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518828B96B8800246515 /* RollReadoutView.swift */; };
+		73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518B28B9814000246515 /* NumberToggleView.swift */; };
+		73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518D28B988C300246515 /* GenericDiceRollingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		73B2517428B9301400246515 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		73B2517628B9301400246515 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73B2517928B9301400246515 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		73B2518028B9305A00246515 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		73B2518228B930DD00246515 /* Constance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constance.swift; sourceTree = "<group>"; };
+		73B2518428B9320600246515 /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
+		73B2518628B93E6E00246515 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		73B2518828B96B8800246515 /* RollReadoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollReadoutView.swift; sourceTree = "<group>"; };
+		73B2518B28B9814000246515 /* NumberToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberToggleView.swift; sourceTree = "<group>"; };
+		73B2518D28B988C300246515 /* GenericDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDiceRollingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +66,13 @@
 			isa = PBXGroup;
 			children = (
 				73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */,
-				73B2517428B9301400246515 /* ContentView.swift */,
+				73B2518A28B980E300246515 /* View */,
+				73B2518028B9305A00246515 /* ViewModel.swift */,
+				73B2518428B9320600246515 /* Dice.swift */,
+				73B2518228B930DD00246515 /* Constance.swift */,
 				73B2517628B9301400246515 /* Assets.xcassets */,
 				73B2517828B9301400246515 /* Preview Content */,
+				73B2518628B93E6E00246515 /* Extensions.swift */,
 			);
 			path = "Simple dice roller";
 			sourceTree = "<group>";
@@ -65,6 +83,17 @@
 				73B2517928B9301400246515 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		73B2518A28B980E300246515 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73B2517428B9301400246515 /* ContentView.swift */,
+				73B2518D28B988C300246515 /* GenericDiceRollingView.swift */,
+				73B2518828B96B8800246515 /* RollReadoutView.swift */,
+				73B2518B28B9814000246515 /* NumberToggleView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +166,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
+				73B2518328B930DD00246515 /* Constance.swift in Sources */,
+				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,
 				73B2517528B9301400246515 /* ContentView.swift in Sources */,
+				73B2518528B9320600246515 /* Dice.swift in Sources */,
+				73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */,
+				73B2518128B9305A00246515 /* ViewModel.swift in Sources */,
 				73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */,
+				73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Simple_dice_rollerApp: App {
+    @StateObject var viewModel = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }
