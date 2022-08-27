@@ -10,9 +10,17 @@ import SwiftUI
 struct GenericDiceRollingView: View {
     @EnvironmentObject var viewModel: ViewModel
     
-    @State var numberOfDice: Int = 1
+    @State var numberOfDice: Int = 1 {
+        didSet {
+            if numberOfDice < 1 { numberOfDice = 1 }
+        }
+    }
     @State var numberOfSides: Int = 20
-    @State var toAdd: Int = 0
+    @State var toAdd: Int = 0 {
+        didSet {
+            if toAdd < 0 { toAdd = 0 }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -55,7 +63,7 @@ struct GenericDiceRollingView: View {
                 Text("Roll!")
                     .bold()
                     .font(.title)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .frame(width: 305, height: 44)
                     .background(.green)
                     .clipShape(Capsule())
@@ -65,12 +73,17 @@ struct GenericDiceRollingView: View {
     
     func dicePicker(sides: Int) -> some View {
         var view: some View {
-            Text("\(sides)")
-                .bold()
-                .font(.title)
-                .frame(width: 65, height: 48)
-                .background(.red)
-                .clipShape(Capsule())
+            Button {
+                numberOfSides = sides
+            } label: {
+                Text("\(sides)")
+                    .bold()
+                    .font(.title)
+                    .foregroundColor(.primary)
+                    .frame(width: 65, height: 48)
+                    .background(.red)
+                    .clipShape(Capsule())
+            }
         }
         return view
     }

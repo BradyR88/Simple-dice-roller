@@ -41,6 +41,6 @@ import Foundation
             faces.append(Int.random(in: 1...sides))
         }
         
-        pastRolls.insert(Roll(sides: sides, faces: faces, plus: 0), at: 0)
+        pastRolls.insert(Roll(sides: sides, faces: faces, plus: plus), at: 0)
     }
 }
