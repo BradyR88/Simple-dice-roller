@@ -74,14 +74,17 @@ struct GenericDiceRollingView: View {
     func dicePicker(sides: Int) -> some View {
         var view: some View {
             Button {
-                numberOfSides = sides
+                withAnimation {
+                    numberOfSides = sides
+                }
             } label: {
                 Text("\(sides)")
                     .bold()
                     .font(.title)
                     .foregroundColor(.primary)
                     .frame(width: 65, height: 48)
-                    .background(.red)
+                    .background(numberOfSides == sides ? .red : .red.opacity(0.75))
+                    .background(.black)
                     .clipShape(Capsule())
             }
         }

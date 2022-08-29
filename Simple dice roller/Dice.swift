@@ -28,6 +28,46 @@ struct RollResult: Codable, Identifiable {
         self.faces = faces.sorted()
         self.total = faces.sum() + roll.toAdd
     }
+    
+    // initializing method for if I want to define the role being at advantage or not
+    // simply find the result for the role twice and picks the higher
+    // still list all the roles in the faces category even the ones that were not counted
+    init(roll: Roll,_ cumstance: Circumstance) {
+        self.id = UUID()
+        self.roll = roll
+        
+        var faces: [Int] = []
+        var secondFaces: [Int] = []
+        
+        for _ in 0..<roll.amount {
+            faces.append(Int.random(in: 1...roll.numberOfSides))
+            secondFaces.append(Int.random(in: 1...roll.numberOfSides))
+        }
+        
+        switch cumstance {
+        case .advantage:
+            if faces.sum() > secondFaces.sum() {
+                self.total = faces.sum() + roll.toAdd
+            } else {
+                self.total = secondFaces.sum() + roll.toAdd
+            }
+            self.faces = faces.sorted() + secondFaces.sorted()
+        case .disadvantage:
+            if faces.sum() > secondFaces.sum() {
+                self.total = secondFaces.sum() + roll.toAdd
+            } else {
+                self.total = faces.sum() + roll.toAdd
+            }
+            self.faces = faces.sorted() + secondFaces.sorted()
+        case .neutral:
+            self.total = faces.sum() + roll.toAdd
+            self.faces = faces.sorted()
+        }
+    }
+    
+    enum Circumstance {
+    case advantage, disadvantage, neutral
+    }
 }
 
 class Roll: Codable {
@@ -36,7 +76,11 @@ class Roll: Codable {
     let toAdd: Int
     
     let subRoll: Roll?
-        
+    
+    func critical() -> Roll {
+        Roll(amount+amount, d: numberOfSides, toAdd: toAdd)
+    }
+    
     static let example = Roll(1, d: 6, toAdd: 4)
     
     init(_ amount: Int, d: Int, toAdd: Int, subRoll: Roll?) {

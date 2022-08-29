@@ -13,7 +13,7 @@ struct RollReadoutView: View {
     @State var infoPainVisible = false
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             HStack {
                 Text("\(rollResult.roll.amount)d\(rollResult.roll.numberOfSides)\(rollResult.roll.toAdd > 0 ? " + \(rollResult.roll.toAdd)" : "")")
                     .bold()
@@ -24,6 +24,12 @@ struct RollReadoutView: View {
                 Text("\(rollResult.total)")
                     .bold()
                     .font(.title)
+                Button {
+                    infoPainVisible.toggle()
+                } label: {
+                    Image(systemName: "eye.fill")
+                        .font(.title3)
+                }
             }
             if infoPainVisible {
                 Text("[\(rollResult.faces.map{String($0)}.joined(separator: ","))]")
