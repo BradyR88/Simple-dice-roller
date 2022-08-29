@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct RollResult: Codable, Identifiable {
     let id: UUID
@@ -67,6 +68,20 @@ struct RollResult: Codable, Identifiable {
     
     enum Circumstance {
     case advantage, disadvantage, neutral
+    }
+}
+
+struct RollGroop: Codable, Identifiable {
+    let id: UUID
+    var name: String
+    var rolls: [Roll]
+    var isShowing: Bool
+    
+    init(name: String) {
+        self.id = UUID()
+        self.name = name
+        self.rolls = []
+        self.isShowing = false
     }
 }
 
