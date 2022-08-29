@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor class ViewModel: ObservableObject {
-    @Published private(set) var pastRolls: [Roll] = []
+    @Published private(set) var pastRolls: [RollResult] = []
     
     init() {
         loadData()
@@ -18,7 +18,7 @@ import Foundation
     func loadData() {
         do {
             let data = try Data(contentsOf: Constance.savePath)
-            pastRolls = try JSONDecoder().decode([Roll].self, from: data)
+            pastRolls = try JSONDecoder().decode([RollResult].self, from: data)
         } catch {
             pastRolls = []
         }
@@ -34,13 +34,7 @@ import Foundation
     }
     
     // MARK: user actions
-    func rolldice(_ number: Int,d sides: Int,plus: Int) {
-        var faces: [Int] = []
-        
-        for _ in 0..<number {
-            faces.append(Int.random(in: 1...sides))
-        }
-        
-        pastRolls.insert(Roll(sides: sides, faces: faces, plus: plus), at: 0)
+    func rolldice(_ roll: Roll) {
+        pastRolls.insert(RollResult(roll: roll), at: 0)
     }
 }

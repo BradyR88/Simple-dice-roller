@@ -15,7 +15,7 @@ struct ContentView: View {
             //MARK: past rolls
             List {
                 ForEach(viewModel.pastRolls) { roll in
-                    RollReadoutView(roll: roll)
+                    RollReadoutView(rollResult: roll)
                 }
             }
             

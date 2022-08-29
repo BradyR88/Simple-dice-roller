@@ -7,33 +7,46 @@
 
 import Foundation
 
-struct Roll: Codable, Identifiable {
+struct RollResult: Codable, Identifiable {
     let id: UUID
-    let sides: Int
-    let facesRolled: [Int]
-    let plus: Int
+    let roll: Roll
+    let faces: [Int]
     let total: Int
-    let diceRolled: Int
     
-    init(sides: Int, faces:[Int], plus: Int) {
+    static let example = RollResult(roll: Roll.example)
+    
+    init(roll: Roll) {
         self.id = UUID()
-        self.sides = sides
-        self.facesRolled = faces
-        self.plus = plus
-        self.total = facesRolled.sum() + plus
-        self.diceRolled = faces.count
+        self.roll = roll
+        
+        var faces: [Int] = []
+        
+        for _ in 0..<roll.amount {
+            faces.append(Int.random(in: 1...roll.numberOfSides))
+        }
+        
+        self.faces = faces.sorted()
+        self.total = faces.sum() + roll.toAdd
     }
 }
 
-extension Roll {
-    init() {
-        self.id = UUID()
-        self.sides = 6
-        self.facesRolled = [Int.random(in: 1...6)]
-        self.plus = 0
-        self.total = facesRolled[0]
-        self.diceRolled = 1
+class Roll: Codable {
+    let amount: Int
+    let numberOfSides: Int
+    let toAdd: Int
+    
+    let subRoll: Roll?
+        
+    static let example = Roll(1, d: 6, toAdd: 4)
+    
+    init(_ amount: Int, d: Int, toAdd: Int, subRoll: Roll?) {
+        self.amount = amount
+        self.numberOfSides = d
+        self.toAdd = toAdd
+        self.subRoll = subRoll
     }
     
-    static let example = Roll()
+    convenience init(_ amount: Int, d: Int, toAdd: Int) {
+        self.init(amount, d: d, toAdd: toAdd, subRoll: nil)
+    }
 }

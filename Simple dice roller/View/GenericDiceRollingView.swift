@@ -58,7 +58,7 @@ struct GenericDiceRollingView: View {
             .padding(.bottom)
             
             Button {
-                viewModel.rolldice(numberOfDice, d: numberOfSides, plus: toAdd)
+                viewModel.rolldice(Roll(numberOfDice, d: numberOfSides, toAdd: toAdd))
             } label: {
                 Text("Roll!")
                     .bold()
