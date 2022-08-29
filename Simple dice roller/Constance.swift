@@ -9,7 +9,7 @@ import Foundation
 
 struct Constance {
     static let savePathPastRolls = FileManager.documentsDirectory.appendingPathComponent("pastRolls")
-    static let savePathRollList = FileManager.documentsDirectory.appendingPathComponent("rollList")
+    static let savePathRollGroops = FileManager.documentsDirectory.appendingPathComponent("rollGroops")
 }
 
 extension FileManager {

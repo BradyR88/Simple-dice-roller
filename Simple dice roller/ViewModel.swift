@@ -10,27 +10,33 @@ import Foundation
 @MainActor class ViewModel: ObservableObject {
     @Published private(set) var pastRolls: [RollResult] = [] {
         didSet {
-            saveData(to: Constance.savePathPastRolls)
+            saveData(to: Constance.savePathPastRolls, from: pastRolls)
+        }
+    }
+    @Published private(set) var rollGroops: [RollGroop] = [] {
+        didSet {
+            saveData(to: Constance.savePathRollGroops, from: rollGroops)
         }
     }
     
     init() {
-        loadData(from: Constance.savePathPastRolls)
+        loadData(from: Constance.savePathPastRolls, to: &pastRolls)
+        loadData(from: Constance.savePathRollGroops, to: &rollGroops)
     }
     
     // MARK: loading and saving
-    func loadData(from url: URL) {
+    func loadData<T: Codable>(from url: URL, to: inout [T]) {
         do {
             let data = try Data(contentsOf: url)
-            pastRolls = try JSONDecoder().decode([RollResult].self, from: data)
+            to = try JSONDecoder().decode([T].self, from: data)
         } catch {
-            pastRolls = []
+            to = []
         }
     }
     
-    func saveData(to url: URL) {
+    func saveData<T: Codable>(to url: URL, from: [T]) {
         do {
-            let data = try JSONEncoder().encode(pastRolls)
+            let data = try JSONEncoder().encode(from)
             try data.write(to: url)
         } catch {
             print("there was an erorr saving the data")
