@@ -12,16 +12,54 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            //MARK: past rolls
+            // MARK: past rolls
             List {
                 ForEach(viewModel.pastRolls) { roll in
                     RollReadoutView(rollResult: roll)
                 }
             }
             
-            // MARK: roll options
-            GenericDiceRollingView()
-            
+            VStack {
+                // MARK: roll options
+                ScrollView(.horizontal, showsIndicators: false) {
+                    //options for dice rolers
+                    HStack {
+                        Button {
+                            // set the display to a
+                            viewModel.display = nil
+                        } label: {
+                            Text("Standard")
+                                .font(.title3)
+                                .foregroundColor(.primary)
+                                .padding(6)
+                                .background(.purple)
+                                .clipShape(Capsule())
+                                .padding(.leading, 8)
+                        }
+                        
+                        ForEach(viewModel.rollGroops) { rollGroop in
+                            Button {
+                                viewModel.display = rollGroop
+                            } label: {
+                                Text(rollGroop.name)
+                                    .font(.title3)
+                                    .foregroundColor(.primary)
+                                    .padding(6)
+                                    .background(.purple)
+                                    .clipShape(Capsule())
+                            }
+                        }
+                    }
+                }
+                
+                // MARK: Roll Display
+                if viewModel.display == nil {
+                    GenericDiceRollingView()
+                } else {
+                    // the user has selected a specific display to show (it is not nill)
+                    SpecificDiceRollingView(display: viewModel.display!)
+                }
+            }
         }
     }
 }

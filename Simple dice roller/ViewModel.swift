@@ -18,6 +18,7 @@ import Foundation
             saveData(to: Constance.savePathRollGroops, from: rollGroops)
         }
     }
+    @Published var display: RollGroop? = nil
     
     init() {
         loadData(from: Constance.savePathPastRolls, to: &pastRolls)

@@ -77,6 +77,10 @@ struct RollGroop: Codable, Identifiable {
     var rolls: [Roll]
     var isShowing: Bool
     
+    static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4)], isShowing: true)
+}
+
+extension RollGroop {
     init(name: String) {
         self.id = UUID()
         self.name = name
@@ -85,7 +89,8 @@ struct RollGroop: Codable, Identifiable {
     }
 }
 
-class Roll: Codable {
+
+class Roll: Codable, Identifiable {
     let amount: Int
     let numberOfSides: Int
     let toAdd: Int
