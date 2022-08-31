@@ -13,6 +13,7 @@ struct RollResult: Codable, Identifiable {
     let roll: Roll
     let faces: [Int]
     let total: Int
+    let circumstance: Circumstance
     
     static let example = RollResult(roll: Roll.example)
     
@@ -28,6 +29,7 @@ struct RollResult: Codable, Identifiable {
         
         self.faces = faces.sorted()
         self.total = faces.sum() + roll.toAdd
+        self.circumstance = .neutral
     }
     
     // initializing method for if I want to define the role being at advantage or not
@@ -64,9 +66,10 @@ struct RollResult: Codable, Identifiable {
             self.total = faces.sum() + roll.toAdd
             self.faces = faces.sorted()
         }
+        self.circumstance = cumstance
     }
     
-    enum Circumstance {
+    enum Circumstance: String, Codable {
     case advantage, disadvantage, neutral
     }
 }
