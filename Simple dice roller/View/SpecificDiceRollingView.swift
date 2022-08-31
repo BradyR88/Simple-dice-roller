@@ -27,7 +27,7 @@ struct SpecificDiceRollingView: View {
                     }                    
                 } label: {
                     HStack {
-                        Text("\(roll.amount)d\(roll.numberOfSides)\(roll.toAdd > 0 ? " + \(roll.toAdd)" : "")")
+                        Text(Constance.diceString(roll.amount, d: roll.numberOfSides, toAdd: roll.toAdd))
                             .bold()
                             .font(.title)
                             .foregroundColor(.primary)

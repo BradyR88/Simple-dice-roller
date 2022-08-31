@@ -94,6 +94,7 @@ extension RollGroop {
 
 
 class Roll: Codable, Identifiable {
+    let name: String
     let amount: Int
     let numberOfSides: Int
     let toAdd: Int
@@ -106,14 +107,15 @@ class Roll: Codable, Identifiable {
     
     static let example = Roll(1, d: 6, toAdd: 4)
     
-    init(_ amount: Int, d: Int, toAdd: Int, subRoll: Roll?) {
+    init(name: String,_ amount: Int, d: Int, toAdd: Int, subRoll: Roll?) {
         self.amount = amount
         self.numberOfSides = d
         self.toAdd = toAdd
         self.subRoll = subRoll
+        self.name = name
     }
     
     convenience init(_ amount: Int, d: Int, toAdd: Int) {
-        self.init(amount, d: d, toAdd: toAdd, subRoll: nil)
+        self.init(name: Constance.diceString(amount, d: d, toAdd: toAdd), amount, d: d, toAdd: toAdd, subRoll: nil)
     }
 }

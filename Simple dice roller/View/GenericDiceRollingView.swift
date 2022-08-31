@@ -24,7 +24,7 @@ struct GenericDiceRollingView: View {
     
     var body: some View {
         VStack {
-            Text("\(numberOfDice)d\(numberOfSides)\(toAdd > 0 ? " + \(toAdd)" : "")")
+            Text(Constance.diceString(numberOfDice, d: numberOfSides, toAdd: toAdd))
                 .font(.title)
                 .bold()
             

@@ -10,6 +10,10 @@ import Foundation
 struct Constance {
     static let savePathPastRolls = FileManager.documentsDirectory.appendingPathComponent("pastRolls")
     static let savePathRollGroops = FileManager.documentsDirectory.appendingPathComponent("rollGroops")
+    
+    static func diceString(_ amount: Int, d numberOfSides: Int, toAdd: Int) -> String {
+        "\(amount)d\(numberOfSides)\(toAdd > 0 ? " + \(toAdd)" : "")"
+    }
 }
 
 extension FileManager {
