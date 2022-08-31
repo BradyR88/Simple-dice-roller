@@ -68,10 +68,10 @@ struct RollResult: Codable, Identifiable {
         }
         self.circumstance = cumstance
     }
-    
-    enum Circumstance: String, Codable {
-    case advantage, disadvantage, neutral
-    }
+}
+
+enum Circumstance: String, Codable, CaseIterable, Equatable {
+case advantage, neutral , disadvantage
 }
 
 struct RollGroop: Codable, Identifiable {

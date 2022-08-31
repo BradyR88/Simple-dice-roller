@@ -20,8 +20,10 @@ struct SpecificDiceRollingView: View {
                     switch circumstance {
                     case .advantage:
                         viewModel.rollWithAdvantage(roll)
+                        circumstance = .neutral
                     case .disadvantage:
                         viewModel.rollWithDisadvantage(roll)
+                        circumstance = .neutral
                     case .neutral:
                         viewModel.rolldice(roll)
                     }                    
@@ -43,21 +45,13 @@ struct SpecificDiceRollingView: View {
             
             Picker("select advantage state", selection: $circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in
-                    Text(value.localizedName).tag(value)
+                    Text(value.rawValue).tag(value)
                 }
             }
             .pickerStyle(.segmented)
             .padding(.horizontal)
 
         }
-    }
-    
-    enum Circumstance: String, Equatable, CaseIterable {
-        case advantage = "advantage"
-        case neutral = "neutral"
-        case disadvantage = "disadvantage"
-        
-        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     }
 }
 

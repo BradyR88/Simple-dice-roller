@@ -19,6 +19,16 @@ struct RollReadoutView: View {
                     .bold()
                     .font(.title)
                 
+                if rollResult.circumstance == .advantage {
+                    Image(systemName: "arrow.up.forward.square.fill")
+                        .font(.title)
+                        .foregroundColor(.green)
+                } else if rollResult.circumstance == .disadvantage {
+                    Image(systemName: "arrow.down.forward.square.fill")
+                        .font(.title)
+                        .foregroundColor(.red)
+                }
+                
                 Spacer()
                 
                 Text("\(rollResult.total)")
