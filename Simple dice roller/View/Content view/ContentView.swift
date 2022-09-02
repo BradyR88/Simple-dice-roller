@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack (spacing: 0) {
                 // MARK: past rolls
                 List {
                     ForEach(viewModel.pastRolls) { roll in
@@ -39,22 +39,25 @@ struct ContentView: View {
                             }
                             
                             ForEach(viewModel.rollGroops) { rollGroop in
-                                Button {
-                                    viewModel.display = rollGroop
-                                } label: {
-                                    Text(rollGroop.name)
-                                        .font(.title3)
-                                        .foregroundColor(.primary)
-                                        .padding(6)
-                                        .background(.purple)
-                                        .clipShape(Capsule())
+                                // TODO: stop using a statement and rather have a sub group for just the ones that are showing
+                                if rollGroop.isShowing {
+                                    Button {
+                                        viewModel.display = rollGroop
+                                    } label: {
+                                        Text(rollGroop.name)
+                                            .font(.title3)
+                                            .foregroundColor(.primary)
+                                            .padding(6)
+                                            .background(.purple)
+                                            .clipShape(Capsule())
+                                    }
                                 }
                             }
                         }
                     }
+                    .padding(.vertical, 5)
+                    .background(.tertiary)
                     
-                    Divider()
-                        .padding(.horizontal, 5)
                     
                     // MARK: Roll Display
                     if viewModel.display == nil {
@@ -65,6 +68,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationTitle("Paper Dice")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {

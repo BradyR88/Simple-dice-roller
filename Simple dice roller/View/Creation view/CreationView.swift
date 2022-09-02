@@ -9,20 +9,42 @@ import SwiftUI
 
 struct CreationView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State var isPresintingSheet = false
     
     var body: some View {
-        ScrollView {
-            List {
-                ForEach(viewModel.rollGroops) { rollGroop in
+        List {
+            ForEach(viewModel.rollGroops) { rollGroop in
+                HStack {
                     Text(rollGroop.name)
+                    
+                    Spacer()
+                    
+                    Menu {
+                        // options for the roll groop
+                        Button("Toggle Status") { viewModel.togalIsShowing(for: rollGroop) }
+                        Button("Edit") {isPresintingSheet = true}
+                        Button("Delete", role: .destructive) {}
+
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+
                 }
             }
+        }
+        .navigationTitle("Dice Bags")
+        .sheet(isPresented: $isPresintingSheet) {
+            Text("place holder")
         }
     }
 }
 
 struct CreationView_Previews: PreviewProvider {
     static var previews: some View {
-        CreationView()
+        let viewModel = ViewModel()
+        NavigationView {
+            CreationView()
+                .environmentObject(viewModel)
+        }
     }
 }

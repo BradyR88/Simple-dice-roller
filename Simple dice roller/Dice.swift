@@ -81,6 +81,7 @@ struct RollGroop: Codable, Identifiable {
     var isShowing: Bool
     
     static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4)], isShowing: true)
+    static let example2 = RollGroop(id: UUID(), name: "Bugbear", rolls: [Roll(1, d: 6, toAdd: 3), Roll(1, d: 20, toAdd: 5)], isShowing: true)
 }
 
 extension RollGroop {

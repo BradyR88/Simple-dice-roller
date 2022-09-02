@@ -56,4 +56,12 @@ import Foundation
     func rollWithDisadvantage(_ roll: Roll) {
         pastRolls.insert(RollResult(roll: roll, .disadvantage), at: 0)
     }
+    
+    func togalIsShowing(for rollGroop: RollGroop) {
+        // TODO: this function has room to be made vastly more efficient by finding a way to order roll groups and using some sort of binary split search
+        let index = rollGroops.firstIndex { $0.id == rollGroop.id }
+        guard let index = index else { return }
+        rollGroops[index].isShowing.toggle()
+        print("rollGroop toggled is now a \(rollGroops[index].isShowing)")
+    }
 }
