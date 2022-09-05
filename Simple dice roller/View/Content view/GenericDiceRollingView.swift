@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GenericDiceRollingView: View {
-    @EnvironmentObject var viewModel: ViewModel
+    let text: String
+    let onSubmit: (Roll)->Void
     
     @State var numberOfDice: Int = 1 {
         didSet {
@@ -58,9 +59,10 @@ struct GenericDiceRollingView: View {
             .padding(.bottom)
             
             Button {
-                viewModel.rolldice(Roll(numberOfDice, d: numberOfSides, toAdd: toAdd))
+                onSubmit(Roll(numberOfDice, d: numberOfSides, toAdd: toAdd))
+                //viewModel.rolldice(Roll(numberOfDice, d: numberOfSides, toAdd: toAdd))
             } label: {
-                Text("Roll!")
+                Text(text)
                     .bold()
                     .font(.title)
                     .foregroundColor(.primary)
@@ -94,6 +96,8 @@ struct GenericDiceRollingView: View {
 
 struct GenericDiceRollingView_Previews: PreviewProvider {
     static var previews: some View {
-        GenericDiceRollingView()
+        GenericDiceRollingView(text: "Test") { roll in
+            // do nuthing
+        }
     }
 }

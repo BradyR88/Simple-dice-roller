@@ -10,10 +10,11 @@ import SwiftUI
 struct CreationView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var isPresintingSheet = false
+    @State var indexOfRollGroop = 0
     
     var body: some View {
         List {
-            ForEach(viewModel.rollGroops) { rollGroop in
+            ForEach(Array(viewModel.rollGroops.enumerated()), id: \.offset) { index, rollGroop in
                 HStack {
                     Text(rollGroop.name)
                     
@@ -21,8 +22,11 @@ struct CreationView: View {
                     
                     Menu {
                         // options for the roll groop
-                        Button("Toggle Status") { viewModel.togalIsShowing(for: rollGroop) }
-                        Button("Edit") {isPresintingSheet = true}
+                        Button("Toggle Status") { viewModel.togalIsShowing(for: index) }
+                        Button("Edit") {
+                            indexOfRollGroop = index
+                            isPresintingSheet = true
+                        }
                         Button("Delete", role: .destructive) {}
 
                     } label: {
@@ -34,7 +38,7 @@ struct CreationView: View {
         }
         .navigationTitle("Dice Bags")
         .sheet(isPresented: $isPresintingSheet) {
-            Text("place holder")
+            EditSheetView(indexOfRollGroop: indexOfRollGroop)
         }
     }
 }

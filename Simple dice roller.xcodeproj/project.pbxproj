@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7324440628C2A9E70056A8A7 /* EditSheetView.swift */; };
 		737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */; };
 		737B187928BFF77600ED59D3 /* CreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187828BFF77600ED59D3 /* CreationView.swift */; };
 		73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7324440628C2A9E70056A8A7 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
 		737B187828BFF77600ED59D3 /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
 		73B2516F28B9301400246515 /* Simple dice roller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple dice roller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				737B187828BFF77600ED59D3 /* CreationView.swift */,
+				7324440628C2A9E70056A8A7 /* EditSheetView.swift */,
 			);
 			path = "Creation view";
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				737B187928BFF77600ED59D3 /* CreationView.swift in Sources */,
 				73B2518528B9320600246515 /* Dice.swift in Sources */,
 				73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */,
+				7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */,
 				73B2518128B9305A00246515 /* ViewModel.swift in Sources */,
 				73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */,
 				73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */,

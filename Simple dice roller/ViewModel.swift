@@ -13,7 +13,7 @@ import Foundation
             saveData(to: Constance.savePathPastRolls, from: pastRolls)
         }
     }
-    @Published private(set) var rollGroops: [RollGroop] = [] {
+    @Published var rollGroops: [RollGroop] = [] {
         didSet {
             saveData(to: Constance.savePathRollGroops, from: rollGroops)
         }
@@ -57,11 +57,8 @@ import Foundation
         pastRolls.insert(RollResult(roll: roll, .disadvantage), at: 0)
     }
     
-    func togalIsShowing(for rollGroop: RollGroop) {
-        // TODO: this function has room to be made vastly more efficient by finding a way to order roll groups and using some sort of binary split search
-        let index = rollGroops.firstIndex { $0.id == rollGroop.id }
-        guard let index = index else { return }
+    func togalIsShowing(for index: Int) {
+        // TODO: make safer by checking that the index exist first
         rollGroops[index].isShowing.toggle()
-        print("rollGroop toggled is now a \(rollGroops[index].isShowing)")
     }
 }
