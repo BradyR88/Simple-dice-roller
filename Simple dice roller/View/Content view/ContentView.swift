@@ -33,7 +33,7 @@ struct ContentView: View {
                                     .font(.title3)
                                     .foregroundColor(.primary)
                                     .padding(6)
-                                    .background(.purple)
+                                    .background(viewModel.display == nil ? .red : .purple)
                                     .clipShape(Capsule())
                                     .padding(.leading, 8)
                             }
@@ -48,7 +48,7 @@ struct ContentView: View {
                                             .font(.title3)
                                             .foregroundColor(.primary)
                                             .padding(6)
-                                            .background(.purple)
+                                            .background((rollGroop == (viewModel.display ?? RollGroop(name: ""))) ? .red : .purple)
                                             .clipShape(Capsule())
                                     }
                                 }

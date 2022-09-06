@@ -105,8 +105,8 @@ import Foundation
         indicatedRollGroop.rolls.remove(atOffsets: offsets)
     }
     
-    func deleteRollGroop(at offsets: IndexSet) {
-        rollGroops.remove(atOffsets: offsets)
+    func deleteRollGroop(at index: Int) {
+        rollGroops.remove(at: index)
     }
     
     func tapOnRoll(at index: Int) {

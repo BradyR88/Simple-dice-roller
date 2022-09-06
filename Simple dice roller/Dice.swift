@@ -74,11 +74,15 @@ enum Circumstance: String, Codable, CaseIterable, Equatable {
 case advantage, neutral , disadvantage
 }
 
-struct RollGroop: Codable, Identifiable {
+struct RollGroop: Codable, Identifiable, Equatable {
     let id: UUID
     var name: String
     var rolls: [Roll]
     var isShowing: Bool
+    
+    static func == (lhs: RollGroop, rhs: RollGroop) -> Bool {
+        lhs.id == rhs.id
+    }
     
     static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4)], isShowing: true)
     static let example2 = RollGroop(id: UUID(), name: "Bugbear", rolls: [Roll(1, d: 6, toAdd: 3), Roll(1, d: 20, toAdd: 5)], isShowing: true)

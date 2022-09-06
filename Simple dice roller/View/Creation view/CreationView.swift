@@ -14,27 +14,24 @@ struct CreationView: View {
     var body: some View {
         List {
             ForEach(Array(viewModel.rollGroops.enumerated()), id: \.offset) { index, rollGroop in
-                HStack {
-                    Text(rollGroop.name)
-                    
-                    Spacer()
-                    
-                    Menu {
-                        // options for the roll groop
-                        Button("Toggle Status") { viewModel.togalIsShowing(for: index) }
-                        Button("Edit") {
+                Text(rollGroop.name)
+                    .swipeActions(edge: .leading) {
+                        Button {
                             viewModel.rollGroopIndex = index
                             isPresintingSheet = true
+                        } label: {
+                            Label("Edit", image: "pencil")
                         }
-
-                    } label: {
-                        Image(systemName: "ellipsis")
+                        .tint(.indigo)
                     }
-
-                }
-            }
-            .onDelete { offsets in
-                viewModel.deleteRollGroop(at: offsets)
+                    .swipeActions(edge: .trailing) {
+                        Button {
+                            viewModel.deleteRollGroop(at: index)
+                        } label: {
+                            Label("delete", image: "pencil")
+                        }
+                        .tint(.red)
+                    }
             }
         }
         .navigationTitle("Dice Bags")
