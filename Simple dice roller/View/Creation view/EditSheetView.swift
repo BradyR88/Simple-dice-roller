@@ -9,29 +9,25 @@ import SwiftUI
 
 struct EditSheetView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var rollIndex:Int? = nil
-    
-    let indexOfRollGroop: Int
-    
     
     var body: some View {
         VStack {
             Form {
                 Section("Name") {
-                    TextField("Name", text: $viewModel.rollGroops[indexOfRollGroop].name)
+                    TextField("Name", text: $viewModel.indicatedRollGroop.name)
                 }
                 
                 Section("Rolls") {
-                    ForEach(Array(viewModel.rollGroops[indexOfRollGroop].rolls.enumerated()), id: \.offset) { index, roll in
+                    ForEach(Array(viewModel.indicatedRollGroop.rolls.enumerated()), id: \.offset) { index, roll in
                         Button {
-                            rollIndex = index
+                            viewModel.rollIndex = index
                         } label: {
                             HStack {
                                 Text(roll.name)
                                 
                                 Spacer()
                                 
-                                if index == rollIndex {
+                                if index == viewModel.rollIndex {
                                     Image(systemName: "pencil.circle")
                                         .foregroundColor(.green)
                                 }
@@ -44,19 +40,18 @@ struct EditSheetView: View {
             
             Spacer()
             
-            GenericDiceRollingView(text: "Submit") { roll in
-                // what to do wiht the new roll
-                guard let rollIndex = rollIndex else { return }
-
-                viewModel.rollGroops[indexOfRollGroop].rolls[rollIndex] = roll
-            }
+            GenericDiceRollingView(text: "Submit") { roll in viewModel.indicatedRoll = roll }
         }
+        .onDisappear { viewModel.resetAllIndexes() }
     }
 }
 
 struct EditSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        EditSheetView(indexOfRollGroop: 0)
-            .environmentObject(ViewModel())
+        let viewModel = ViewModel()
+        viewModel.rollIndex = 0
+        viewModel.rollGroopIndex = 0
+        
+        return EditSheetView().environmentObject(viewModel)
     }
 }

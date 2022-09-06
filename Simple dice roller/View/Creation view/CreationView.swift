@@ -10,7 +10,6 @@ import SwiftUI
 struct CreationView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State var isPresintingSheet = false
-    @State var indexOfRollGroop = 0
     
     var body: some View {
         List {
@@ -24,7 +23,7 @@ struct CreationView: View {
                         // options for the roll groop
                         Button("Toggle Status") { viewModel.togalIsShowing(for: index) }
                         Button("Edit") {
-                            indexOfRollGroop = index
+                            viewModel.rollGroopIndex = index
                             isPresintingSheet = true
                         }
                         Button("Delete", role: .destructive) {}
@@ -38,7 +37,7 @@ struct CreationView: View {
         }
         .navigationTitle("Dice Bags")
         .sheet(isPresented: $isPresintingSheet) {
-            EditSheetView(indexOfRollGroop: indexOfRollGroop)
+            EditSheetView()
         }
     }
 }

@@ -13,12 +13,51 @@ import Foundation
             saveData(to: Constance.savePathPastRolls, from: pastRolls)
         }
     }
-    @Published var rollGroops: [RollGroop] = [] {
+    @Published private(set) var rollGroops: [RollGroop] = [] {
         didSet {
             saveData(to: Constance.savePathRollGroops, from: rollGroops)
         }
     }
     @Published var display: RollGroop? = nil
+    
+    var rollGroopIndex: Int? = nil
+    @Published var rollIndex: Int? = nil
+    
+    var indicatedRollGroop: RollGroop {
+        get {
+            guard let rollGroopIndex = rollGroopIndex else {
+                return RollGroop(name: "Error")
+            }
+            // TODO: make safer by checking that the index exist first
+            return rollGroops[rollGroopIndex]
+        }
+        set {
+            guard let rollGroopIndex = rollGroopIndex else { return }
+            // TODO: make safer by checking that the index exist first
+            rollGroops[rollGroopIndex] = newValue
+        }
+    }
+    
+    var indicatedRoll: Roll {
+        get {
+            let error = Roll(name: "Error", 1, d: 20, toAdd: 0, subRoll: nil)
+            guard let rollGroopIndex = rollGroopIndex else {
+                return error
+            }
+            guard let rollIndex = rollIndex else {
+                return error
+            }
+            
+            return rollGroops[rollGroopIndex].rolls[rollIndex]
+        }
+        
+        set {
+            guard let rollGroopIndex = rollGroopIndex else { return }
+            guard let rollIndex = rollIndex else { return }
+            
+            rollGroops[rollGroopIndex].rolls[rollIndex] = newValue
+        }
+    }
     
     init() {
         loadData(from: Constance.savePathPastRolls, to: &pastRolls)
@@ -60,5 +99,12 @@ import Foundation
     func togalIsShowing(for index: Int) {
         // TODO: make safer by checking that the index exist first
         rollGroops[index].isShowing.toggle()
+    }
+    
+    // MARK: background view management functions
+    
+    func resetAllIndexes() {
+        rollIndex = nil
+        rollGroopIndex = nil
     }
 }
