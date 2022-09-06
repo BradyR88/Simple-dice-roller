@@ -26,7 +26,6 @@ struct CreationView: View {
                             viewModel.rollGroopIndex = index
                             isPresintingSheet = true
                         }
-                        Button("Delete", role: .destructive) {}
 
                     } label: {
                         Image(systemName: "ellipsis")
@@ -34,8 +33,21 @@ struct CreationView: View {
 
                 }
             }
+            .onDelete { offsets in
+                viewModel.deleteRollGroop(at: offsets)
+            }
         }
         .navigationTitle("Dice Bags")
+        .toolbar{
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.addNewRollGroop()
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+            }
+        }
         .sheet(isPresented: $isPresintingSheet) {
             EditSheetView()
         }

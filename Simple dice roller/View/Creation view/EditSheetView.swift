@@ -12,7 +12,7 @@ struct EditSheetView: View {
     
     var body: some View {
         VStack {
-            Form {
+            List {
                 Section("Name") {
                     TextField("Name", text: $viewModel.indicatedRollGroop.name)
                 }
@@ -20,7 +20,7 @@ struct EditSheetView: View {
                 Section("Rolls") {
                     ForEach(Array(viewModel.indicatedRollGroop.rolls.enumerated()), id: \.offset) { index, roll in
                         Button {
-                            viewModel.rollIndex = index
+                            viewModel.tapOnRoll(at: index)
                         } label: {
                             HStack {
                                 Text(roll.name)
@@ -35,10 +35,26 @@ struct EditSheetView: View {
                             .foregroundColor(.primary)
                         }
                     }
+                    .onDelete { offsets in
+                        viewModel.deleteRoll(at: offsets)
+                    }
                 }
             }
             
             Spacer()
+            
+            Button {
+                viewModel.addNewRoll()
+            } label: {
+                Text("Add new roll")
+                    .foregroundColor(.primary)
+                    .bold()
+                    .padding()
+                    .background(.green)
+                    .clipShape(Capsule())
+            }
+            
+            Divider()
             
             GenericDiceRollingView(text: "Submit") { roll in viewModel.indicatedRoll = roll }
         }

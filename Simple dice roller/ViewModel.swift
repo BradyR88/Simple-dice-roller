@@ -101,6 +101,30 @@ import Foundation
         rollGroops[index].isShowing.toggle()
     }
     
+    func deleteRoll(at offsets: IndexSet) {
+        indicatedRollGroop.rolls.remove(atOffsets: offsets)
+    }
+    
+    func deleteRollGroop(at offsets: IndexSet) {
+        rollGroops.remove(atOffsets: offsets)
+    }
+    
+    func tapOnRoll(at index: Int) {
+        if index == rollIndex {
+            rollIndex = nil
+        } else {
+            rollIndex = index
+        }
+    }
+    
+    func addNewRollGroop() {
+        rollGroops.append(RollGroop(name: "New Groop"))
+    }
+    
+    func addNewRoll() {
+        indicatedRollGroop.rolls.append(Roll(1, d: 20, toAdd: 0))
+    }
+    
     // MARK: background view management functions
     
     func resetAllIndexes() {
