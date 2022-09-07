@@ -9,17 +9,28 @@ import SwiftUI
 
 struct EditSheetView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         VStack {
             List {
                 Section("Name") {
                     TextField("Name", text: $viewModel.indicatedRollGroop.name)
+                        .focused($isTextFieldFocused)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                Button("Done") {
+                                    isTextFieldFocused = false
+                                }
+                            }
+                        }
                 }
                 
                 Section("Rolls") {
                     ForEach(Array(viewModel.indicatedRollGroop.rolls.enumerated()), id: \.offset) { index, roll in
                         Button {
+                            isTextFieldFocused = false
                             viewModel.tapOnRoll(at: index)
                         } label: {
                             HStack {
@@ -41,22 +52,24 @@ struct EditSheetView: View {
                 }
             }
             
-            Spacer()
-            
-            Button {
-                viewModel.addNewRoll()
-            } label: {
-                Text("Add new roll")
-                    .foregroundColor(.primary)
-                    .bold()
-                    .padding()
-                    .background(.green)
-                    .clipShape(Capsule())
+            if !isTextFieldFocused {
+                //Spacer()
+                
+                Button {
+                    viewModel.addNewRoll()
+                } label: {
+                    Text("Add new roll")
+                        .foregroundColor(.primary)
+                        .bold()
+                        .padding()
+                        .background(.green)
+                        .clipShape(Capsule())
+                }
+                
+                Divider()
+                
+                GenericDiceRollingView(text: "Submit") { roll in viewModel.indicatedRoll = roll }
             }
-            
-            Divider()
-            
-            GenericDiceRollingView(text: "Submit") { roll in viewModel.indicatedRoll = roll }
         }
         .onDisappear { viewModel.resetAllIndexes() }
     }

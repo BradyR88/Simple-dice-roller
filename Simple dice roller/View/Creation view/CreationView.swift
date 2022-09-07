@@ -14,24 +14,37 @@ struct CreationView: View {
     var body: some View {
         List {
             ForEach(Array(viewModel.rollGroops.enumerated()), id: \.offset) { index, rollGroop in
-                Text(rollGroop.name)
-                    .swipeActions(edge: .leading) {
-                        Button {
-                            viewModel.rollGroopIndex = index
-                            isPresintingSheet = true
-                        } label: {
-                            Label("Edit", image: "pencil")
+                Button {
+                    viewModel.togalIsShowing(for: index)
+                } label: {
+                    HStack {
+                        Text(rollGroop.name)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        if rollGroop.isShowing {
+                            Image(systemName: "checkmark.square.fill")
                         }
-                        .tint(.indigo)
                     }
-                    .swipeActions(edge: .trailing) {
-                        Button {
-                            viewModel.deleteRollGroop(at: index)
-                        } label: {
-                            Label("delete", image: "pencil")
-                        }
-                        .tint(.red)
+                }
+                .swipeActions(edge: .leading) {
+                    Button {
+                        viewModel.rollGroopIndex = index
+                        isPresintingSheet = true
+                    } label: {
+                        Label("Edit", systemImage: "pencil")
                     }
+                    .tint(.indigo)
+                }
+                .swipeActions(edge: .trailing) {
+                    Button {
+                        viewModel.deleteRollGroop(at: index)
+                    } label: {
+                        Label("Delete", systemImage: "trash.circle")
+                    }
+                    .tint(.red)
+                }
             }
         }
         .navigationTitle("Dice Bags")
