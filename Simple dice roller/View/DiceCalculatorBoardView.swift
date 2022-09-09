@@ -7,31 +7,21 @@
 
 import SwiftUI
 
-struct DiceCalculatorBoardView: View {
-    @Binding var amount: Int{
-        didSet {
-            if amount < 1 { amount = 1 }
-        }
-    }
-    @Binding var numberOfSides: Int
-    @Binding var toAdd: Int{
-        didSet {
-            if toAdd < 0 { toAdd = 0 }
-        }
-    }
+struct DiceCalculatorBoardView<T: Rollable>: View {
+    @Binding var roll: T
     
     var body: some View {
         VStack {
-            Text(Constance.diceString(amount, d: numberOfSides, toAdd: toAdd))
+            Text(Constance.diceString(roll.amount, d: roll.numberOfSides, toAdd: roll.toAdd))
                 .font(.title)
                 .bold()
             
             HStack {
                 NumberToggleView {
                     // addition
-                    amount += 1
+                    roll.amount += 1
                 } subtraction: {
-                    amount -= 1
+                    roll.amount -= 1
                 }
                 
                 VStack {
@@ -48,9 +38,9 @@ struct DiceCalculatorBoardView: View {
                 
                 NumberToggleView {
                     // addition
-                    toAdd += 1
+                    roll.toAdd += 1
                 } subtraction: {
-                    toAdd -= 1
+                    roll.toAdd -= 1
                 }
             }
             .padding(.bottom)
@@ -61,7 +51,7 @@ struct DiceCalculatorBoardView: View {
         var view: some View {
             Button {
                 withAnimation {
-                    numberOfSides = sides
+                    roll.numberOfSides = sides
                 }
             } label: {
                 Text("\(sides)")
@@ -69,7 +59,7 @@ struct DiceCalculatorBoardView: View {
                     .font(.title)
                     .foregroundColor(.primary)
                     .frame(width: 65, height: 48)
-                    .background(numberOfSides == sides ? .red : .red.opacity(0.75))
+                    .background(roll.numberOfSides == sides ? .red : .red.opacity(0.75))
                     .background(.black)
                     .clipShape(Capsule())
             }
@@ -79,6 +69,6 @@ struct DiceCalculatorBoardView: View {
 }
 struct DiceCalculatorBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        DiceCalculatorBoardView(amount: .constant(1), numberOfSides: .constant(20), toAdd: .constant(0))
+        DiceCalculatorBoardView<Roll>(roll: .constant(Roll.example))
     }
 }

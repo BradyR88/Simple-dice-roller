@@ -134,7 +134,7 @@ import Foundation
     }
     
     func addNewRoll() {
-        indicatedRollGroop.rolls.append(Roll(1, d: 20, toAdd: 0))
+        indicatedRollGroop.rolls.append(Roll.newRoll)
         rollIndex = indicatedRollGroop.rolls.count - 1
     }
     

@@ -84,8 +84,8 @@ struct RollGroop: Codable, Identifiable, Equatable {
         lhs.id == rhs.id
     }
     
-    static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4)], isShowing: true)
-    static let example2 = RollGroop(id: UUID(), name: "Bugbear", rolls: [Roll(1, d: 6, toAdd: 3), Roll(1, d: 20, toAdd: 5)], isShowing: true)
+    static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4), Roll.exampleWithSubRoll], isShowing: true)
+    static let example2 = RollGroop(id: UUID(), name: "Bugbear", rolls: [Roll(1, d: 6, toAdd: 3), Roll(1, d: 20, toAdd: 5), Roll.exampleWithSubRoll], isShowing: true)
 }
 
 extension RollGroop {
@@ -98,24 +98,27 @@ extension RollGroop {
 }
 
 
-class Roll: Codable, Identifiable {
+struct Roll: Rollable, Codable, Identifiable {
+    var id = UUID()
     var name: String
     var amount: Int 
     var numberOfSides: Int
     var toAdd: Int
-    var subRoll: Roll?
+    var subRoll: SubRoll?
     
     func critical() -> Roll {
         Roll(amount+amount, d: numberOfSides, toAdd: toAdd)
     }
     
-    func regenerateName() {
+    mutating func regenerateName() {
         name = Constance.diceString(amount, d: numberOfSides, toAdd: toAdd)
     }
     
+    static let newRoll = Roll(name: "New Roll", 1, d: 20, toAdd: 0, subRoll: nil)
     static let example = Roll(1, d: 6, toAdd: 4)
+    static let exampleWithSubRoll = Roll(name: "test roll", 1, d: 20, toAdd: 5, subRoll: SubRoll(amount: 2, numberOfSides: 6, toAdd: 3))
     
-    init(name: String,_ amount: Int, d: Int, toAdd: Int, subRoll: Roll?) {
+    init(name: String,_ amount: Int, d: Int, toAdd: Int, subRoll: SubRoll?) {
         self.amount = amount
         self.numberOfSides = d
         self.toAdd = toAdd
@@ -123,7 +126,20 @@ class Roll: Codable, Identifiable {
         self.name = name
     }
     
-    convenience init(_ amount: Int, d: Int, toAdd: Int) {
+    init(_ amount: Int, d: Int, toAdd: Int) {
         self.init(name: Constance.diceString(amount, d: d, toAdd: toAdd), amount, d: d, toAdd: toAdd, subRoll: nil)
     }
+}
+
+struct SubRoll: Rollable, Codable, Identifiable {
+    var id = UUID()
+    var amount: Int
+    var numberOfSides: Int
+    var toAdd: Int
+}
+
+protocol Rollable {
+    var amount: Int { get set }
+    var numberOfSides: Int { get set }
+    var toAdd: Int { get set }
 }

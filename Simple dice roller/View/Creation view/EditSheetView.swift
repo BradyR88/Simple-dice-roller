@@ -33,17 +33,16 @@ struct EditSheetView: View {
                             isTextFieldFocused = false
                             viewModel.tapOnRoll(at: index)
                         } label: {
-                            HStack {
-                                Text(Constance.diceString(roll.amount , d: roll.numberOfSides, toAdd: roll.toAdd))
-                                    .foregroundColor(index == viewModel.rollIndex ? .green : .primary)
-                                    .font(index == viewModel.rollIndex ? .title3 : .body)
-                                
-                                Spacer()
-                                
-                                if index == viewModel.rollIndex {
-                                    Image(systemName: "pencil.circle")
-                                        .foregroundColor(.green)
+                            ZStack {
+                                EditRollView(roll: roll)
+                                HStack {
+                                    Spacer()
+                                    if index == viewModel.rollIndex {
+                                        Image(systemName: "pencil.circle")
+                                            .foregroundColor(.green)
+                                    }
                                 }
+                                
                             }
                         }
                     }
@@ -69,7 +68,7 @@ struct EditSheetView: View {
                 
                 Divider()
                 
-                DiceCalculatorBoardView(amount: $viewModel.indicatedRoll.amount, numberOfSides: $viewModel.indicatedRoll.numberOfSides, toAdd: $viewModel.indicatedRoll.toAdd)
+                DiceCalculatorBoardView(roll: $viewModel.indicatedRoll)
             }
         }
         .onDisappear { viewModel.resetAllIndexes() }

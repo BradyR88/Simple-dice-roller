@@ -11,17 +11,15 @@ struct GenericDiceRollingView: View {
     let text: String
     let onSubmit: (Roll)->Void
     
-    @State private var amount = 1
-    @State private var numberOfSides = 20
-    @State private var toAdd = 0
+    @State private var roll = Roll(name: "Custom", 1, d: 20, toAdd: 0, subRoll: nil)
     
     var body: some View {
         VStack {
             
-            DiceCalculatorBoardView(amount: $amount, numberOfSides: $numberOfSides, toAdd: $toAdd)
+            DiceCalculatorBoardView(roll: $roll)
             
             Button {
-                onSubmit(Roll(amount, d: numberOfSides, toAdd: toAdd))
+                onSubmit(roll)
             } label: {
                 Text(text)
                     .bold()
