@@ -99,15 +99,18 @@ extension RollGroop {
 
 
 class Roll: Codable, Identifiable {
-    let name: String
-    let amount: Int
-    let numberOfSides: Int
-    let toAdd: Int
-    
-    let subRoll: Roll?
+    var name: String
+    var amount: Int 
+    var numberOfSides: Int
+    var toAdd: Int
+    var subRoll: Roll?
     
     func critical() -> Roll {
         Roll(amount+amount, d: numberOfSides, toAdd: toAdd)
+    }
+    
+    func regenerateName() {
+        name = Constance.diceString(amount, d: numberOfSides, toAdd: toAdd)
     }
     
     static let example = Roll(1, d: 6, toAdd: 4)

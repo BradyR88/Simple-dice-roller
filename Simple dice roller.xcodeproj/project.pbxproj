@@ -10,6 +10,7 @@
 		7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7324440628C2A9E70056A8A7 /* EditSheetView.swift */; };
 		737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */; };
 		737B187928BFF77600ED59D3 /* CreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187828BFF77600ED59D3 /* CreationView.swift */; };
+		73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73855B1F28C960DC00E59726 /* DiceCalculatorBoardView.swift */; };
 		73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */; };
 		73B2517528B9301400246515 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2517428B9301400246515 /* ContentView.swift */; };
 		73B2517728B9301400246515 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B2517628B9301400246515 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		7324440628C2A9E70056A8A7 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
 		737B187828BFF77600ED59D3 /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
+		73855B1F28C960DC00E59726 /* DiceCalculatorBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalculatorBoardView.swift; sourceTree = "<group>"; };
 		73B2516F28B9301400246515 /* Simple dice roller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple dice roller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simple_dice_rollerApp.swift; sourceTree = "<group>"; };
 		73B2517428B9301400246515 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				737B187628BFF6C600ED59D3 /* Content view */,
 				737B187728BFF6FC00ED59D3 /* Creation view */,
+				73855B1F28C960DC00E59726 /* DiceCalculatorBoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */,
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,

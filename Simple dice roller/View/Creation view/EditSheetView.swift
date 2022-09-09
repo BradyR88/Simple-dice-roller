@@ -34,7 +34,9 @@ struct EditSheetView: View {
                             viewModel.tapOnRoll(at: index)
                         } label: {
                             HStack {
-                                Text(roll.name)
+                                Text(Constance.diceString(roll.amount , d: roll.numberOfSides, toAdd: roll.toAdd))
+                                    .foregroundColor(index == viewModel.rollIndex ? .green : .primary)
+                                    .font(index == viewModel.rollIndex ? .title3 : .body)
                                 
                                 Spacer()
                                 
@@ -43,7 +45,6 @@ struct EditSheetView: View {
                                         .foregroundColor(.green)
                                 }
                             }
-                            .foregroundColor(.primary)
                         }
                     }
                     .onDelete { offsets in
@@ -68,7 +69,7 @@ struct EditSheetView: View {
                 
                 Divider()
                 
-                GenericDiceRollingView(text: "Submit") { roll in viewModel.indicatedRoll = roll }
+                DiceCalculatorBoardView(amount: $viewModel.indicatedRoll.amount, numberOfSides: $viewModel.indicatedRoll.numberOfSides, toAdd: $viewModel.indicatedRoll.toAdd)
             }
         }
         .onDisappear { viewModel.resetAllIndexes() }

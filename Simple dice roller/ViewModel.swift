@@ -102,7 +102,19 @@ import Foundation
     }
     
     func deleteRoll(at offsets: IndexSet) {
+        // Store the unique ID of the previous selected roll
+        let selectedID = indicatedRoll.id
+        // set roll index to nail so it won't accidentally reference an index at no longer exist
+        rollIndex = nil
+        // delete selected rolls
         indicatedRollGroop.rolls.remove(atOffsets: offsets)
+        // look back through the roles and see if the previously selected index is still there if it is re-select it
+        for (index, roll) in indicatedRollGroop.rolls.enumerated() {
+            if roll.id == selectedID {
+                rollIndex = index
+                break
+            }
+        }
     }
     
     func deleteRollGroop(at index: Int) {
@@ -123,6 +135,7 @@ import Foundation
     
     func addNewRoll() {
         indicatedRollGroop.rolls.append(Roll(1, d: 20, toAdd: 0))
+        rollIndex = indicatedRollGroop.rolls.count - 1
     }
     
     // MARK: background view management functions
