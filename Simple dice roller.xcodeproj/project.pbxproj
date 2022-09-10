@@ -23,6 +23,7 @@
 		73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518B28B9814000246515 /* NumberToggleView.swift */; };
 		73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518D28B988C300246515 /* GenericDiceRollingView.swift */; };
 		73EF507E28CBB27000CB37F3 /* EditRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF507D28CBB27000CB37F3 /* EditRollView.swift */; };
+		73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		73B2518B28B9814000246515 /* NumberToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberToggleView.swift; sourceTree = "<group>"; };
 		73B2518D28B988C300246515 /* GenericDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDiceRollingView.swift; sourceTree = "<group>"; };
 		73EF507D28CBB27000CB37F3 /* EditRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRollView.swift; sourceTree = "<group>"; };
+		73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				737B187828BFF77600ED59D3 /* CreationView.swift */,
 				7324440628C2A9E70056A8A7 /* EditSheetView.swift */,
 				73EF507D28CBB27000CB37F3 /* EditRollView.swift */,
+				73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */,
 			);
 			path = "Creation view";
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */,
+				73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */,
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,

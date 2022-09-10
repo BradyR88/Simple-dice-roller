@@ -10,6 +10,18 @@ import SwiftUI
 struct EditSheetView: View {
     @EnvironmentObject var viewModel: ViewModel
     @FocusState private var isTextFieldFocused: Bool
+    @FocusState private var nameFieldFocused: Bool
+    
+    @State private var editMode: EditMode = .roll {
+        didSet{
+            if viewModel.rollIndex == nil {
+                editMode = .roll
+            }
+            if editMode == .name {
+                nameFieldFocused = true
+            }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -66,9 +78,24 @@ struct EditSheetView: View {
                         .clipShape(Capsule())
                 }
                 
+                HStack {
+                    ToggleButtonView(mode: $editMode, setTo: .name)
+                    ToggleButtonView(mode: $editMode, setTo: .roll)
+                    ToggleButtonView(mode: $editMode, setTo: .subRoll)
+                }
+                
                 Divider()
                 
-                DiceCalculatorBoardView(roll: $viewModel.indicatedRoll)
+                switch editMode {
+                case .name:
+                    TextField("roll name", text: $viewModel.indicatedRoll.name)
+                        .padding()
+                        .focused($nameFieldFocused)
+                case .roll:
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedRoll)
+                case .subRoll:
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedSubRoll)
+                }
             }
         }
         .onDisappear { viewModel.resetAllIndexes() }

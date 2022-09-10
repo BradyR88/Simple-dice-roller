@@ -50,12 +50,23 @@ import Foundation
             
             return rollGroops[rollGroopIndex].rolls[rollIndex]
         }
-        
         set {
             guard let rollGroopIndex = rollGroopIndex else { return }
             guard let rollIndex = rollIndex else { return }
             
             rollGroops[rollGroopIndex].rolls[rollIndex] = newValue
+        }
+    }
+    
+    var indicatedSubRoll: SubRoll {
+        get {
+            indicatedRoll.subRoll ?? SubRoll(amount: 1, numberOfSides: 8, toAdd: 0)
+        }
+        set {
+            guard let rollGroopIndex = rollGroopIndex else { return }
+            guard let rollIndex = rollIndex else { return }
+            
+            rollGroops[rollGroopIndex].rolls[rollIndex].subRoll = newValue
         }
     }
     
@@ -136,6 +147,10 @@ import Foundation
     func addNewRoll() {
         indicatedRollGroop.rolls.append(Roll.newRoll)
         rollIndex = indicatedRollGroop.rolls.count - 1
+    }
+    
+    func removeSubRoll() {
+        indicatedRoll.subRoll = nil
     }
     
     // MARK: background view management functions
