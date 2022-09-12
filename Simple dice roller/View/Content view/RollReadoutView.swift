@@ -15,7 +15,7 @@ struct RollReadoutView: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text(Constance.diceString(rollResult.roll.amount, d: rollResult.roll.numberOfSides, toAdd: rollResult.roll.toAdd))
+                Text(rollResult.subRoll ? Constance.diceStringPlus(roll: rollResult.roll.subRoll!) : Constance.diceStringPlus(roll: rollResult.roll))
                     .bold()
                     .font(.title)
                 

@@ -20,7 +20,7 @@ struct EditRollView: View {
                     Text("Hit:")
                         .font(.callout)
                     Text(Constance.diceString(roll.subRoll!.amount, d: roll.subRoll!.numberOfSides, toAdd: roll.subRoll!.toAdd))
-                        .padding(.trailing, 45)
+                        .padding(.trailing, 65)
                 }
             }
         }

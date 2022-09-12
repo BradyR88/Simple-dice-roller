@@ -11,6 +11,7 @@ import SwiftUI
 struct RollResult: Codable, Identifiable {
     let id: UUID
     let roll: Roll
+    let subRoll: Bool
     let faces: [Int]
     let total: Int
     let circumstance: Circumstance
@@ -27,6 +28,7 @@ struct RollResult: Codable, Identifiable {
             faces.append(Int.random(in: 1...roll.numberOfSides))
         }
         
+        self.subRoll = false
         self.faces = faces.sorted()
         self.total = faces.sum() + roll.toAdd
         self.circumstance = .neutral
@@ -66,12 +68,35 @@ struct RollResult: Codable, Identifiable {
             self.total = faces.sum() + roll.toAdd
             self.faces = faces.sorted()
         }
+        self.subRoll = false
         self.circumstance = cumstance
+    }
+    
+    init(withSubRollFrom roll: Roll) throws {
+        guard let subRoll = roll.subRoll else { throw RollErrors.noSubRoll}
+        
+        self.id = UUID()
+        self.roll = roll
+        
+        var faces: [Int] = []
+        
+        for _ in 0..<subRoll.amount {
+            faces.append(Int.random(in: 1...subRoll.numberOfSides))
+        }
+        
+        self.subRoll = true
+        self.faces = faces.sorted()
+        self.total = faces.sum() + roll.toAdd
+        self.circumstance = .neutral
     }
 }
 
 enum Circumstance: String, Codable, CaseIterable, Equatable {
 case advantage, neutral , disadvantage
+}
+
+enum RollErrors: Error {
+    case noSubRoll
 }
 
 struct RollGroop: Codable, Identifiable, Equatable {
@@ -84,7 +109,7 @@ struct RollGroop: Codable, Identifiable, Equatable {
         lhs.id == rhs.id
     }
     
-    static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 4, toAdd: 2), Roll(1, d: 20, toAdd: 4), Roll.exampleWithSubRoll], isShowing: true)
+    static let example = RollGroop(id: UUID(), name: "Kobold", rolls: [Roll(1, d: 20, toAdd: 4), Roll.exampleWithSubRoll], isShowing: true)
     static let example2 = RollGroop(id: UUID(), name: "Bugbear", rolls: [Roll(1, d: 6, toAdd: 3), Roll(1, d: 20, toAdd: 5), Roll.exampleWithSubRoll], isShowing: true)
 }
 

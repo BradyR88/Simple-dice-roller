@@ -95,16 +95,25 @@ import Foundation
     }
     
     // MARK: user actions
-    func rolldice(_ roll: Roll) {
-        pastRolls.insert(RollResult(roll: roll), at: 0)
+    func rolldice(_ roll: Roll, with circumstance: Circumstance?) {
+        switch circumstance {
+        case .advantage:
+            pastRolls.insert(RollResult(roll: roll, .advantage), at: 0)
+        case .disadvantage:
+            pastRolls.insert(RollResult(roll: roll, .disadvantage), at: 0)
+        case .neutral, .none:
+            pastRolls.insert(RollResult(roll: roll), at: 0)
+        }
     }
     
-    func rollWithAdvantage(_ roll: Roll) {
-        pastRolls.insert(RollResult(roll: roll, .advantage), at: 0)
-    }
-    
-    func rollWithDisadvantage(_ roll: Roll) {
-        pastRolls.insert(RollResult(roll: roll, .disadvantage), at: 0)
+    func subRoll(from roll: Roll) {
+        do {
+            pastRolls.insert(try RollResult(withSubRollFrom: roll), at: 0)
+        }
+        catch {
+            print("The roll provided did not have a sub roll")
+        }
+        
     }
     
     func togalIsShowing(for index: Int) {

@@ -14,6 +14,10 @@ struct Constance {
     static func diceString(_ amount: Int, d numberOfSides: Int, toAdd: Int) -> String {
         "\(amount)d\(numberOfSides)\(toAdd > 0 ? " + \(toAdd)" : "")"
     }
+    
+    static func diceStringPlus<T: Rollable>(roll: T) -> String {
+        "\(roll.amount)d\(roll.numberOfSides)\(roll.toAdd > 0 ? " + \(roll.toAdd)" : "")"
+    }
 }
 
 extension FileManager {

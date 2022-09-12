@@ -52,6 +52,7 @@ struct EditSheetView: View {
                                     if index == viewModel.rollIndex {
                                         Image(systemName: "pencil.circle")
                                             .foregroundColor(.green)
+                                            .font(.title)
                                     }
                                 }
                                 

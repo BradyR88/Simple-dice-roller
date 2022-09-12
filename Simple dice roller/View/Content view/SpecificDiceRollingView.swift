@@ -16,30 +16,17 @@ struct SpecificDiceRollingView: View {
     var body: some View {
         VStack (alignment: .leading) {
             ForEach(display.rolls) { roll in
-                Button {
-                    switch circumstance {
-                    case .advantage:
-                        viewModel.rollWithAdvantage(roll)
-                        circumstance = .neutral
-                    case .disadvantage:
-                        viewModel.rollWithDisadvantage(roll)
-                        circumstance = .neutral
-                    case .neutral:
-                        viewModel.rolldice(roll)
-                    }                    
-                } label: {
-                    HStack {
-                        Text(Constance.diceString(roll.amount, d: roll.numberOfSides, toAdd: roll.toAdd))
-                            .bold()
-                            .font(.title)
-                            .foregroundColor(.primary)
-                            .padding(6)
-                            .background(.orange)
-                            .clipShape(Capsule())
-                            .padding(.leading)
-                        
-                        Spacer()
+                HStack {
+                    RollButtonView(roll: roll, forSubRoll: false, circumstance: $circumstance)
+                        .padding(.leading)
+                    
+                    Spacer()
+                    
+                    
+                    if roll.subRoll != nil {
+                        RollButtonView(roll: roll, forSubRoll: true, circumstance: $circumstance)
                     }
+                    
                 }
             }
             
