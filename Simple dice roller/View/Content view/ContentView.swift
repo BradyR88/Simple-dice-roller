@@ -14,8 +14,12 @@ struct ContentView: View {
         NavigationView {
             VStack (spacing: 0) {
                 // MARK: past rolls
+                Divider()
+                
+                // TODO: the last roll veiw that is alwase at the top
+                
                 List {
-                    ForEach(viewModel.pastRolls) { roll in
+                    ForEach(viewModel.pastRollsDropFirst) { roll in
                         RollReadoutView(rollResult: roll)
                     }
                 }
@@ -87,6 +91,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .onAppear { viewModel.updateDisplay() }
         }
     }
 }

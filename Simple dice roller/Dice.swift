@@ -86,7 +86,7 @@ struct RollResult: Codable, Identifiable {
         
         self.subRoll = true
         self.faces = faces.sorted()
-        self.total = faces.sum() + roll.toAdd
+        self.total = faces.sum() + subRoll.toAdd
         self.circumstance = .neutral
     }
 }
@@ -139,7 +139,6 @@ struct Roll: Rollable, Codable, Identifiable {
         name = Constance.diceString(amount, d: numberOfSides, toAdd: toAdd)
     }
     
-    static let newRoll = Roll(name: "New Roll", 1, d: 20, toAdd: 0, subRoll: nil)
     static let example = Roll(1, d: 6, toAdd: 4)
     static let exampleWithSubRoll = Roll(name: "test roll", 1, d: 20, toAdd: 5, subRoll: SubRoll(amount: 2, numberOfSides: 6, toAdd: 3))
     
@@ -153,6 +152,15 @@ struct Roll: Rollable, Codable, Identifiable {
     
     init(_ amount: Int, d: Int, toAdd: Int) {
         self.init(name: Constance.diceString(amount, d: d, toAdd: toAdd), amount, d: d, toAdd: toAdd, subRoll: nil)
+    }
+    
+    init() {
+        self.id = UUID()
+        self.name = "New Roll"
+        self.amount = 1
+        self.numberOfSides = 20
+        self.toAdd = 0
+        self.subRoll = nil
     }
 }
 

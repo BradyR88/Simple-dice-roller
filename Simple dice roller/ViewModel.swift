@@ -10,9 +10,26 @@ import Foundation
 @MainActor class ViewModel: ObservableObject {
     @Published private(set) var pastRolls: [RollResult] = [] {
         didSet {
+            // stop the list from growing over 100 long
+            let over = pastRolls.count - 100
+            if over >= 1 {
+                pastRolls.removeLast(over)
+            }
+            // save
             saveData(to: Constance.savePathPastRolls, from: pastRolls)
         }
     }
+    var lastRoll: RollResult? {
+        pastRolls.first
+    }
+    var pastRollsDropFirst: [RollResult] {
+        var new = pastRolls
+        if new.count > 1 {
+            new.remove(at: 0)
+        }
+        return new
+    }
+    
     @Published private(set) var rollGroops: [RollGroop] = [] {
         didSet {
             saveData(to: Constance.savePathRollGroops, from: rollGroops)
@@ -73,6 +90,7 @@ import Foundation
     init() {
         loadData(from: Constance.savePathPastRolls, to: &pastRolls)
         loadData(from: Constance.savePathRollGroops, to: &rollGroops)
+        //rollGroops = [RollGroop.example, RollGroop.example2]
     }
     
     // MARK: loading and saving
@@ -154,7 +172,7 @@ import Foundation
     }
     
     func addNewRoll() {
-        indicatedRollGroop.rolls.append(Roll.newRoll)
+        indicatedRollGroop.rolls.append(Roll())
         rollIndex = indicatedRollGroop.rolls.count - 1
     }
     
@@ -167,5 +185,18 @@ import Foundation
     func resetAllIndexes() {
         rollIndex = nil
         rollGroopIndex = nil
+    }
+    
+    func updateDisplay() {
+        var mach = false
+        for rollGroop in rollGroops {
+            if rollGroop == display {
+                mach = rollGroop.isShowing
+                break
+            }
+        }
+        if !mach {
+            display = nil
+        }
     }
 }
