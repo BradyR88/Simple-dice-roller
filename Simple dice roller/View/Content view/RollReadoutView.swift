@@ -15,7 +15,7 @@ struct RollReadoutView: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text(rollResult.subRoll ? Constance.diceStringPlus(roll: rollResult.roll.subRoll!) : Constance.diceStringPlus(roll: rollResult.roll))
+                Text(rollResult.isSubRoll ? Constance.diceStringPlus(roll: rollResult.roll.subRoll!) : Constance.diceStringPlus(roll: rollResult.roll))
                     .bold()
                     .font(.title)
                 
@@ -27,6 +27,10 @@ struct RollReadoutView: View {
                     Image(systemName: "arrow.down.forward.square.fill")
                         .font(.title)
                         .foregroundColor(.red)
+                } else if rollResult.circumstance == .crit {
+                    Image(systemName: "star.square.fill")
+                        .font(.title)
+                        .foregroundColor(.yellow)
                 }
                 
                 Spacer()

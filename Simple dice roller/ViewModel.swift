@@ -57,7 +57,7 @@ import Foundation
     
     var indicatedRoll: Roll {
         get {
-            let error = Roll(name: "Error", 1, d: 20, toAdd: 0, subRoll: nil)
+            let error = Roll(name: "Error",from: nil, 1, d: 20, toAdd: 0, subRoll: nil)
             guard let rollGroopIndex = rollGroopIndex else {
                 return error
             }
@@ -87,6 +87,7 @@ import Foundation
         }
     }
     
+    // MARK: init ---------------------------------------------------
     init() {
         loadData(from: Constance.savePathPastRolls, to: &pastRolls)
         loadData(from: Constance.savePathRollGroops, to: &rollGroops)
@@ -119,19 +120,33 @@ import Foundation
             pastRolls.insert(RollResult(roll: roll, .advantage), at: 0)
         case .disadvantage:
             pastRolls.insert(RollResult(roll: roll, .disadvantage), at: 0)
-        case .neutral, .none:
+        case .neutral, .none, .crit:
             pastRolls.insert(RollResult(roll: roll), at: 0)
         }
     }
     
-    func subRoll(from roll: Roll) {
+    func subRoll(from roll: Roll, isCrit: Bool = false) {
         do {
-            pastRolls.insert(try RollResult(withSubRollFrom: roll), at: 0)
+            pastRolls.insert(try RollResult(withSubRollFrom: roll, isCrit: isCrit), at: 0)
         }
         catch {
             print("The roll provided did not have a sub roll")
         }
         
+    }
+    
+    func rollHit(from rollResult: RollResult) {
+        guard rollResult.roll.numberOfSides == 20 else {
+            subRoll(from: rollResult.roll)
+            return
+        }
+        
+        if rollResult.total - rollResult.roll.toAdd == 20 {
+            // was a crit
+            subRoll(from: rollResult.roll, isCrit: true)
+        } else {
+            subRoll(from: rollResult.roll)
+        }
     }
     
     func togalIsShowing(for index: Int) {
@@ -142,7 +157,7 @@ import Foundation
     func deleteRoll(at offsets: IndexSet) {
         // Store the unique ID of the previous selected roll
         let selectedID = indicatedRoll.id
-        // set roll index to nail so it won't accidentally reference an index at no longer exist
+        // set roll index to nal so it won't accidentally reference an index at no longer exist
         rollIndex = nil
         // delete selected rolls
         indicatedRollGroop.rolls.remove(atOffsets: offsets)
@@ -172,7 +187,7 @@ import Foundation
     }
     
     func addNewRoll() {
-        indicatedRollGroop.rolls.append(Roll())
+        indicatedRollGroop.rolls.append(Roll(from: indicatedRollGroop.name))
         rollIndex = indicatedRollGroop.rolls.count - 1
     }
     
@@ -181,13 +196,13 @@ import Foundation
     }
     
     // MARK: background view management functions
-    
     func resetAllIndexes() {
         rollIndex = nil
         rollGroopIndex = nil
     }
     
     func updateDisplay() {
+        // look to see the previous selected role group is still visible or if it has been removed by the user and needs to be set back to nil
         var mach = false
         for rollGroop in rollGroops {
             if rollGroop == display {

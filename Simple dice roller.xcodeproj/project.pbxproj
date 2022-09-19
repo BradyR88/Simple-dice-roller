@@ -25,6 +25,7 @@
 		73EF507E28CBB27000CB37F3 /* EditRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF507D28CBB27000CB37F3 /* EditRollView.swift */; };
 		73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */; };
 		73EF508228CFD1A400CB37F3 /* RollButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508128CFD1A400CB37F3 /* RollButtonView.swift */; };
+		73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508328D3B68600CB37F3 /* LastRollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		73EF507D28CBB27000CB37F3 /* EditRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRollView.swift; sourceTree = "<group>"; };
 		73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonView.swift; sourceTree = "<group>"; };
 		73EF508128CFD1A400CB37F3 /* RollButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollButtonView.swift; sourceTree = "<group>"; };
+		73EF508328D3B68600CB37F3 /* LastRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				73B2517428B9301400246515 /* ContentView.swift */,
+				73EF508328D3B68600CB37F3 /* LastRollView.swift */,
 				73B2518828B96B8800246515 /* RollReadoutView.swift */,
 				73B2518D28B988C300246515 /* GenericDiceRollingView.swift */,
 				737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */,
@@ -205,6 +208,7 @@
 			files = (
 				73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */,
 				73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */,
+				73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */,
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,

@@ -32,7 +32,9 @@ struct SpecificDiceRollingView: View {
             
             Picker("select advantage state", selection: $circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in
-                    Text(value.rawValue).tag(value)
+                    if value != .crit {
+                        Text(value.rawValue).tag(value)
+                    }
                 }
             }
             .pickerStyle(.segmented)

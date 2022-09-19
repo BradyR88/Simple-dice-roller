@@ -11,7 +11,7 @@ struct GenericDiceRollingView: View {
     let text: String
     let onSubmit: (Roll)->Void
     
-    @State private var roll = Roll(name: "Custom", 1, d: 20, toAdd: 0, subRoll: nil)
+    @State private var roll = Roll(name: "Custom",from: nil, 1, d: 20, toAdd: 0, subRoll: nil)
     
     var body: some View {
         VStack {

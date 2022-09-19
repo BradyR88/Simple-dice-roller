@@ -17,6 +17,10 @@ struct ContentView: View {
                 Divider()
                 
                 // TODO: the last roll veiw that is alwase at the top
+                if viewModel.lastRoll != nil {
+                    LastRollView(rollResult: viewModel.lastRoll!)
+                }
+                
                 
                 List {
                     ForEach(viewModel.pastRollsDropFirst) { roll in

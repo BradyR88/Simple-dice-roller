@@ -36,13 +36,11 @@ struct RollButtonView: View {
     }
     
     var body: some View {
+        
+        
+        
         Button {
-            if forSubRoll {
-                viewModel.subRoll(from: roll)
-            } else {
-                viewModel.rolldice(roll, with: circumstance)
-            }
-            circumstance = .neutral
+            // this button is handled below by the simultaneous gesture and high priority gesture
         } label: {
             HStack {
                 Text("\(forSubRoll ? "To Hit" : roll.name):")
@@ -59,6 +57,28 @@ struct RollButtonView: View {
             .background(forSubRoll ? .green : .orange)
             .clipShape(Capsule())
         }
+        .simultaneousGesture(
+            LongPressGesture()
+                .onEnded { _ in
+                    // action for long press
+                    if forSubRoll {
+                        viewModel.subRoll(from: roll, isCrit: true)
+                    } else {
+                        viewModel.rolldice(roll, with: circumstance)
+                    }
+                    circumstance = .neutral
+                }
+        )
+        .highPriorityGesture(TapGesture()
+            .onEnded { _ in
+                // action for a short press
+                if forSubRoll {
+                    viewModel.subRoll(from: roll)
+                } else {
+                    viewModel.rolldice(roll, with: circumstance)
+                }
+                circumstance = .neutral
+            })
     }
 }
 

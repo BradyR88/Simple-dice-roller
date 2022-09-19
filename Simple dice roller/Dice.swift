@@ -11,12 +11,12 @@ import SwiftUI
 struct RollResult: Codable, Identifiable {
     let id: UUID
     let roll: Roll
-    let subRoll: Bool
+    let isSubRoll: Bool
     let faces: [Int]
     let total: Int
     let circumstance: Circumstance
     
-    static let example = RollResult(roll: Roll.example)
+    static let example = RollResult(roll: Roll.exampleWithSubRoll)
     
     init(roll: Roll) {
         self.id = UUID()
@@ -28,7 +28,7 @@ struct RollResult: Codable, Identifiable {
             faces.append(Int.random(in: 1...roll.numberOfSides))
         }
         
-        self.subRoll = false
+        self.isSubRoll = false
         self.faces = faces.sorted()
         self.total = faces.sum() + roll.toAdd
         self.circumstance = .neutral
@@ -67,32 +67,47 @@ struct RollResult: Codable, Identifiable {
         case .neutral:
             self.total = faces.sum() + roll.toAdd
             self.faces = faces.sorted()
+        case .crit:
+            faces.append(contentsOf: secondFaces)
+            self.total = faces.sum() + roll.toAdd
+            self.faces = faces.sorted()
         }
-        self.subRoll = false
+        self.isSubRoll = false
         self.circumstance = cumstance
     }
     
-    init(withSubRollFrom roll: Roll) throws {
+    init(withSubRollFrom roll: Roll, isCrit: Bool) throws {
         guard let subRoll = roll.subRoll else { throw RollErrors.noSubRoll}
         
         self.id = UUID()
         self.roll = roll
         
         var faces: [Int] = []
+        var amount: Int {
+            if isCrit == true {
+                return subRoll.amount * 2
+            } else {
+                return subRoll.amount
+            }
+        }
         
-        for _ in 0..<subRoll.amount {
+        for _ in 0..<amount {
             faces.append(Int.random(in: 1...subRoll.numberOfSides))
         }
         
-        self.subRoll = true
+        self.isSubRoll = true
         self.faces = faces.sorted()
         self.total = faces.sum() + subRoll.toAdd
-        self.circumstance = .neutral
+        if isCrit == true {
+            self.circumstance = .crit
+        } else {
+            self.circumstance = .neutral
+        }
     }
 }
 
 enum Circumstance: String, Codable, CaseIterable, Equatable {
-case advantage, neutral , disadvantage
+case advantage, neutral , disadvantage, crit
 }
 
 enum RollErrors: Error {
@@ -126,6 +141,7 @@ extension RollGroop {
 struct Roll: Rollable, Codable, Identifiable {
     var id = UUID()
     var name: String
+    var from: String?
     var amount: Int 
     var numberOfSides: Int
     var toAdd: Int
@@ -140,27 +156,29 @@ struct Roll: Rollable, Codable, Identifiable {
     }
     
     static let example = Roll(1, d: 6, toAdd: 4)
-    static let exampleWithSubRoll = Roll(name: "test roll", 1, d: 20, toAdd: 5, subRoll: SubRoll(amount: 2, numberOfSides: 6, toAdd: 3))
+    static let exampleWithSubRoll = Roll(name: "dager",from: "Kobald", 1, d: 20, toAdd: 5, subRoll: SubRoll(amount: 2, numberOfSides: 6, toAdd: 3))
     
-    init(name: String,_ amount: Int, d: Int, toAdd: Int, subRoll: SubRoll?) {
+    init(name: String,from: String?,_ amount: Int, d: Int, toAdd: Int, subRoll: SubRoll?) {
         self.amount = amount
         self.numberOfSides = d
         self.toAdd = toAdd
         self.subRoll = subRoll
         self.name = name
+        self.from = from
     }
     
     init(_ amount: Int, d: Int, toAdd: Int) {
-        self.init(name: Constance.diceString(amount, d: d, toAdd: toAdd), amount, d: d, toAdd: toAdd, subRoll: nil)
+        self.init(name: Constance.diceString(amount, d: d, toAdd: toAdd),from: nil, amount, d: d, toAdd: toAdd, subRoll: nil)
     }
     
-    init() {
+    init(from: String) {
         self.id = UUID()
         self.name = "New Roll"
         self.amount = 1
         self.numberOfSides = 20
         self.toAdd = 0
         self.subRoll = nil
+        self.from = from
     }
 }
 
