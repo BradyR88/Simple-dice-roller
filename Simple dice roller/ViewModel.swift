@@ -23,6 +23,10 @@ import Foundation
         pastRolls.first
     }
     var pastRollsDropFirst: [RollResult] {
+        if pastRolls.count == 1 {
+            return []
+        }
+        
         var new = pastRolls
         if new.count > 1 {
             new.remove(at: 0)
