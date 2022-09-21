@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: Event is anything that can be posted to the timeline from a specific dice roll or another action a creature can take
-struct Event: Encodable {
+struct Event: Codable {
     // what creature initial i.e. bugbear
     let who: String
     let abilaty: Ability

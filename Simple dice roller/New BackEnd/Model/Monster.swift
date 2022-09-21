@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: Monster
-struct Monster: Encodable {
+struct Monster: Codable {
     var name: String
     var abilaty: [Ability]
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
-struct Ability: Encodable {
+struct Ability: Codable {
     var name: String
     var roll: Roll?
     var onHit: Roll?

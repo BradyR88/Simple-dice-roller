@@ -8,81 +8,84 @@
 import Foundation
 
 @MainActor class ViewModel: ObservableObject {
-    @Published private(set) var pastRolls: [Event] = [] {
+    // MARK: retrieved from save -
+    @Published private(set) var pastEvents: [Event] = [] {
         didSet {
             // stop the list from growing over 100 long
-            let over = pastRolls.count - 100
+            let over = pastEvents.count - 100
             if over >= 1 {
-                pastRolls.removeLast(over)
+                pastEvents.removeLast(over)
             }
             // save
-            saveData(to: Constance.savePathPastRolls, from: pastRolls)
+            saveData(to: Constance.savePathPastRolls, from: pastEvents)
         }
     }
-    var lastRoll: Event? {
-        pastRolls.first
+    @Published private(set) var monsters: [Monster] = [] {
+        didSet {
+            saveData(to: Constance.savePathRollGroops, from: monsters)
+        }
     }
-    var pastRollsDropFirst: [Event] {
-        if pastRolls.count == 1 {
+    
+    // MARK: navigating view data -
+    
+    // separates out the last event so it can be displayed more prominently
+    var lastRoll: Event? {
+        pastEvents.first
+    }
+    var pastEventsDropFirst: [Event] {
+        if pastEvents.count == 1 {
             return []
         }
         
-        var new = pastRolls
+        var new = pastEvents
         if new.count > 1 {
             new.remove(at: 0)
         }
         return new
     }
     
-    @Published private(set) var rollGroops: [Monster] = [] {
-        didSet {
-            saveData(to: Constance.savePathRollGroops, from: rollGroops)
-        }
-    }
+    // what Monster they currently have selected to understand what abilities to display in the ContentView
     @Published var display: Monster? = nil
     
-    var rollGroopIndex: Int? = nil
-    @Published var rollIndex: Int? = nil
+    // what is the index of the monster and ability in order to keep user edits tied to the monster
+    var monsterIndex: Int? = nil
+    @Published var abilityIndex: Int? = nil
     
-    var indicatedRollGroop: Monster {
+    // uses the index to return the specific monster or ability the user is interacting with anti-any changes they make back to the master list
+    var indicatedMonster: Monster {
         get {
-            guard let rollGroopIndex = rollGroopIndex else {
-                return RollGroop(name: "Error")
+            guard let monsterIndex = monsterIndex else {
+                return Monster(name: "Error", abilaty: [])
             }
             // TODO: make safer by checking that the index exist first
-            return rollGroops[rollGroopIndex]
+            return monsters[monsterIndex]
         }
         set {
-            guard let rollGroopIndex = rollGroopIndex else { return }
+            guard let monsterIndex = monsterIndex else { return }
             // TODO: make safer by checking that the index exist first
-            rollGroops[rollGroopIndex] = newValue
+            monsters[monsterIndex] = newValue
+        }
+    }
+    var indicatedAbility: Ability {
+        get {
+            let error = Ability(name: "Erorr")
+            guard let monsterIndex = monsterIndex else { return error }
+            guard let abilityIndex = abilityIndex else { return error }
+            
+            return monsters[monsterIndex].abilaty[abilityIndex]
+        }
+        set {
+            guard let monsterIndex = monsterIndex else { return }
+            guard let abilityIndex = abilityIndex else { return }
+            
+            monsters[monsterIndex].abilaty[abilityIndex] = newValue
         }
     }
     
-    var indicatedRoll: Roll {
-        get {
-            let error = Roll(name: "Error",from: nil, 1, d: 20, toAdd: 0, subRoll: nil)
-            guard let rollGroopIndex = rollGroopIndex else {
-                return error
-            }
-            guard let rollIndex = rollIndex else {
-                return error
-            }
-            
-            return rollGroops[rollGroopIndex].rolls[rollIndex]
-        }
-        set {
-            guard let rollGroopIndex = rollGroopIndex else { return }
-            guard let rollIndex = rollIndex else { return }
-            
-            rollGroops[rollGroopIndex].rolls[rollIndex] = newValue
-        }
-    }
-    
-    // MARK: init ---------------------------------------------------
+    // MARK: init -
     init() {
-        loadData(from: Constance.savePathPastRolls, to: &pastRolls)
-        loadData(from: Constance.savePathRollGroops, to: &rollGroops)
+        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
+        loadData(from: Constance.savePathRollGroops, to: &monsters)
         //rollGroops = [RollGroop.example, RollGroop.example2]
         //pastRolls = []
     }
@@ -106,6 +109,6 @@ import Foundation
         }
     }
     
-    // MARK: user actions
+    // MARK: user actions -
     
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: Roll - describes what a role is and how to save all the information for the result one
-struct Roll: Encodable {
+struct Roll: Codable {
     // simplest turn of what a roll of the dice can be 1d6 + 1
     var numberOfDice: Int
     var numberOfSides: Int
@@ -52,7 +52,7 @@ struct Roll: Encodable {
     }
 }
 
-struct RollResult: Encodable {
+struct RollResult: Codable {
     let roll: Roll
     let faces: [Int]
     let result: Int
