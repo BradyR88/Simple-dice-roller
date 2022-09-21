@@ -96,6 +96,7 @@ import Foundation
         loadData(from: Constance.savePathPastRolls, to: &pastRolls)
         loadData(from: Constance.savePathRollGroops, to: &rollGroops)
         //rollGroops = [RollGroop.example, RollGroop.example2]
+        //pastRolls = []
     }
     
     // MARK: loading and saving
