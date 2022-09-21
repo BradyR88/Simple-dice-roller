@@ -26,8 +26,10 @@
 		73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */; };
 		73EF508228CFD1A400CB37F3 /* RollButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508128CFD1A400CB37F3 /* RollButtonView.swift */; };
 		73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508328D3B68600CB37F3 /* LastRollView.swift */; };
-		73FA409128DA5AB100797223 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409028DA5AB000797223 /* Protocols.swift */; };
 		73FA409528DA5C7300797223 /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409428DA5C7300797223 /* Roll.swift */; };
+		73FA409728DBAC0F00797223 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409628DBAC0F00797223 /* Event.swift */; };
+		73FA409928DBAC5000797223 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409828DBAC5000797223 /* Monster.swift */; };
+		73FA409C28DBC1CA00797223 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409B28DBC1CA00797223 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +53,10 @@
 		73EF507F28CBD66000CB37F3 /* ToggleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonView.swift; sourceTree = "<group>"; };
 		73EF508128CFD1A400CB37F3 /* RollButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollButtonView.swift; sourceTree = "<group>"; };
 		73EF508328D3B68600CB37F3 /* LastRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRollView.swift; sourceTree = "<group>"; };
-		73FA409028DA5AB000797223 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		73FA409428DA5C7300797223 /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
+		73FA409628DBAC0F00797223 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		73FA409828DBAC5000797223 /* Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
+		73FA409B28DBC1CA00797223 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,10 +148,20 @@
 		73FA408F28DA5A7A00797223 /* New BackEnd */ = {
 			isa = PBXGroup;
 			children = (
-				73FA409028DA5AB000797223 /* Protocols.swift */,
-				73FA409428DA5C7300797223 /* Roll.swift */,
+				73FA409B28DBC1CA00797223 /* ViewModel.swift */,
+				73FA409A28DBC19F00797223 /* Model */,
 			);
 			path = "New BackEnd";
+			sourceTree = "<group>";
+		};
+		73FA409A28DBC19F00797223 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73FA409628DBAC0F00797223 /* Event.swift */,
+				73FA409828DBAC5000797223 /* Monster.swift */,
+				73FA409428DA5C7300797223 /* Roll.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +237,7 @@
 				73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */,
 				73EF508028CBD66000CB37F3 /* ToggleButtonView.swift in Sources */,
 				73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */,
-				73FA409128DA5AB100797223 /* Protocols.swift in Sources */,
+				73FA409728DBAC0F00797223 /* Event.swift in Sources */,
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,
@@ -232,6 +246,8 @@
 				737B187928BFF77600ED59D3 /* CreationView.swift in Sources */,
 				73EF507E28CBB27000CB37F3 /* EditRollView.swift in Sources */,
 				73B2518528B9320600246515 /* Dice.swift in Sources */,
+				73FA409928DBAC5000797223 /* Monster.swift in Sources */,
+				73FA409C28DBC1CA00797223 /* ViewModel.swift in Sources */,
 				73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */,
 				73FA409528DA5C7300797223 /* Roll.swift in Sources */,
 				7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */,
