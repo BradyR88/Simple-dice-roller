@@ -8,13 +8,18 @@
 import Foundation
 
 // MARK: Monster
-struct Monster: Codable {
+struct Monster: Codable, Equatable {
+    var id = UUID()
     var name: String
     var abilaty: [Ability]
+    var isShowing: Bool
+    
+    static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
 struct Ability: Codable {
+    var id = UUID()
     var name: String
     var roll: Roll?
     var onHit: Roll?

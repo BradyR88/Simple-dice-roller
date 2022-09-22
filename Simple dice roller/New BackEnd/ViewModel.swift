@@ -55,7 +55,7 @@ import Foundation
     var indicatedMonster: Monster {
         get {
             guard let monsterIndex = monsterIndex else {
-                return Monster(name: "Error", abilaty: [])
+                return Monster(name: "Error", abilaty: [], isShowing: false)
             }
             // TODO: make safer by checking that the index exist first
             return monsters[monsterIndex]
@@ -99,7 +99,6 @@ import Foundation
             to = []
         }
     }
-    
     func saveData<T: Codable>(to url: URL, from: [T]) {
         do {
             let data = try JSONEncoder().encode(from)
@@ -111,4 +110,69 @@ import Foundation
     
     // MARK: user actions -
     
+    func addToEvent(event: Event) {
+        pastEvents.insert(event, at: 0)
+    }
+    
+    func togalIsShowing(for index: Int) {
+        // TODO: make safer by checking that the index exist first
+        monsters[index].isShowing.toggle()
+    }
+    
+    func deleteRoll(at offsets: IndexSet) {
+        // Store the unique ID of the previous selected roll
+        let selectedID = indicatedAbility.id
+        // set roll index to nal so it won't accidentally reference an index at no longer exist
+        abilityIndex = nil
+        // delete selected rolls
+        indicatedMonster.abilaty.remove(atOffsets: offsets)
+        // look back through the roles and see if the previously selected index is still there if it is re-select it
+        for (index, roll) in indicatedMonster.abilaty.enumerated() {
+            if roll.id == selectedID {
+                monsterIndex = index
+                break
+            }
+        }
+    }
+    
+    func deleteRollGroop(at index: Int) {
+        monsters.remove(at: index)
+    }
+    
+    func tapOnRoll(at index: Int) {
+        if index == abilityIndex {
+            abilityIndex = nil
+        } else {
+            abilityIndex = index
+        }
+    }
+    
+    func addNewRollGroop() {
+        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
+    }
+    
+    func addNewRoll() {
+        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        abilityIndex = indicatedMonster.abilaty.count - 1
+    }
+    
+    // MARK: background view management functions
+    func resetAllIndexes() {
+        abilityIndex = nil
+        monsterIndex = nil
+    }
+    
+    func updateDisplay() {
+        // look to see the previous selected role group is still visible or if it has been removed by the user and needs to be set back to nil
+        var mach = false
+        for monster in monsters {
+            if monster == display {
+                mach = monster.isShowing
+                break
+            }
+        }
+        if !mach {
+            display = nil
+        }
+    }
 }
