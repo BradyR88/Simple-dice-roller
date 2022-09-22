@@ -15,6 +15,8 @@ struct Monster: Codable, Equatable {
     var isShowing: Bool
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
+    
+    static let example = Monster(name: "", abilaty: [Ability.example], isShowing: true)
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
@@ -36,4 +38,6 @@ struct Ability: Codable {
         
         return Event(who: who, abilaty: self, damageRoll: damageRoll, rollResult: rollResult)
     }
+    
+    static let example = Ability(id: UUID(), name: "Club", roll: Roll.example20, onHit: Roll.example8, discription: "DC12 strength saving or be knocked pron")
 }

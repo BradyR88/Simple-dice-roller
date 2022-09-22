@@ -34,4 +34,6 @@ struct Event: Codable {
         
         return Event(who: who, abilaty: abilaty,damageRoll: true, rollResult: abilaty.onHit?.throwDice(circumstance: circumstance))
     }
+    
+    static let example = Event(who: "Bugbear", abilaty: <#T##Ability#>, damageRoll: <#T##Bool#>, rollResult: <#T##RollResult?#>)
 }

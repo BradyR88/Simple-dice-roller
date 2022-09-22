@@ -29,7 +29,7 @@ import Foundation
     // MARK: navigating view data -
     
     // separates out the last event so it can be displayed more prominently
-    var lastRoll: Event? {
+    var lastEvent: Event? {
         pastEvents.first
     }
     var pastEventsDropFirst: [Event] {
@@ -110,7 +110,8 @@ import Foundation
     
     // MARK: user actions -
     
-    func addToEvent(event: Event) {
+    func addToEvent(event: Event?) {
+        guard let event = event else { return }
         pastEvents.insert(event, at: 0)
     }
     

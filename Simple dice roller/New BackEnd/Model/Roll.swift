@@ -50,6 +50,9 @@ struct Roll: Codable {
         
         return RollResult(roll: self, faces: faces, result: result, circumstance: circumstance)
     }
+    
+    static let example20 = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 3)
+    static let example8 = Roll(numberOfDice: 2, numberOfSides: 8, toAdd: 2)
 }
 
 struct RollResult: Codable {
@@ -57,6 +60,8 @@ struct RollResult: Codable {
     let faces: [Int]
     let result: Int
     let circumstance: Circumstance
+    
+    static let example = Roll.example20.throwDice()
 }
 
 enum Circumstance: String, Codable, CaseIterable, Equatable {
