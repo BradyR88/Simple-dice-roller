@@ -17,14 +17,14 @@ struct ContentView: View {
                 Divider()
                 
                 // TODO: the last roll veiw that is alwase at the top
-                if viewModel.lastRoll != nil {
-                    LastRollView(rollResult: viewModel.lastRoll!)
+                if viewModel.lastEvent != nil {
+                    LastRollView()
                 }
                 
                 
                 List {
-                    ForEach(viewModel.pastRollsDropFirst) { roll in
-                        RollReadoutView(rollResult: roll)
+                    ForEach(viewModel.pastEventsDropFirst) { event in
+                        RollReadoutView(event: event)
                     }
                 }
                 
@@ -46,17 +46,17 @@ struct ContentView: View {
                                     .padding(.leading, 8)
                             }
                             
-                            ForEach(viewModel.rollGroops) { rollGroop in
+                            ForEach(viewModel.monsters) { monster in
                                 // TODO: stop using a statement and rather have a sub group for just the ones that are showing
-                                if rollGroop.isShowing {
+                                if monster.isShowing {
                                     Button {
-                                        viewModel.display = rollGroop
+                                        viewModel.display = monster
                                     } label: {
-                                        Text(rollGroop.name)
+                                        Text(monster.name)
                                             .font(.title3)
                                             .foregroundColor(.primary)
                                             .padding(6)
-                                            .background((rollGroop == (viewModel.display ?? RollGroop(name: ""))) ? .red : .purple)
+                                            .background((monster == (viewModel.display ?? Monster(name: "", abilaty: [], isShowing: false))) ? .red : .purple)
                                             .clipShape(Capsule())
                                     }
                                 }
@@ -69,7 +69,8 @@ struct ContentView: View {
                     
                     // MARK: Roll Display
                     if viewModel.display == nil {
-                        GenericDiceRollingView(text: "Roll!") { roll in viewModel.rolldice(roll, with: nil) }
+                        GenericDiceRollingView(text: "Roll!") { roll in viewModel.addToEvent(roll.simpleCustumEvent()) }
+                        
                     } else {
                         // the user has selected a specific display to show (it is not nill)
                         SpecificDiceRollingView(display: viewModel.display!)

@@ -110,7 +110,7 @@ import Foundation
     
     // MARK: user actions -
     
-    func addToEvent(event: Event?) {
+    func addToEvent(_ event: Event?) {
         guard let event = event else { return }
         pastEvents.insert(event, at: 0)
     }

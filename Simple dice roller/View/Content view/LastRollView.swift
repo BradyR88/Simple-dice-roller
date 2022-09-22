@@ -9,63 +9,65 @@ import SwiftUI
 
 struct LastRollView: View {
     @EnvironmentObject var viewModel: ViewModel
-    let rollResult: RollResult
     
     var body: some View {
-        VStack (alignment: .leading) {
-            Text("\(rollResult.roll.from ?? "")\(rollResult.roll.from == nil ? "" : " - ")\(rollResult.roll.name)")
-                .bold()
-                .font(.title)
-            
-            HStack {
-                Text(rollResult.isSubRoll ? Constance.diceStringPlus(roll: rollResult.roll.subRoll!) : Constance.diceStringPlus(roll: rollResult.roll))
-                    .bold()
-                    .font(.title)
-                
-                if rollResult.circumstance == .advantage {
-                    Image(systemName: "arrow.up.forward.square.fill")
-                        .font(.title)
-                        .foregroundColor(.green)
-                } else if rollResult.circumstance == .disadvantage {
-                    Image(systemName: "arrow.down.forward.square.fill")
-                        .font(.title)
-                        .foregroundColor(.red)
-                } else if rollResult.circumstance == .crit {
-                    Image(systemName: "star.square.fill")
-                        .font(.title)
-                        .foregroundColor(.yellow)
-                }
-                
-                Spacer()
-                
-                if rollResult.roll.subRoll != nil && !rollResult.isSubRoll {
-                    Button {
-                        viewModel.rollHit(from: rollResult)
-                    } label: {
-                        Text("\(rollResult.total)")
-                            .foregroundColor(.primary)
-                            .bold()
-                            .font(.title)
-                            .padding(.horizontal)
-                            .background(.green)
-                            .clipShape(Capsule())
-                    }
-                } else {
-                    Text("\(rollResult.total)")
-                        .bold()
-                        .font(.title)
-                }
-            }
-            
-            Text("[\(rollResult.faces.map{String($0)}.joined(separator: ","))]")
-            
-        }
-        .padding()
+        Text("place holder for last event")
+        
+//        VStack (alignment: .leading) {
+//            Text("\(viewModel.lastEvent.who ?? "")\(viewModel.lastEvent.who == nil ? "" : " - ")\(viewModel.lastEvent.abilaty.name)")
+//                .bold()
+//                .font(.title)
+//
+//            HStack {
+//                Text(viewModel.lastEvent.isSubRoll ? Constance.diceStringPlus(roll: viewModel.lastEvent.roll.subRoll!) : Constance.diceStringPlus(roll: viewModel.lastEvent.roll))
+//                    .bold()
+//                    .font(.title)
+//
+//                if viewModel.lastEvent.circumstance == .advantage {
+//                    Image(systemName: "arrow.up.forward.square.fill")
+//                        .font(.title)
+//                        .foregroundColor(.green)
+//                } else if viewModel.lastEvent.circumstance == .disadvantage {
+//                    Image(systemName: "arrow.down.forward.square.fill")
+//                        .font(.title)
+//                        .foregroundColor(.red)
+//                } else if viewModel.lastEvent.circumstance == .crit {
+//                    Image(systemName: "star.square.fill")
+//                        .font(.title)
+//                        .foregroundColor(.yellow)
+//                }
+//
+//                Spacer()
+//
+//                if viewModel.lastEvent.roll.subRoll != nil && !viewModel.lastEvent.isSubRoll {
+//                    Button {
+//                        viewModel.addToEvent(event: viewModel.lastEvent?.hitRoll())
+//                    } label: {
+//                        Text("\(viewModel.lastEvent.total)")
+//                            .foregroundColor(.primary)
+//                            .bold()
+//                            .font(.title)
+//                            .padding(.horizontal)
+//                            .background(.green)
+//                            .clipShape(Capsule())
+//                    }
+//                } else {
+//                    Text("\(viewModel.lastEvent.total)")
+//                        .bold()
+//                        .font(.title)
+//                }
+//            }
+//
+//            Text("[\(viewModel.lastEvent.rollResult.faces.map{String($0)}.joined(separator: ","))]")
+//
+//        }
+//        .padding()
     }
 }
 
 struct LastRollView_Previews: PreviewProvider {
     static var previews: some View {
-        LastRollView(rollResult: .example)
+        LastRollView()
+            .environmentObject(ViewModel())
     }
 }

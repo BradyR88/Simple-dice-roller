@@ -7,43 +7,47 @@
 
 import SwiftUI
 
-struct DiceCalculatorBoardView<T: Rollable>: View {
-    @Binding var roll: T
+struct DiceCalculatorBoardView: View {
+    @Binding var roll: Roll?
     
     var body: some View {
-        VStack {
-            Text(Constance.diceString(roll.amount, d: roll.numberOfSides, toAdd: roll.toAdd))
-                .font(.title)
-                .bold()
-            
-            HStack {
-                NumberToggleView {
-                    // addition
-                    roll.amount += 1
-                } subtraction: {
-                    roll.amount -= 1
-                }
+        if roll != nil {
+            VStack {
+                Text(Constance.diceString(roll!.numberOfDice, d: roll!.numberOfSides, toAdd: roll!.toAdd))
+                    .font(.title)
+                    .bold()
                 
-                VStack {
-                    dicePicker(sides: 20)
-                    dicePicker(sides: 6)
-                    dicePicker(sides: 10)
+                HStack {
+                    NumberToggleView {
+                        // addition
+                        roll!.numberOfDice += 1
+                    } subtraction: {
+                        roll!.numberOfDice -= 1
+                    }
+                    
+                    VStack {
+                        dicePicker(sides: 20)
+                        dicePicker(sides: 6)
+                        dicePicker(sides: 10)
+                    }
+                    
+                    VStack {
+                        dicePicker(sides: 4)
+                        dicePicker(sides: 8)
+                        dicePicker(sides: 12)
+                    }
+                    
+                    NumberToggleView {
+                        // addition
+                        roll!.toAdd += 1
+                    } subtraction: {
+                        roll!.toAdd -= 1
+                    }
                 }
-                
-                VStack {
-                    dicePicker(sides: 4)
-                    dicePicker(sides: 8)
-                    dicePicker(sides: 12)
-                }
-                
-                NumberToggleView {
-                    // addition
-                    roll.toAdd += 1
-                } subtraction: {
-                    roll.toAdd -= 1
-                }
+                .padding(.bottom)
             }
-            .padding(.bottom)
+        } else {
+            EmptyView()
         }
     }
     
@@ -51,7 +55,7 @@ struct DiceCalculatorBoardView<T: Rollable>: View {
         var view: some View {
             Button {
                 withAnimation {
-                    roll.numberOfSides = sides
+                    roll!.numberOfSides = sides
                 }
             } label: {
                 Text("\(sides)")
@@ -59,7 +63,7 @@ struct DiceCalculatorBoardView<T: Rollable>: View {
                     .font(.title)
                     .foregroundColor(.primary)
                     .frame(width: 65, height: 48)
-                    .background(roll.numberOfSides == sides ? .red : .red.opacity(0.75))
+                    .background(roll!.numberOfSides == sides ? .red : .red.opacity(0.75))
                     .background(.black)
                     .clipShape(Capsule())
             }
@@ -69,6 +73,6 @@ struct DiceCalculatorBoardView<T: Rollable>: View {
 }
 struct DiceCalculatorBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        DiceCalculatorBoardView<Roll>(roll: .constant(Roll.example))
+        DiceCalculatorBoardView(roll: .constant(Roll.example20))
     }
 }

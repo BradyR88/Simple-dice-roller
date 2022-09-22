@@ -13,24 +13,24 @@ struct CreationView: View {
     
     var body: some View {
         List {
-            ForEach(Array(viewModel.rollGroops.enumerated()), id: \.offset) { index, rollGroop in
+            ForEach(Array(viewModel.monsters.enumerated()), id: \.offset) { index, monster in
                 Button {
                     viewModel.togalIsShowing(for: index)
                 } label: {
                     HStack {
-                        Text(rollGroop.name)
+                        Text(monster.name)
                             .foregroundColor(.primary)
                         
                         Spacer()
                         
-                        if rollGroop.isShowing {
+                        if monster.isShowing {
                             Image(systemName: "checkmark.square.fill")
                         }
                     }
                 }
                 .swipeActions(edge: .leading) {
                     Button {
-                        viewModel.rollGroopIndex = index
+                        viewModel.monsterIndex = index
                         isPresintingSheet = true
                     } label: {
                         Label("Edit", systemImage: "pencil")

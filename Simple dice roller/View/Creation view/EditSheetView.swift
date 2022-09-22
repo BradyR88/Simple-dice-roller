@@ -14,7 +14,7 @@ struct EditSheetView: View {
     
     @State private var editMode: EditMode = .roll {
         didSet{
-            if viewModel.rollIndex == nil {
+            if viewModel.abilityIndex == nil {
                 editMode = .roll
             }
             if editMode == .name {
@@ -27,7 +27,7 @@ struct EditSheetView: View {
         VStack {
             List {
                 Section("Name") {
-                    TextField("Name", text: $viewModel.indicatedRollGroop.name)
+                    TextField("Name", text: $viewModel.indicatedMonster.name)
                         .focused($isTextFieldFocused)
                         .toolbar {
                             ToolbarItemGroup(placement: .keyboard) {
@@ -39,17 +39,17 @@ struct EditSheetView: View {
                         }
                 }
                 
-                Section("Rolls") {
-                    ForEach(Array(viewModel.indicatedRollGroop.rolls.enumerated()), id: \.offset) { index, roll in
+                Section("Abilatys") {
+                    ForEach(Array(viewModel.indicatedMonster.abilaty.enumerated()), id: \.offset) { index, abilaty in
                         Button {
                             isTextFieldFocused = false
                             viewModel.tapOnRoll(at: index)
                         } label: {
                             ZStack {
-                                EditRollView(roll: roll)
+                                EditRollView(ability: abilaty)
                                 HStack {
                                     Spacer()
-                                    if index == viewModel.rollIndex {
+                                    if index == viewModel.abilityIndex {
                                         Image(systemName: "pencil.circle")
                                             .foregroundColor(.green)
                                             .font(.title)
@@ -89,13 +89,13 @@ struct EditSheetView: View {
                 
                 switch editMode {
                 case .name:
-                    TextField("roll name", text: $viewModel.indicatedRoll.name)
+                    TextField("roll name", text: $viewModel.indicatedAbility.name)
                         .padding()
                         .focused($nameFieldFocused)
                 case .roll:
-                    DiceCalculatorBoardView(roll: $viewModel.indicatedRoll)
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.roll)
                 case .subRoll:
-                    DiceCalculatorBoardView(roll: $viewModel.indicatedSubRoll)
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.onHit)
                 }
             }
         }
@@ -106,8 +106,8 @@ struct EditSheetView: View {
 struct EditSheetView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ViewModel()
-        viewModel.rollIndex = 0
-        viewModel.rollGroopIndex = 0
+        viewModel.monsterIndex = 0
+        viewModel.abilityIndex = 0
         
         return EditSheetView().environmentObject(viewModel)
     }

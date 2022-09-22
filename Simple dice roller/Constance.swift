@@ -15,8 +15,8 @@ struct Constance {
         "\(amount)d\(numberOfSides)\(toAdd > 0 ? " + \(toAdd)" : "")"
     }
     
-    static func diceStringPlus<T: Rollable>(roll: T) -> String {
-        "\(roll.amount)d\(roll.numberOfSides)\(roll.toAdd > 0 ? " + \(roll.toAdd)" : "")"
+    static func diceStringPlus(roll: Roll) -> String {
+        "\(roll.numberOfDice)d\(roll.numberOfSides)\(roll.toAdd > 0 ? " + \(roll.toAdd)" : "")"
     }
 }
 

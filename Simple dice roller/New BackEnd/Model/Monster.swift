@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: Monster
-struct Monster: Codable, Equatable {
+struct Monster: Codable, Equatable, Identifiable {
     var id = UUID()
     var name: String
     var abilaty: [Ability]
@@ -20,7 +20,7 @@ struct Monster: Codable, Equatable {
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
-struct Ability: Codable {
+struct Ability: Codable, Identifiable {
     var id = UUID()
     var name: String
     var roll: Roll?

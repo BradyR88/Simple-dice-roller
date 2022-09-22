@@ -11,7 +11,7 @@ struct GenericDiceRollingView: View {
     let text: String
     let onSubmit: (Roll)->Void
     
-    @State private var roll = Roll(name: "Custom",from: nil, 1, d: 20, toAdd: 0, subRoll: nil)
+    @State private var roll: Roll? = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 0)
     
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct GenericDiceRollingView: View {
             DiceCalculatorBoardView(roll: $roll)
             
             Button {
-                onSubmit(roll)
+                onSubmit(roll!)
             } label: {
                 Text(text)
                     .bold()
@@ -36,8 +36,8 @@ struct GenericDiceRollingView: View {
 struct GenericDiceRollingView_Previews: PreviewProvider {
     static var previews: some View {
         GenericDiceRollingView(text: "Test") { roll in
-            let result = RollResult(roll: roll)
-            print(result.total)
+            let result = roll.simpleCustumEvent()
+            print(result.rollResult?.result ?? 0)
         }
     }
 }

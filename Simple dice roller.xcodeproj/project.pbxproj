@@ -15,9 +15,7 @@
 		73B2517528B9301400246515 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2517428B9301400246515 /* ContentView.swift */; };
 		73B2517728B9301400246515 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B2517628B9301400246515 /* Assets.xcassets */; };
 		73B2517A28B9301400246515 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B2517928B9301400246515 /* Preview Assets.xcassets */; };
-		73B2518128B9305A00246515 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518028B9305A00246515 /* ViewModel.swift */; };
 		73B2518328B930DD00246515 /* Constance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518228B930DD00246515 /* Constance.swift */; };
-		73B2518528B9320600246515 /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518428B9320600246515 /* Dice.swift */; };
 		73B2518728B93E6E00246515 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518628B93E6E00246515 /* Extensions.swift */; };
 		73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518828B96B8800246515 /* RollReadoutView.swift */; };
 		73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518B28B9814000246515 /* NumberToggleView.swift */; };
@@ -42,9 +40,7 @@
 		73B2517428B9301400246515 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		73B2517628B9301400246515 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73B2517928B9301400246515 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		73B2518028B9305A00246515 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		73B2518228B930DD00246515 /* Constance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constance.swift; sourceTree = "<group>"; };
-		73B2518428B9320600246515 /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		73B2518628B93E6E00246515 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		73B2518828B96B8800246515 /* RollReadoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollReadoutView.swift; sourceTree = "<group>"; };
 		73B2518B28B9814000246515 /* NumberToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberToggleView.swift; sourceTree = "<group>"; };
@@ -116,12 +112,10 @@
 			children = (
 				73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */,
 				73B2518A28B980E300246515 /* View */,
-				73B2518028B9305A00246515 /* ViewModel.swift */,
-				73B2518428B9320600246515 /* Dice.swift */,
+				73FA408F28DA5A7A00797223 /* New BackEnd */,
 				73B2518228B930DD00246515 /* Constance.swift */,
 				73B2518628B93E6E00246515 /* Extensions.swift */,
 				73B2517628B9301400246515 /* Assets.xcassets */,
-				73FA408F28DA5A7A00797223 /* New BackEnd */,
 				73B2517828B9301400246515 /* Preview Content */,
 			);
 			path = "Simple dice roller";
@@ -245,13 +239,11 @@
 				73B2517528B9301400246515 /* ContentView.swift in Sources */,
 				737B187928BFF77600ED59D3 /* CreationView.swift in Sources */,
 				73EF507E28CBB27000CB37F3 /* EditRollView.swift in Sources */,
-				73B2518528B9320600246515 /* Dice.swift in Sources */,
 				73FA409928DBAC5000797223 /* Monster.swift in Sources */,
 				73FA409C28DBC1CA00797223 /* ViewModel.swift in Sources */,
 				73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */,
 				73FA409528DA5C7300797223 /* Roll.swift in Sources */,
 				7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */,
-				73B2518128B9305A00246515 /* ViewModel.swift in Sources */,
 				73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */,
 				73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */,
 				73EF508228CFD1A400CB37F3 /* RollButtonView.swift in Sources */,

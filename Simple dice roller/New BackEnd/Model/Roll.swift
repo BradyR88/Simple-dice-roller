@@ -51,6 +51,10 @@ struct Roll: Codable {
         return RollResult(roll: self, faces: faces, result: result, circumstance: circumstance)
     }
     
+    func simpleCustumEvent() -> Event {
+        Ability(id: UUID(), name: "", roll: self, onHit: nil, discription: nil).genarateEvent(who: "Custum")
+    }
+    
     static let example20 = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 3)
     static let example8 = Roll(numberOfDice: 2, numberOfSides: 8, toAdd: 2)
 }

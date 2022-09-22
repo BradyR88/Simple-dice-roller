@@ -8,8 +8,9 @@
 import Foundation
 
 // MARK: Event is anything that can be posted to the timeline from a specific dice roll or another action a creature can take
-struct Event: Codable {
+struct Event: Codable, Identifiable {
     // what creature initial i.e. bugbear
+    let id: UUID
     let who: String
     let abilaty: Ability
     let damageRoll: Bool
@@ -35,5 +36,13 @@ struct Event: Codable {
         return Event(who: who, abilaty: abilaty,damageRoll: true, rollResult: abilaty.onHit?.throwDice(circumstance: circumstance))
     }
     
-    static let example = Event(who: "Bugbear", abilaty: <#T##Ability#>, damageRoll: <#T##Bool#>, rollResult: <#T##RollResult?#>)
+    init(who: String, abilaty: Ability, damageRoll: Bool, rollResult: RollResult?) {
+        self.id = UUID()
+        self.who = who
+        self.abilaty = abilaty
+        self.damageRoll = damageRoll
+        self.rollResult = rollResult
+    }
+    
+    static let example = Event(who: "Bugbear", abilaty: Ability.example, damageRoll: false, rollResult: Ability.example.roll!.throwDice())
 }
