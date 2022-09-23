@@ -27,6 +27,18 @@ struct Ability: Codable, Identifiable {
     var onHit: Roll?
     var discription: String?
     
+    // calculate variable
+    var longName: String {
+        var longName = name
+        if roll != nil {
+            longName.append(" - \(Constance.diceStringPlus(roll: roll!))")
+        }
+        if discription != nil {
+            longName.append(" - 📄")
+        }
+        return longName
+    }
+    
     func genarateEvent(who: String, circumstance: Circumstance = .neutral, damageRoll: Bool = false) -> Event {
         var rollResult: RollResult? {
             if damageRoll {

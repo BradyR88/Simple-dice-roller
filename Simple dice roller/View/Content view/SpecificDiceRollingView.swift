@@ -17,25 +17,16 @@ struct SpecificDiceRollingView: View {
         VStack (alignment: .leading) {
             ForEach(display.abilaty) { abilaty in
                 // TODO: new abilaty read out
-                // place holder
-                Text(abilaty.name)
+                Text(abilaty.longName)
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    .background(.green)
+                    .clipShape(Capsule())
                     .onTapGesture {
                         viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
                     }
-                
-//                HStack {
-//                    RollButtonView(roll: abilaty.roll, forSubRoll: false, circumstance: $circumstance)
-//                        .padding(.leading)
-//
-//                    Spacer()
-//
-//
-//                    if abilaty.onHit != nil {
-//                        RollButtonView(roll: abilaty.onHit!, forSubRoll: true, circumstance: $circumstance)
-//                    }
-//
-//                }
             }
+            .padding()
             
             Picker("select advantage state", selection: $circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in
