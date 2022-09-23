@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: Roll - describes what a role is and how to save all the information for the result one
-struct Roll: Codable {
+struct Roll: Codable, Equatable {
     // simplest turn of what a roll of the dice can be 1d6 + 1
     var numberOfDice: Int
     var numberOfSides: Int
@@ -65,7 +66,32 @@ struct RollResult: Codable {
     let result: Int
     let circumstance: Circumstance
     
+    //caculated varibals
+    var natTracker: NatTracker {
+        if roll.numberOfSides == 20 && result == 20 + roll.toAdd && roll.numberOfDice == 1 {
+            return .nat20
+        } else if roll.numberOfSides == 20 && result == 1 + roll.toAdd && roll.numberOfDice == 1 {
+            return .nat1
+        } else {
+            return .normal
+        }
+    }
+    var color: Color {
+        switch natTracker {
+        case .nat1:
+            return .red
+        case .normal:
+            return .primary
+        case .nat20:
+            return .green
+        }
+    }
+    
     static let example = Roll.example20.throwDice()
+    
+    enum NatTracker {
+        case nat1,normal,nat20
+    }
 }
 
 enum Circumstance: String, Codable, CaseIterable, Equatable {

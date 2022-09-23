@@ -9,65 +9,56 @@ import SwiftUI
 
 struct LastRollView: View {
     @EnvironmentObject var viewModel: ViewModel
+    let event: Event
     
     var body: some View {
-        Text("place holder for last event")
-        
-//        VStack (alignment: .leading) {
-//            Text("\(viewModel.lastEvent.who ?? "")\(viewModel.lastEvent.who == nil ? "" : " - ")\(viewModel.lastEvent.abilaty.name)")
-//                .bold()
-//                .font(.title)
-//
-//            HStack {
-//                Text(viewModel.lastEvent.isSubRoll ? Constance.diceStringPlus(roll: viewModel.lastEvent.roll.subRoll!) : Constance.diceStringPlus(roll: viewModel.lastEvent.roll))
-//                    .bold()
-//                    .font(.title)
-//
-//                if viewModel.lastEvent.circumstance == .advantage {
-//                    Image(systemName: "arrow.up.forward.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.green)
-//                } else if viewModel.lastEvent.circumstance == .disadvantage {
-//                    Image(systemName: "arrow.down.forward.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.red)
-//                } else if viewModel.lastEvent.circumstance == .crit {
-//                    Image(systemName: "star.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.yellow)
-//                }
-//
-//                Spacer()
-//
-//                if viewModel.lastEvent.roll.subRoll != nil && !viewModel.lastEvent.isSubRoll {
-//                    Button {
-//                        viewModel.addToEvent(event: viewModel.lastEvent?.hitRoll())
-//                    } label: {
-//                        Text("\(viewModel.lastEvent.total)")
-//                            .foregroundColor(.primary)
-//                            .bold()
-//                            .font(.title)
-//                            .padding(.horizontal)
-//                            .background(.green)
-//                            .clipShape(Capsule())
-//                    }
-//                } else {
-//                    Text("\(viewModel.lastEvent.total)")
-//                        .bold()
-//                        .font(.title)
-//                }
-//            }
-//
-//            Text("[\(viewModel.lastEvent.rollResult.faces.map{String($0)}.joined(separator: ","))]")
-//
-//        }
-//        .padding()
+        VStack {
+            Text(event.longName)
+                .bold()
+                .font(.title)
+            
+            if event.hasRollResult {
+                HStack {
+                    VStack {
+                        Text(Constance.diceStringPlus(roll: event.rollResult!.roll))
+                        Text("[\(event.rollResult!.faces.map{String($0)}.joined(separator: ","))]")
+                    }
+                    Spacer()
+                    
+                    if event.showHitButton {
+                        Button {
+                            viewModel.addToEvent(event.hitRoll())
+                        } label: {
+                            Text("Damage")
+                                .foregroundColor(.primary)
+                                .padding(.horizontal)
+                                .background(.green)
+                                .clipShape(Capsule())
+                        }
+
+                    }
+                    
+                    Spacer()
+                    Text(String(event.rollResult!.result))
+                        .bold()
+                        .font(.title)
+                        .foregroundColor(event.rollResult!.color)
+                }
+            }
+            
+            if event.hasRollResult && event.hasDiscription { Divider() }
+            
+            if event.hasDiscription {
+                Text(event.abilaty.discription!)
+            }
+        }
+        .padding(.horizontal)
     }
 }
 
 struct LastRollView_Previews: PreviewProvider {
     static var previews: some View {
-        LastRollView()
+        LastRollView(event: Event.example)
             .environmentObject(ViewModel())
     }
 }

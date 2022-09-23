@@ -36,7 +36,7 @@ struct Ability: Codable, Identifiable {
             }
         }
         
-        return Event(who: who, abilaty: self, damageRoll: damageRoll, rollResult: rollResult)
+        return Event(who: who, abilaty: self, rollResult: rollResult)
     }
     
     static let example = Ability(id: UUID(), name: "Club", roll: Roll.example20, onHit: Roll.example8, discription: "DC12 strength saving or be knocked pron")

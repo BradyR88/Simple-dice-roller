@@ -18,7 +18,7 @@ struct ContentView: View {
                 
                 // TODO: the last roll veiw that is alwase at the top
                 if viewModel.lastEvent != nil {
-                    LastRollView()
+                    LastRollView(event: viewModel.lastEvent!)
                 }
                 
                 
