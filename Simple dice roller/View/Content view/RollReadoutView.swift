@@ -14,42 +14,27 @@ struct RollReadoutView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(event.who)
+            HStack {
+                Text(event.longName)
+                Spacer()
+                if event.hasRollResult {
+                    Text(String(event.rollResult!.result))
+                }
+                Button {
+                    infoPainVisible.toggle()
+                } label: {
+                    Image(systemName: "eye.fill")
+                        .foregroundColor(.primary)
+                }
+
+            }
             
-//            HStack {
-//                Text(rollResult.isSubRoll ? Constance.diceStringPlus(roll: rollResult.roll.subRoll!) : Constance.diceStringPlus(roll: rollResult.roll))
-//                    .bold()
-//                    .font(.title)
-//
-//                if rollResult.circumstance == .advantage {
-//                    Image(systemName: "arrow.up.forward.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.green)
-//                } else if rollResult.circumstance == .disadvantage {
-//                    Image(systemName: "arrow.down.forward.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.red)
-//                } else if rollResult.circumstance == .crit {
-//                    Image(systemName: "star.square.fill")
-//                        .font(.title)
-//                        .foregroundColor(.yellow)
-//                }
-//
-//                Spacer()
-//
-//                Text("\(rollResult.total)")
-//                    .bold()
-//                    .font(.title)
-//                Button {
-//                    infoPainVisible.toggle()
-//                } label: {
-//                    Image(systemName: "eye.fill")
-//                        .font(.title3)
-//                }
-//            }
             if infoPainVisible {
-                if event.rollResult != nil {
-                    Text("[\(event.rollResult!.faces.map{String($0)}.joined(separator: ","))]")
+                if event.hasRollResult {
+                    Text("\(Constance.diceStringPlus(roll: event.rollResult!.roll))  [\(event.rollResult!.faces.map{String($0)}.joined(separator: ","))]")
+                }
+                if event.hasDiscription {
+                    Text(event.abilaty.discription!)
                 }
             }
         }
