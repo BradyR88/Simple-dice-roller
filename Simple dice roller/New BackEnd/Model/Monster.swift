@@ -28,16 +28,6 @@ struct Ability: Codable, Identifiable {
     var discription: String?
     
     // calculate variable
-    var longName: String {
-        var longName = name
-        if roll != nil {
-            longName.append(" - \(Constance.diceStringPlus(roll: roll!))")
-        }
-        if discription != nil {
-            longName.append(" - 📄")
-        }
-        return longName
-    }
     var hasRoll: Bool {
         get {
             if roll != nil {
@@ -54,6 +44,7 @@ struct Ability: Codable, Identifiable {
             }
         }
     }
+    
     var hasOnHit: Bool {
         get {
             if onHit != nil {
@@ -67,6 +58,34 @@ struct Ability: Codable, Identifiable {
                 onHit = nil
             } else {
                 onHit = Roll(numberOfDice: 1, numberOfSides: 8, toAdd: 0)
+            }
+        }
+    }
+    
+    var longName: String {
+        var longName = name
+        if roll != nil {
+            longName.append(" - \(Constance.diceStringPlus(roll: roll!))")
+        }
+        if discription != nil {
+            longName.append(" - 📄")
+        }
+        return longName
+    }
+    
+    var safeDiscription: String {
+        get {
+            if discription == nil {
+                return ""
+            } else {
+                return discription!
+            }
+        }
+        set {
+            if newValue.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+                discription = nil
+            } else {
+                discription = newValue
             }
         }
     }

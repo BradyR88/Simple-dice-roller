@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EditAbilitySection: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State private var safeDiscription = ""
     
     var body: some View {
         List{
@@ -39,17 +38,7 @@ struct EditAbilitySection: View {
             }
             
             Section("Discription") {
-                TextEditor(text: $safeDiscription)
-            }
-        }
-        .onAppear{
-            safeDiscription = viewModel.indicatedAbility.discription ?? ""
-        }
-        .onDisappear {
-            if safeDiscription.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-                viewModel.indicatedAbility.discription = nil
-            } else {
-                viewModel.indicatedAbility.discription = safeDiscription
+                TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
             }
         }
     }
