@@ -16,7 +16,7 @@ struct Monster: Codable, Equatable, Identifiable {
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
     
-    static let example = Monster(name: "", abilaty: [Ability.example], isShowing: true)
+    static let example = Monster(name: "BugBear", abilaty: [Ability.example], isShowing: true)
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
@@ -37,6 +37,38 @@ struct Ability: Codable, Identifiable {
             longName.append(" - 📄")
         }
         return longName
+    }
+    var hasRoll: Bool {
+        get {
+            if roll != nil {
+                return true
+            } else {
+                return false
+            }
+        }
+        set {
+            if newValue == false {
+                roll = nil
+            } else {
+                roll = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 0)
+            }
+        }
+    }
+    var hasOnHit: Bool {
+        get {
+            if onHit != nil {
+                return true
+            } else {
+                return false
+            }
+        }
+        set {
+            if newValue == false {
+                onHit = nil
+            } else {
+                onHit = Roll(numberOfDice: 1, numberOfSides: 8, toAdd: 0)
+            }
+        }
     }
     
     func genarateEvent(who: String, circumstance: Circumstance = .neutral, damageRoll: Bool = false) -> Event {

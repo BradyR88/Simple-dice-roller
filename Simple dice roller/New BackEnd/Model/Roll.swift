@@ -15,6 +15,11 @@ struct Roll: Codable, Equatable {
     var numberOfSides: Int
     var toAdd: Int
     
+    // caculated var
+    var stringName: String {
+        "\(numberOfDice)d\(numberOfSides)\(toAdd > 0 ? " + \(toAdd)" : "")"
+    }
+    
     func throwDice(circumstance: Circumstance = .neutral) -> RollResult {
         var result: Int
         var faces:[Int] = []

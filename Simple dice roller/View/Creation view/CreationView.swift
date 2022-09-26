@@ -9,13 +9,15 @@ import SwiftUI
 
 struct CreationView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var isPresintingSheet = false
     
     var body: some View {
         List {
             ForEach(Array(viewModel.monsters.enumerated()), id: \.offset) { index, monster in
-                Button {
-                    viewModel.togalIsShowing(for: index)
+                NavigationLink {
+                    EditSheetView()
+                        .onAppear {
+                            viewModel.monsterIndex = index
+                        }
                 } label: {
                     HStack {
                         Text(monster.name)
@@ -30,10 +32,9 @@ struct CreationView: View {
                 }
                 .swipeActions(edge: .leading) {
                     Button {
-                        viewModel.monsterIndex = index
-                        isPresintingSheet = true
+                        viewModel.togalIsShowing(for: index)
                     } label: {
-                        Label("Edit", systemImage: "pencil")
+                        Label("Display", systemImage: "checkmark.square.fill")
                     }
                     .tint(.indigo)
                 }
@@ -57,9 +58,6 @@ struct CreationView: View {
                 }
 
             }
-        }
-        .sheet(isPresented: $isPresintingSheet) {
-            EditSheetView()
         }
     }
 }

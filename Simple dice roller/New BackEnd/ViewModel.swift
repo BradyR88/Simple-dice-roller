@@ -48,7 +48,7 @@ import Foundation
     @Published var display: Monster? = nil
     
     // what is the index of the monster and ability in order to keep user edits tied to the monster
-    var monsterIndex: Int? = nil
+    @Published var monsterIndex: Int? = nil
     @Published var abilityIndex: Int? = nil
     
     // uses the index to return the specific monster or ability the user is interacting with anti-any changes they make back to the master list
@@ -84,10 +84,10 @@ import Foundation
     
     // MARK: init -
     init() {
-        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
-        loadData(from: Constance.savePathRollGroops, to: &monsters)
-        //rollGroops = [RollGroop.example, RollGroop.example2]
-        //pastRolls = []
+        //loadData(from: Constance.savePathPastRolls, to: &pastEvents)
+        //loadData(from: Constance.savePathRollGroops, to: &monsters)
+        monsters = [Monster.example, Monster.example]
+        pastEvents = []
     }
     
     // MARK: loading and saving

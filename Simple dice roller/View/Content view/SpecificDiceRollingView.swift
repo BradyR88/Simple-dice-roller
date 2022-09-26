@@ -16,7 +16,7 @@ struct SpecificDiceRollingView: View {
     var body: some View {
         VStack (alignment: .leading) {
             ForEach(display.abilaty) { abilaty in
-                // TODO: new abilaty read out
+                // TODO: add longTap funcshanalaty
                 Text(abilaty.longName)
                     .padding(.horizontal)
                     .padding(.vertical, 3)
