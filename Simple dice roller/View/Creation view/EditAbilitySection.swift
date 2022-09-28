@@ -18,48 +18,58 @@ struct EditAbilitySection: View {
     }
     
     var body: some View {
-        VStack {
-            List{
-                Section {
-                    TextField("Ability Name", text: $viewModel.indicatedAbility.name)
-                        .focused($nameFocus)
-                    
-                    Toggle("Primary Roll", isOn: $viewModel.indicatedAbility.hasRoll)
-                    
-                    if viewModel.indicatedAbility.hasRoll {
-                        Button {
-                            // edit this
-                            discriptionFocus = false
-                            showingInput = .roll
-                        } label: {
-                            Text(viewModel.indicatedAbility.roll?.stringName ?? "error")
+        NavigationView {
+            VStack {
+                List{
+                    Section {
+                        TextField("Ability Name", text: $viewModel.indicatedAbility.name)
+                            .focused($nameFocus)
+                            .modifier(SimpleKeyboardButton(text: "Done", action: { nameFocus = false }))
+                        
+                        Toggle("Primary Roll", isOn: $viewModel.indicatedAbility.hasRoll)
+                        
+                        if viewModel.indicatedAbility.hasRoll {
+                            Button {
+                                // edit this
+                                discriptionFocus = false
+                                nameFocus = false
+                                showingInput = .roll
+                            } label: {
+                                Text(viewModel.indicatedAbility.roll?.stringName ?? "error")
+                            }
                         }
+                        
+                        Toggle("On Hit Roll", isOn: $viewModel.indicatedAbility.hasOnHit)
+                        if viewModel.indicatedAbility.hasOnHit {
+                            Button {
+                                // edit this
+                                discriptionFocus = false
+                                nameFocus = false
+                                showingInput = .subroll
+                            } label: {
+                                Text(viewModel.indicatedAbility.onHit?.stringName ?? "error")
+                            }
+                        }
+                        
+                        
                     }
                     
-                    Toggle("On Hit Roll", isOn: $viewModel.indicatedAbility.hasOnHit)
-                    if viewModel.indicatedAbility.hasOnHit {
-                        Button {
-                            // edit this
-                            discriptionFocus = false
-                            showingInput = .subroll
-                        } label: {
-                            Text(viewModel.indicatedAbility.onHit?.stringName ?? "error")
-                        }
+                    Section("Discription") {
+                        TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
+                            .focused($discriptionFocus)
+                            .modifier(SimpleKeyboardButton(text: "Done", action: { discriptionFocus = false }))
                     }
-                    
-                    
                 }
                 
-                Section("Discription") {
-                    TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
-                        .focused($discriptionFocus)
+                if showingInput == .roll && !discriptionFocus && !nameFocus {
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.roll)
+                } else if showingInput == .subroll && !discriptionFocus && !nameFocus {
+                    DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.onHit)
                 }
             }
-            
-            if showingInput == .roll && !discriptionFocus && !nameFocus {
-                DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.roll)
-            } else if showingInput == .subroll && !discriptionFocus && !nameFocus {
-                DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.onHit)
+            .navigationBarHidden(true)
+            .onDisappear {
+                viewModel.abilityIndex = nil
             }
         }
     }

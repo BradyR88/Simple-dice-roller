@@ -17,6 +17,10 @@ struct EditSheetView: View {
                 TextField("Name", text: $viewModel.indicatedMonster.name)
             }
             
+            Section {
+                Toggle("On Roll Screan", isOn: $viewModel.indicatedMonster.isShowing)
+            }
+            
             Section("Abilatys") {
                 ForEach(Array(viewModel.indicatedMonster.abilaty.enumerated()), id: \.offset) { index, abilaty in
                     Button {

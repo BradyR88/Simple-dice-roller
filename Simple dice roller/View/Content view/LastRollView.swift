@@ -53,6 +53,7 @@ struct LastRollView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.bottom, 8)
     }
 }
 

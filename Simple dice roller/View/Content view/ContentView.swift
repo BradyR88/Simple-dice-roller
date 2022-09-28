@@ -16,11 +16,9 @@ struct ContentView: View {
                 // MARK: past rolls
                 Divider()
                 
-                // TODO: the last roll veiw that is alwase at the top
                 if viewModel.lastEvent != nil {
                     LastRollView(event: viewModel.lastEvent!)
                 }
-                
                 
                 List {
                     ForEach(viewModel.pastEventsDropFirst) { event in

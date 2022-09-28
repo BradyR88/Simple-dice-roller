@@ -26,7 +26,7 @@ struct SpecificDiceRollingView: View {
                         viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
                     }
             }
-            .padding()
+            .padding(.leading)
             
             Picker("select advantage state", selection: $circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in

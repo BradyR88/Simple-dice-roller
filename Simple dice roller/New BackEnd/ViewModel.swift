@@ -85,8 +85,8 @@ import Foundation
     // MARK: init -
     init() {
         loadData(from: Constance.savePathPastRolls, to: &pastEvents)
-        loadData(from: Constance.savePathRollGroops, to: &monsters)
-        //monsters = [Monster.example, Monster.example]
+        //loadData(from: Constance.savePathRollGroops, to: &monsters)
+        monsters = [Monster.example, Monster.example]
         //pastEvents = []
     }
     
@@ -141,11 +141,7 @@ import Foundation
     }
     
     func tapOnRoll(at index: Int) {
-        if index == abilityIndex {
-            abilityIndex = nil
-        } else {
-            abilityIndex = index
-        }
+        abilityIndex = index
     }
     
     func addNewRollGroop() {
