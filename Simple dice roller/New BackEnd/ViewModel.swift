@@ -84,10 +84,10 @@ import Foundation
     
     // MARK: init -
     init() {
-        //loadData(from: Constance.savePathPastRolls, to: &pastEvents)
-        //loadData(from: Constance.savePathRollGroops, to: &monsters)
-        monsters = [Monster.example, Monster.example]
-        pastEvents = []
+        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
+        loadData(from: Constance.savePathRollGroops, to: &monsters)
+        //monsters = [Monster.example, Monster.example]
+        //pastEvents = []
     }
     
     // MARK: loading and saving

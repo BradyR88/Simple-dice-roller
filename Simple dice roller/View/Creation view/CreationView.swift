@@ -49,7 +49,7 @@ struct CreationView: View {
             }
         }
         .navigationTitle("Dice Bags")
-        .toolbar{
+        .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
                     viewModel.addNewRollGroop()

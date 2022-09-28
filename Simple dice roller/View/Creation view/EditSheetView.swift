@@ -38,7 +38,16 @@ struct EditSheetView: View {
         .sheet(isPresented: $showingSheat) {
             EditAbilitySection()
         }
-        
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.addNewRoll()
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+            }
+        }
         
     }
 }
