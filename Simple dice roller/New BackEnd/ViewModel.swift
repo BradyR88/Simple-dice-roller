@@ -87,10 +87,14 @@ import Foundation
     
     // MARK: init -
     init() {
-        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
-        //loadData(from: Constance.savePathRollGroops, to: &monsters)
+        #if targetEnvironment(simulator)
         monsters = [Monster.example, Monster.example]
         //pastEvents = []
+        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
+        #else
+        loadData(from: Constance.savePathPastRolls, to: &pastEvents)
+        loadData(from: Constance.savePathRollGroops, to: &monsters)
+        #endif
     }
     
     // MARK: loading and saving
@@ -114,6 +118,10 @@ import Foundation
     // MARK: user actions -
     
     func addToEvent(_ event: Event?) {
+        // stops a Visual bug from occurring
+        descriptionReadMode = false
+        
+        // inserts if it has one
         guard let event = event else { return }
         pastEvents.insert(event, at: 0)
     }
@@ -170,14 +178,17 @@ import Foundation
     
     func updateDisplay() {
         // look to see the previous selected role group is still visible or if it has been removed by the user and needs to be set back to nil
-        var mach = false
+        var match = false
         for monster in monsters {
             if monster == display {
-                mach = monster.isShowing
+                // monster only check to see if UUID is the same so if any variables inside have been changed by the user it needs to be updated to the new version
+                display = monster
+                
+                match = monster.isShowing
                 break
             }
         }
-        if !mach {
+        if !match {
             display = nil
         }
     }

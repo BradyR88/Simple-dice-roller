@@ -10,11 +10,13 @@ import SwiftUI
 struct EditSheetView: View {
     @EnvironmentObject var viewModel: ViewModel
     @State  private var showingSheat = false
+    @FocusState private var nameFocus: Bool
     
     var body: some View {
         List {
             Section("Name") {
                 TextField("Name", text: $viewModel.indicatedMonster.name)
+                    .focused($nameFocus)
             }
             
             Section {
@@ -26,6 +28,7 @@ struct EditSheetView: View {
                     Button {
                         viewModel.tapOnRoll(at: index)
                         showingSheat.toggle()
+                        nameFocus = false
                     } label: {
                         HStack {
                             Text(abilaty.longName)
@@ -49,10 +52,16 @@ struct EditSheetView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+            }
+            
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
 
+                Button("Done") {
+                    nameFocus = false
+                }
             }
         }
-        
     }
 }
 

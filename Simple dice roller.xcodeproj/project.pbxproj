@@ -21,7 +21,6 @@
 		73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518B28B9814000246515 /* NumberToggleView.swift */; };
 		73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518D28B988C300246515 /* GenericDiceRollingView.swift */; };
 		73BF039628E21D8A006B2100 /* EditAbilitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF039528E21D8A006B2100 /* EditAbilitySection.swift */; };
-		73BF039828E4D866006B2100 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF039728E4D866006B2100 /* ViewModifiers.swift */; };
 		73BF039B28E4EA0E006B2100 /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF039A28E4EA0E006B2100 /* MarqueeText.swift */; };
 		73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508328D3B68600CB37F3 /* LastRollView.swift */; };
 		73FA409528DA5C7300797223 /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409428DA5C7300797223 /* Roll.swift */; };
@@ -46,7 +45,6 @@
 		73B2518B28B9814000246515 /* NumberToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberToggleView.swift; sourceTree = "<group>"; };
 		73B2518D28B988C300246515 /* GenericDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDiceRollingView.swift; sourceTree = "<group>"; };
 		73BF039528E21D8A006B2100 /* EditAbilitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAbilitySection.swift; sourceTree = "<group>"; };
-		73BF039728E4D866006B2100 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		73BF039A28E4EA0E006B2100 /* MarqueeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
 		73EF508328D3B68600CB37F3 /* LastRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRollView.swift; sourceTree = "<group>"; };
 		73FA409428DA5C7300797223 /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				73855B1F28C960DC00E59726 /* DiceCalculatorBoardView.swift */,
 				73B2518B28B9814000246515 /* NumberToggleView.swift */,
-				73BF039728E4D866006B2100 /* ViewModifiers.swift */,
 				73BF039A28E4EA0E006B2100 /* MarqueeText.swift */,
 			);
 			path = Other;
@@ -239,7 +236,6 @@
 				73855B2028C960DC00E59726 /* DiceCalculatorBoardView.swift in Sources */,
 				73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */,
 				73FA409728DBAC0F00797223 /* Event.swift in Sources */,
-				73BF039828E4D866006B2100 /* ViewModifiers.swift in Sources */,
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,

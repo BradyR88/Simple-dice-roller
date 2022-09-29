@@ -24,7 +24,6 @@ struct EditAbilitySection: View {
                     Section {
                         TextField("Ability Name", text: $viewModel.indicatedAbility.name)
                             .focused($nameFocus)
-                            .modifier(SimpleKeyboardButton(text: "Done", action: { nameFocus = false }))
                         
                         Toggle("Primary Roll", isOn: $viewModel.indicatedAbility.hasRoll)
                         
@@ -50,14 +49,11 @@ struct EditAbilitySection: View {
                                 Text(viewModel.indicatedAbility.onHit?.stringName ?? "error")
                             }
                         }
-                        
-                        
                     }
                     
                     Section("Discription") {
                         TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
                             .focused($discriptionFocus)
-                            .modifier(SimpleKeyboardButton(text: "Done", action: { discriptionFocus = false }))
                     }
                 }
                 
@@ -70,6 +66,16 @@ struct EditAbilitySection: View {
             .navigationBarHidden(true)
             .onDisappear {
                 viewModel.abilityIndex = nil
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+
+                    Button("Done") {
+                        nameFocus = false
+                        discriptionFocus = false
+                    }
+                }
             }
         }
     }

@@ -64,7 +64,6 @@ struct LastRollView: View {
             } else if event.hasDiscription && viewModel.descriptionReadMode {
                 ScrollView {
                     Text(event.abilaty.discription!)
-                        .padding(.leading, 3)
                 }
                 .onTapGesture {
                     viewModel.tapOnDiscription()
