@@ -55,8 +55,20 @@ struct LastRollView: View {
             
             if event.hasRollResult && event.hasDiscription { Divider() }
             
-            if event.hasDiscription {
+            if event.hasDiscription && !viewModel.descriptionReadMode {
                 Text(event.abilaty.discription!)
+                    .lineLimit(3)
+                    .onTapGesture {
+                        viewModel.tapOnDiscription()
+                    }
+            } else if event.hasDiscription && viewModel.descriptionReadMode {
+                ScrollView {
+                    Text(event.abilaty.discription!)
+                        .padding(.leading, 3)
+                }
+                .onTapGesture {
+                    viewModel.tapOnDiscription()
+                }
             }
         }
         .padding(.horizontal)
@@ -66,7 +78,7 @@ struct LastRollView: View {
 
 struct LastRollView_Previews: PreviewProvider {
     static var previews: some View {
-        LastRollView(event: Event.example)
+        LastRollView(event: Event.exampleLong)
             .environmentObject(ViewModel())
     }
 }

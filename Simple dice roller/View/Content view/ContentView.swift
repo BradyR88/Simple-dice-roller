@@ -20,9 +20,11 @@ struct ContentView: View {
                     LastRollView(event: viewModel.lastEvent!)
                 }
                 
-                List {
-                    ForEach(viewModel.pastEventsDropFirst) { event in
-                        RollReadoutView(event: event)
+                if !viewModel.descriptionReadMode {
+                    List {
+                        ForEach(viewModel.pastEventsDropFirst) { event in
+                            RollReadoutView(event: event)
+                        }
                     }
                 }
                 
@@ -52,6 +54,7 @@ struct ContentView: View {
                                     } label: {
                                         Text(monster.name)
                                             .font(.title3)
+                                            .frame(maxWidth: 125)
                                             .foregroundColor(.primary)
                                             .padding(6)
                                             .background((monster == (viewModel.display ?? Monster(name: "", abilaty: [], isShowing: false))) ? .red : .purple)

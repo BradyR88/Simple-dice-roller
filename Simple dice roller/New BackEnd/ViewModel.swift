@@ -44,6 +44,9 @@ import Foundation
         return new
     }
     
+    // heads or put the description text into long read mode
+    @Published var descriptionReadMode: Bool = false
+    
     // what Monster they currently have selected to understand what abilities to display in the ContentView
     @Published var display: Monster? = nil
     
@@ -142,6 +145,12 @@ import Foundation
     
     func tapOnRoll(at index: Int) {
         abilityIndex = index
+    }
+    
+    func tapOnDiscription() {
+        if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
+            descriptionReadMode.toggle()
+        }
     }
     
     func addNewRollGroop() {

@@ -3,6 +3,7 @@
 //
 //
 //  Created by CatchZeng on 2020/11/23.
+//  https://github.com/SwiftUIKit/Marquee
 //  Added by Brady on 2022/09/28
 //
 //

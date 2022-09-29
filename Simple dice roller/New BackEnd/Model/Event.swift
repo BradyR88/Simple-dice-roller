@@ -78,4 +78,5 @@ struct Event: Codable, Identifiable {
     }
     
     static let example = Event(who: "Bugbear", abilaty: Ability.example, rollResult: Ability.example.roll!.throwDice())
+    static let exampleLong = Event(who: "Bugbear", abilaty: Ability.exampleLong, rollResult: Ability.example.roll!.throwDice())
 }

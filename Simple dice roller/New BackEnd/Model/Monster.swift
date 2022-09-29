@@ -16,7 +16,7 @@ struct Monster: Codable, Equatable, Identifiable {
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
     
-    static let example = Monster(name: "BugBear", abilaty: [Ability.example, Ability.example, Ability.example], isShowing: true)
+    static let example = Monster(name: "BugBear", abilaty: [Ability.example, Ability.exampleLong, Ability.example], isShowing: true)
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
@@ -103,4 +103,5 @@ struct Ability: Codable, Identifiable {
     }
     
     static let example = Ability(id: UUID(), name: "Club", roll: Roll.example20, onHit: Roll.example8, discription: "DC12 strength saving or be knocked pron")
+    static let exampleLong = Ability(id: UUID(), name: "Club", roll: Roll.example20, onHit: Roll.example8, discription: "DC12 strength saving or be knocked pron Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
 }
