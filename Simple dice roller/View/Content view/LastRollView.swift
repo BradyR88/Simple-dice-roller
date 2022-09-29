@@ -13,9 +13,16 @@ struct LastRollView: View {
     
     var body: some View {
         VStack {
-            Text(event.longName)
-                .bold()
-                .font(.title)
+            Marquee {
+                Text(event.longName)
+                    .bold()
+                    .font(.title)
+            }
+            .marqueeDuration(8)
+            .marqueeWhenNotFit(true)
+            .marqueeIdleAlignment(.center)
+            // TODO: find better to limit the size of the underlying geometry reader so that it works on all screen size
+            .frame(height: 40)
             
             if event.hasRollResult {
                 HStack {
