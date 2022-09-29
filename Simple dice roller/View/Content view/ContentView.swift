@@ -67,6 +67,7 @@ struct ContentView: View {
                     .padding(.vertical, 5)
                     .background(.tertiary)
                     
+                    Spacer()
                     
                     // MARK: Roll Display
                     if viewModel.display == nil {
@@ -77,6 +78,7 @@ struct ContentView: View {
                         SpecificDiceRollingView(display: viewModel.display!)
                     }
                 }
+                .frame(height: 337)
             }
             .navigationTitle("Paper Dice")
             .navigationBarTitleDisplayMode(.inline)

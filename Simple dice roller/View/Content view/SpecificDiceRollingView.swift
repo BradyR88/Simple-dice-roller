@@ -15,18 +15,20 @@ struct SpecificDiceRollingView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            ForEach(display.abilaty) { abilaty in
-                // TODO: add longTap funcshanalaty
-                Text(abilaty.longName)
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
-                    .background(.green)
-                    .clipShape(Capsule())
-                    .onTapGesture {
-                        viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
-                    }
+            ScrollView {
+                ForEach(display.abilaty) { abilaty in
+                    // TODO: add longTap funcshanalaty
+                    Text(abilaty.longName)
+                        .padding(.horizontal)
+                        .padding(.vertical, 5)
+                        .background(.green)
+                        .clipShape(Capsule())
+                        .onTapGesture {
+                            viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
+                        }
+                }
+                .padding(.leading)
             }
-            .padding(.leading)
             
             Picker("select advantage state", selection: $circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in
