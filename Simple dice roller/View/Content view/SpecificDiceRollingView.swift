@@ -18,16 +18,35 @@ struct SpecificDiceRollingView: View {
             ScrollView {
                 ForEach(display.abilaty) { abilaty in
                     // TODO: add longTap funcshanalaty
-                    Text(abilaty.longName)
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                        .background(.green)
-                        .clipShape(Capsule())
-                        .onTapGesture {
-                            viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
+                    HStack {
+                        Text(abilaty.longName)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
+                            .background(.green)
+                            .clipShape(Capsule())
+                            .onTapGesture {
+                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
+                            }
+                        
+                        Spacer()
+                        
+                        if abilaty.hasOnHit {
+                            Text(abilaty.onHit!.stringName)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                                .background(.blue)
+                                .clipShape(Capsule())
+                                .onTapGesture {
+                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance, damageRoll: true))
+                                }
+                                .onLongPressGesture {
+                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .crit, damageRoll: true))
+                                }
                         }
+                    }
+                    
                 }
-                .padding(.leading)
+                .padding(.horizontal)
             }
             
             Picker("select advantage state", selection: $circumstance) {
