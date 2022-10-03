@@ -37,6 +37,13 @@ struct CreationView: View {
                         Label("Display", systemImage: "checkmark.square.fill")
                     }
                     .tint(.indigo)
+                    
+                    Button {
+                        viewModel.togalIsShowing(for: index)
+                    } label: {
+                        Label("Duplicate", systemImage: "arrow.right.doc.on.clipboard")
+                    }
+                    .tint(.cyan)
                 }
                 .swipeActions(edge: .trailing) {
                     Button {
