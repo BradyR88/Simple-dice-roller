@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         Form {
-            Toggle("Advantage Reset", isOn: <#T##Binding<Bool>#>)
+            Toggle("Advantage Reset", isOn: $viewModel.settings.resetAdvantage)
         }
     }
 }
