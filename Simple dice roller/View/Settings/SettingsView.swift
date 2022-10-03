@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State private var isConfirming = false
     
     var body: some View {
         Form {
@@ -18,7 +19,7 @@ struct SettingsView: View {
             
             Section {
                 Button(role: .destructive) {
-                    viewModel.deleteAllEvents()
+                    isConfirming = true
                 } label: {
                     Text("Deleat all Events")
                 }
@@ -27,6 +28,15 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
+        .confirmationDialog("Deleat Events?", isPresented: $isConfirming) {
+            Button("Delete", role: .destructive) {
+                viewModel.deleteAllEvents()
+            }
+
+        } message: {
+            Text("This will permanent remove all past events are you trying to do this?")
+        }
+
     }
 }
 
