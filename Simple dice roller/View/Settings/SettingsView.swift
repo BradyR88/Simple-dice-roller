@@ -12,13 +12,29 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Toggle("Advantage Reset", isOn: $viewModel.settings.resetAdvantage)
+            Section {
+                Toggle("Advantage Reset", isOn: $viewModel.settings.resetAdvantage)
+            }
+            
+            Section {
+                Button(role: .destructive) {
+                    viewModel.deleteAllEvents()
+                } label: {
+                    Text("Deleat all Events")
+                }
+
+            }
         }
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        NavigationView {
+            SettingsView()
+        }
+        .environmentObject(ViewModel())
     }
 }

@@ -155,6 +155,10 @@ import Foundation
         }
     }
     
+    func deleteAllEvents() {
+        pastEvents = []
+    }
+    
     func deleteRollGroop(at index: Int) {
         monsters.remove(at: index)
     }
