@@ -25,12 +25,20 @@ struct LastRollView: View {
             .frame(height: 40)
             
             if event.hasRollResult {
-                HStack {
-                    VStack {
-                        Text(Constance.diceStringPlus(roll: event.rollResult!.roll))
-                        Text("[\(event.rollResult!.faces.map{String($0)}.joined(separator: ","))]")
+                ZStack {
+                    HStack {
+                        VStack {
+                            Text(Constance.diceStringPlus(roll: event.rollResult!.roll))
+                            Text("[\(event.rollResult!.faces.map{String($0)}.joined(separator: ","))]")
+                        }
+                        
+                        Spacer()
+                        
+                        Text(String(event.rollResult!.result))
+                            .bold()
+                            .font(.title)
+                            .foregroundColor(event.rollResult!.color)
                     }
-                    Spacer()
                     
                     if event.showHitButton {
                         Button {
@@ -44,12 +52,6 @@ struct LastRollView: View {
                         }
 
                     }
-                    
-                    Spacer()
-                    Text(String(event.rollResult!.result))
-                        .bold()
-                        .font(.title)
-                        .foregroundColor(event.rollResult!.color)
                 }
             }
             
