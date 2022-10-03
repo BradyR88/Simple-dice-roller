@@ -177,6 +177,14 @@ import Foundation
         monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
     }
     
+    func duplicateMonster(at index: Int) {
+        var new = monsters[index]
+        new.id = UUID()
+        new.name = "coppy of \(new.name)"
+        
+        monsters.append(new)
+    }
+    
     func addNewRoll() {
         indicatedMonster.abilaty.append(Ability(name: "New Ability"))
         abilityIndex = indicatedMonster.abilaty.count - 1

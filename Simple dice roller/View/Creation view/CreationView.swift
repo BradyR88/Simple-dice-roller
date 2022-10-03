@@ -39,7 +39,7 @@ struct CreationView: View {
                     .tint(.indigo)
                     
                     Button {
-                        viewModel.togalIsShowing(for: index)
+                        viewModel.duplicateMonster(at: index)
                     } label: {
                         Label("Duplicate", systemImage: "arrow.right.doc.on.clipboard")
                     }
