@@ -37,7 +37,7 @@ struct ContentView: View {
                                 // set the display to a
                                 viewModel.display = nil
                             } label: {
-                                Text("Standard")
+                                Text("Rolls")
                                     .font(.title3)
                                     .foregroundColor(.primary)
                                     .padding(6)
