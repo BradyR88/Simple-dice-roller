@@ -22,6 +22,8 @@
 		73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2518D28B988C300246515 /* GenericDiceRollingView.swift */; };
 		73BF039628E21D8A006B2100 /* EditAbilitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF039528E21D8A006B2100 /* EditAbilitySection.swift */; };
 		73BF039B28E4EA0E006B2100 /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF039A28E4EA0E006B2100 /* MarqueeText.swift */; };
+		73D3D88D28EB4A3100117989 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D3D88C28EB4A3100117989 /* SettingsView.swift */; };
+		73D3D88F28EB5B6D00117989 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D3D88E28EB5B6D00117989 /* Settings.swift */; };
 		73EF508428D3B68600CB37F3 /* LastRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF508328D3B68600CB37F3 /* LastRollView.swift */; };
 		73FA409528DA5C7300797223 /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409428DA5C7300797223 /* Roll.swift */; };
 		73FA409728DBAC0F00797223 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FA409628DBAC0F00797223 /* Event.swift */; };
@@ -46,6 +48,8 @@
 		73B2518D28B988C300246515 /* GenericDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDiceRollingView.swift; sourceTree = "<group>"; };
 		73BF039528E21D8A006B2100 /* EditAbilitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAbilitySection.swift; sourceTree = "<group>"; };
 		73BF039A28E4EA0E006B2100 /* MarqueeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
+		73D3D88C28EB4A3100117989 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		73D3D88E28EB5B6D00117989 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		73EF508328D3B68600CB37F3 /* LastRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRollView.swift; sourceTree = "<group>"; };
 		73FA409428DA5C7300797223 /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
 		73FA409628DBAC0F00797223 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			children = (
 				737B187628BFF6C600ED59D3 /* Content view */,
 				737B187728BFF6FC00ED59D3 /* Creation view */,
+				73D3D88B28EB4A0D00117989 /* Settings */,
 				73BF039928E4E9C4006B2100 /* Other */,
 			);
 			path = View;
@@ -142,6 +147,15 @@
 				73BF039A28E4EA0E006B2100 /* MarqueeText.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		73D3D88B28EB4A0D00117989 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				73D3D88C28EB4A3100117989 /* SettingsView.swift */,
+				73D3D88E28EB5B6D00117989 /* Settings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		73FA408F28DA5A7A00797223 /* New BackEnd */ = {
@@ -247,10 +261,12 @@
 				73FA409C28DBC1CA00797223 /* ViewModel.swift in Sources */,
 				73B2518E28B988C300246515 /* GenericDiceRollingView.swift in Sources */,
 				73BF039B28E4EA0E006B2100 /* MarqueeText.swift in Sources */,
+				73D3D88F28EB5B6D00117989 /* Settings.swift in Sources */,
 				73FA409528DA5C7300797223 /* Roll.swift in Sources */,
 				7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */,
 				73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */,
 				73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */,
+				73D3D88D28EB4A3100117989 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,6 +49,7 @@ import Foundation
     
     // what Monster they currently have selected to understand what abilities to display in the ContentView
     @Published var display: Monster? = nil
+    @Published var circumstance: Circumstance = .neutral
     
     // what is the index of the monster and ability in order to keep user edits tied to the monster
     @Published var monsterIndex: Int? = nil
@@ -84,6 +85,9 @@ import Foundation
             monsters[monsterIndex].abilaty[abilityIndex] = newValue
         }
     }
+    
+    // MARK: settings
+    @Published var settings = Setings()
     
     // MARK: init -
     init() {
@@ -124,6 +128,10 @@ import Foundation
         // inserts if it has one
         guard let event = event else { return }
         pastEvents.insert(event, at: 0)
+        
+        if settings.resetAdvantage {
+            circumstance = .neutral
+        }
     }
     
     func togalIsShowing(for index: Int) {
@@ -145,6 +153,10 @@ import Foundation
                 break
             }
         }
+    }
+    
+    func deleteAllEvents() {
+        pastEvents = []
     }
     
     func deleteRollGroop(at index: Int) {

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SpecificDiceRollingView: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var circumstance: Circumstance = .neutral
     let display: Monster
     
     
@@ -25,7 +24,7 @@ struct SpecificDiceRollingView: View {
                             .background(.green)
                             .clipShape(Capsule())
                             .onTapGesture {
-                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance))
+                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: viewModel.circumstance))
                             }
                         
                         Spacer()
@@ -37,7 +36,7 @@ struct SpecificDiceRollingView: View {
                                 .background(.blue)
                                 .clipShape(Capsule())
                                 .onTapGesture {
-                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: circumstance, damageRoll: true))
+                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .neutral, damageRoll: true))
                                 }
                                 .onLongPressGesture {
                                     viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .crit, damageRoll: true))
@@ -49,7 +48,7 @@ struct SpecificDiceRollingView: View {
                 .padding(.horizontal)
             }
             
-            Picker("select advantage state", selection: $circumstance) {
+            Picker("select advantage state", selection: $viewModel.circumstance) {
                 ForEach(Circumstance.allCases, id: \.self) { value in
                     if value != .crit {
                         Text(value.rawValue).tag(value)
