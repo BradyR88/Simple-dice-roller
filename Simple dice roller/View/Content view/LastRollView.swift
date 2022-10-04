@@ -13,16 +13,7 @@ struct LastRollView: View {
     
     var body: some View {
         VStack {
-            Marquee {
-                Text(event.longName)
-                    .bold()
-                    .font(.title)
-            }
-            .marqueeDuration(8)
-            .marqueeWhenNotFit(true)
-            .marqueeIdleAlignment(.center)
-            // TODO: find better to limit the size of the underlying geometry reader so that it works on all screen size
-            .frame(height: 40)
+            MarqueeText(text: event.longName, font: UIFont.preferredFont(forTextStyle: .title1), leftFade: 13, rightFade: 13, startDelay: 3, alignment: .center)
             
             if event.hasRollResult {
                 ZStack {

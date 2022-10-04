@@ -2,305 +2,139 @@
 //  Marquee.swift
 //
 //
-//  Created by CatchZeng on 2020/11/23.
-//  https://github.com/SwiftUIKit/Marquee
+//  written by Joe Kennedy
+//  https://github.com/joekndy/MarqueeText
+//
 //  Added by Brady on 2022/09/28
 //
 //
 //
 
-import Foundation
-import CoreGraphics
 import SwiftUI
+import Combine
 
-public enum MarqueeDirection {
-    case right2left
-    case left2right
-}
-
-private enum MarqueeState {
-    case idle
-    case ready
-    case animating
-}
-
-public struct Marquee<Content> : View where Content : View {
-    @Environment(\.marqueeDuration) var duration
-    @Environment(\.marqueeAutoreverses) var autoreverses: Bool
-    @Environment(\.marqueeDirection) var direction: MarqueeDirection
-    @Environment(\.marqueeWhenNotFit) var stopWhenNotFit: Bool
-    @Environment(\.marqueeIdleAlignment) var idleAlignment: HorizontalAlignment
+public struct MarqueeText : View {
+    public var text: String
+    public var font: UIFont
+    public var leftFade: CGFloat
+    public var rightFade: CGFloat
+    public var startDelay: Double
+    public var alignment: Alignment
     
-    private var content: () -> Content
-    @State private var state: MarqueeState = .idle
-    @State private var contentWidth: CGFloat = 0
-    @State private var isAppear = false
+    @State private var animate = false
     
-    public init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
-    
-    public var body: some View {
-        GeometryReader { proxy in
-            VStack {
-                if isAppear {
-                    content()
-                        .background(GeometryBackground())
-                        .fixedSize()
-                        .myOffset(x: offsetX(proxy: proxy), y: 0)
-                        .frame(maxHeight: .infinity)
+    public var body : some View {
+        let stringWidth = text.widthOfString(usingFont: font)
+        let stringHeight = text.heightOfString(usingFont: font)
+        
+        let animation = Animation
+            .linear(duration: Double(stringWidth) / 30)
+            .delay(startDelay)
+            .repeatForever(autoreverses: false)
+        
+        let nullAnimation = Animation
+            .linear(duration: 0)
+        
+        return ZStack {
+            GeometryReader { geo in
+                if stringWidth > geo.size.width { // don't use self.animate as conditional here
+                    Group {
+                        Text(self.text)
+                            .lineLimit(1)
+                            .font(.init(font))
+                            .offset(x: self.animate ? -stringWidth - stringHeight * 2 : 0)
+                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
+                            .onAppear {
+                                DispatchQueue.main.async {
+                                    self.animate = geo.size.width < stringWidth
+                                }
+                            }
+                            .fixedSize(horizontal: true, vertical: false)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        
+                        Text(self.text)
+                            .lineLimit(1)
+                            .font(.init(font))
+                            .offset(x: self.animate ? 0 : stringWidth + stringHeight * 2)
+                            .animation(self.animate ? animation : nullAnimation, value: self.animate)
+                            .onAppear {
+                                DispatchQueue.main.async {
+                                    self.animate = geo.size.width < stringWidth
+                                }
+                            }
+                            .fixedSize(horizontal: true, vertical: false)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                    }
+                    .onValueChanged(of: self.text, perform: {text in
+                        self.animate = geo.size.width < stringWidth
+                    })
+                    
+                    .offset(x: leftFade)
+                    .mask(
+                        HStack(spacing:0) {
+                            Rectangle()
+                                .frame(width:2)
+                                .opacity(0)
+                            LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0), Color.black]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
+                                .frame(width:leftFade)
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
+                                .frame(width:rightFade)
+                            Rectangle()
+                                .frame(width:2)
+                                .opacity(0)
+                        })
+                    .frame(width: geo.size.width + leftFade)
+                    .offset(x: leftFade * -1)
                 } else {
-                    Text("")
+                    Text(self.text)
+                        .font(.init(font))
+                        .onValueChanged(of: self.text, perform: {text in
+                            self.animate = geo.size.width < stringWidth
+                        })
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: alignment)
                 }
             }
-            .onPreferenceChange(WidthKey.self, perform: { value in
-                self.contentWidth = value
-                resetAnimation(duration: duration, autoreverses: autoreverses, proxy: proxy)
-            })
-            .onAppear {
-                self.isAppear = true
-                resetAnimation(duration: duration, autoreverses: autoreverses, proxy: proxy)
-            }
-            .onDisappear {
-                self.isAppear = false
-            }
-            .onChange(of: duration) { [] newDuration in
-                resetAnimation(duration: newDuration, autoreverses: self.autoreverses, proxy: proxy)
-            }
-            .onChange(of: autoreverses) { [] newAutoreverses in
-                resetAnimation(duration: self.duration, autoreverses: newAutoreverses, proxy: proxy)
-            }
-            .onChange(of: direction) { [] _ in
-                resetAnimation(duration: duration, autoreverses: autoreverses, proxy: proxy)
-            }
-        }.clipped()
-    }
-    
-    private func offsetX(proxy: GeometryProxy) -> CGFloat {
-        switch self.state {
-        case .idle:
-            switch idleAlignment {
-            case .center:
-                return 0.5*(proxy.size.width-contentWidth)
-            case .trailing:
-                return proxy.size.width-contentWidth
-            default:
-                return 0
-            }
-        case .ready:
-            return (direction == .right2left) ? proxy.size.width : -contentWidth
-        case .animating:
-            return (direction == .right2left) ? -contentWidth : proxy.size.width
         }
+        .frame(height: stringHeight)
+        .onDisappear { self.animate = false }
+
     }
     
-    private func resetAnimation(duration: Double, autoreverses: Bool, proxy: GeometryProxy) {
-        if duration == 0 || duration == Double.infinity {
-            stopAnimation()
-        } else {
-            startAnimation(duration: duration, autoreverses: autoreverses, proxy: proxy)
-        }
+    public init(text: String, font: UIFont, leftFade: CGFloat, rightFade: CGFloat, startDelay: Double, alignment: Alignment? = nil) {
+        self.text = text
+        self.font = font
+        self.leftFade = leftFade
+        self.rightFade = rightFade
+        self.startDelay = startDelay
+        self.alignment = alignment != nil ? alignment! : .topLeading
     }
+}
+
+extension String {
     
-    private func startAnimation(duration: Double, autoreverses: Bool, proxy: GeometryProxy) {
-        let isNotFit = contentWidth < proxy.size.width
-        if stopWhenNotFit && isNotFit {
-            stopAnimation()
-            return
-        }
-        
-        withAnimation(.instant) {
-            self.state = .ready
-            withAnimation(Animation.linear(duration: duration).repeatForever(autoreverses: autoreverses)) {
-                self.state = .animating
-            }
-        }
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
     }
-    
-    private func stopAnimation() {
-        withAnimation(.instant) {
-            self.state = .idle
-        }
+
+    func heightOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.height
     }
 }
 
-struct Marquee_Previews: PreviewProvider {
-    static var previews: some View {
-        Marquee {
-            Text("Hello World!")
-                .fontWeight(.bold)
-                .font(.system(size: 40))
-        }
-    }
-}
-
-
-
-
-
-struct DurationKey: EnvironmentKey {
-    static var defaultValue: Double = 2.0
-}
-
-struct AutoreversesKey: EnvironmentKey {
-    static var defaultValue: Bool = false
-}
-
-struct DirectionKey: EnvironmentKey {
-    static var defaultValue: MarqueeDirection = .right2left
-}
-
-struct StopWhenNotFitKey: EnvironmentKey {
-    static var defaultValue: Bool = false
-}
-
-struct AlignmentKey: EnvironmentKey {
-    static var defaultValue: HorizontalAlignment = .leading
-}
-
-extension EnvironmentValues {
-    var marqueeDuration: Double {
-        get {self[DurationKey.self]}
-        set {self[DurationKey.self] = newValue}
-    }
-    
-    var marqueeAutoreverses: Bool {
-        get {self[AutoreversesKey.self]}
-        set {self[AutoreversesKey.self] = newValue}
-    }
-    
-    var marqueeDirection: MarqueeDirection {
-        get {self[DirectionKey.self]}
-        set {self[DirectionKey.self] = newValue}
-    }
-    
-    var marqueeWhenNotFit: Bool {
-        get {self[StopWhenNotFitKey.self]}
-        set {self[StopWhenNotFitKey.self] = newValue}
-    }
-    
-    var marqueeIdleAlignment: HorizontalAlignment {
-        get {self[AlignmentKey.self]}
-        set {self[AlignmentKey.self] = newValue}
-    }
-}
-
-public extension View {
-    /// Sets the marquee animation duration to the given value.
-    ///
-    ///     Marquee {
-    ///         Text("Hello World!")
-    ///     }.marqueeDuration(3.0)
-    ///
-    /// - Parameters:
-    ///   - duration: Animation duration, default is `2.0`.
-    ///
-    /// - Returns: A view that has the given value set in its environment.
-    func marqueeDuration(_ duration: Double) -> some View {
-        environment(\.marqueeDuration, duration)
-    }
-    
-    /// Sets the marquee animation autoreverses to the given value.
-    ///
-    ///     Marquee {
-    ///         Text("Hello World!")
-    ///     }.marqueeAutoreverses(true)
-    ///
-    /// - Parameters:
-    ///   - autoreverses: Animation autoreverses, default is `false`.
-    ///
-    /// - Returns: A view that has the given value set in its environment.
-    func marqueeAutoreverses(_ autoreverses: Bool) -> some View {
-        environment(\.marqueeAutoreverses, autoreverses)
-    }
-    
-    /// Sets the marquee animation direction to the given value.
-    ///
-    ///     Marquee {
-    ///         Text("Hello World!")
-    ///     }.marqueeDirection(.right2left)
-    ///
-    /// - Parameters:
-    ///   - direction: `MarqueeDirection` enum, default is `right2left`.
-    ///
-    /// - Returns: A view that has the given value set in its environment.
-    func marqueeDirection(_ direction: MarqueeDirection) -> some View {
-        environment(\.marqueeDirection, direction)
-    }
-    
-    /// Stop the marquee animation when the content view is not fit`(contentWidth < marqueeWidth)`.
-    ///
-    ///     Marquee {
-    ///         Text("Hello World!")
-    ///     }.marqueeWhenNotFit(true)
-    ///
-    /// - Parameters:
-    ///   - stopWhenNotFit: Stop the marquee animation when the content view is not fit(`contentWidth <  marqueeWidth`), default is `false`.
-    ///
-    /// - Returns: A view that has the given value set in its environment.
-    func marqueeWhenNotFit(_ stopWhenNotFit: Bool) -> some View {
-        environment(\.marqueeWhenNotFit, stopWhenNotFit)
-    }
-    
-    /// Sets the marquee alignment  when idle(stop animation).
-    ///
-    ///     Marquee {
-    ///         Text("Hello World!")
-    ///     }.marqueeIdleAlignment(.center)
-    ///
-    /// - Parameters:
-    ///   - alignment: Alignment  when idle(stop animation), default is `.leading`.
-    ///
-    /// - Returns: A view that has the given value set in its environment.
-    func marqueeIdleAlignment(_ alignment: HorizontalAlignment) -> some View {
-        environment(\.marqueeIdleAlignment, alignment)
-    }
-}
-
-struct GeometryBackground: View {
-    var body: some View {
-        GeometryReader { geometry in
-            return Color.clear.preference(key: WidthKey.self, value: geometry.size.width)
-        }
-    }
-}
-
-struct WidthKey: PreferenceKey {
-    static var defaultValue = CGFloat(0)
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-
-    typealias Value = CGFloat
-}
-
-extension Animation {
-    static var instant: Animation {
-        return .linear(duration: 0.01)
-    }
-}
-
-// Refference:  https://swiftui-lab.com/swiftui-animations-part2/
 extension View {
-    func myOffset(x: CGFloat, y: CGFloat) -> some View {
-        return modifier(_OffsetEffect(offset: CGSize(width: x, height: y)))
-    }
-
-    func myOffset(_ offset: CGSize) -> some View {
-        return modifier(_OffsetEffect(offset: offset))
-    }
-}
-
-struct _OffsetEffect: GeometryEffect {
-    var offset: CGSize
-    
-    var animatableData: CGSize.AnimatableData {
-        get { CGSize.AnimatableData(offset.width, offset.height) }
-        set { offset = CGSize(width: newValue.first, height: newValue.second) }
-    }
-
-    public func effectValue(size: CGSize) -> ProjectionTransform {
-        return ProjectionTransform(CGAffineTransform(translationX: offset.width, y: offset.height))
+    /// A backwards compatible wrapper for iOS 14 `onChange`
+    @ViewBuilder func onValueChanged<T: Equatable>(of value: T, perform onChange: @escaping (T) -> Void) -> some View {
+        if #available(iOS 14.0, *) {
+            self.onChange(of: value, perform: onChange)
+        } else {
+            self.onReceive(Just(value)) { (value) in
+                onChange(value)
+            }
+        }
     }
 }
