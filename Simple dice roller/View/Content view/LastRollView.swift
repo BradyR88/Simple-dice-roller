@@ -25,6 +25,9 @@ struct LastRollView: View {
                         
                         Spacer()
                         
+                        CircumstanceEmblem(circumstance: event.rollResult!.circumstance)
+                            .font(.title)
+                        
                         Text(String(event.rollResult!.result))
                             .bold()
                             .font(.title)
