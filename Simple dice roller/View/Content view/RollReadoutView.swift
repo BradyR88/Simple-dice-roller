@@ -19,13 +19,9 @@ struct RollReadoutView: View {
                 Spacer()
                 if event.hasRollResult {
                     Text(String(event.rollResult!.result))
+                    CircumstanceEmblem(circumstance: event.rollResult!.circumstance)
                 }
-                Button {
-                    infoPainVisible.toggle()
-                } label: {
-                    Image(systemName: "eye.fill")
-                        .foregroundColor(.primary)
-                }
+                
 
             }
             
