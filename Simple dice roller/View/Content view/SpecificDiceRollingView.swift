@@ -18,29 +18,32 @@ struct SpecificDiceRollingView: View {
                 ForEach(display.abilaty) { abilaty in
                     // TODO: add longTap funcshanalaty
                     HStack {
-                        Text(abilaty.longName)
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                            .background(.green)
-                            .clipShape(Capsule())
-                            .onTapGesture {
-                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: viewModel.circumstance))
-                            }
+                        Button {
+                            viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: viewModel.circumstance))
+                        } label: {
+                            Text(abilaty.longName)
+                                .foregroundColor(.primary)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                                .background(.green)
+                                .clipShape(Capsule())
+                        }
                         
                         Spacer()
                         
                         if abilaty.hasOnHit {
-                            Text(abilaty.onHit!.stringName)
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
-                                .background(.blue)
-                                .clipShape(Capsule())
-                                .onTapGesture {
-                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .neutral, damageRoll: true))
-                                }
-                                .onLongPressGesture {
-                                    viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .crit, damageRoll: true))
-                                }
+                            LongPressButton {
+                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .neutral, damageRoll: true))
+                            } longTapAction: {
+                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .crit, damageRoll: true))
+                            } label: {
+                                Text(abilaty.onHit!.stringName)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    .background(.blue)
+                                    .clipShape(Capsule())
+                            }
                         }
                     }
                     
@@ -65,6 +68,7 @@ struct SpecificDiceRollingView: View {
 struct SpecificDiceRollingView_Previews: PreviewProvider {
     static var previews: some View {
         SpecificDiceRollingView(display: Monster.example)
+            .environmentObject(ViewModel())
     }
 }
 
