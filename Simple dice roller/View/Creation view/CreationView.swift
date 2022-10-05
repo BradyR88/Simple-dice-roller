@@ -47,7 +47,7 @@ struct CreationView: View {
                 }
                 .swipeActions(edge: .trailing) {
                     Button {
-                        viewModel.deleteRollGroop(at: index)
+                        viewModel.deleteMonster(at: index)
                     } label: {
                         Label("Delete", systemImage: "trash.circle")
                     }
@@ -55,7 +55,7 @@ struct CreationView: View {
                 }
             }
             .onDelete { indexSet in
-                viewModel.deleteRollGroop(at: indexSet.first!)
+                viewModel.deleteMonster(at: indexSet.first!)
             }
         }
         .navigationTitle("Dice Bags")

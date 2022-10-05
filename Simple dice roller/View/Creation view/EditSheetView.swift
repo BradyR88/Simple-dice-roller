@@ -26,7 +26,7 @@ struct EditSheetView: View {
             Section("Abilatys") {
                 ForEach(Array(viewModel.indicatedMonster.abilaty.enumerated()), id: \.offset) { index, abilaty in
                     Button {
-                        viewModel.tapOnRoll(at: index)
+                        viewModel.tapOnAbility(at: index)
                         showingSheat.toggle()
                         nameFocus = false
                     } label: {
@@ -53,7 +53,7 @@ struct EditSheetView: View {
                 EditButton()
                 
                 Button {
-                    viewModel.addNewRoll()
+                    viewModel.addNewAbilaty()
                 } label: {
                     Image(systemName: "plus")
                 }

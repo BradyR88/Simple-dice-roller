@@ -165,11 +165,11 @@ import Foundation
         pastEvents = []
     }
     
-    func deleteRollGroop(at index: Int) {
+    func deleteMonster(at index: Int) {
         monsters.remove(at: index)
     }
     
-    func tapOnRoll(at index: Int) {
+    func tapOnAbility(at index: Int) {
         abilityIndex = index
     }
     
@@ -195,7 +195,7 @@ import Foundation
         monsters.append(new)
     }
     
-    func addNewRoll() {
+    func addNewAbilaty() {
         indicatedMonster.abilaty.append(Ability(name: "New Ability"))
         abilityIndex = indicatedMonster.abilaty.count - 1
     }
