@@ -54,10 +54,15 @@ struct CreationView: View {
                     .tint(.red)
                 }
             }
+            .onDelete { indexSet in
+                viewModel.deleteRollGroop(at: indexSet.first!)
+            }
         }
         .navigationTitle("Dice Bags")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
+                EditButton()
+                
                 Button {
                     viewModel.addNewRollGroop()
                 } label: {
