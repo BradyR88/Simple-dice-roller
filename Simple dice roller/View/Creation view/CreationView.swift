@@ -12,7 +12,7 @@ struct CreationView: View {
     
     var body: some View {
         List {
-            ForEach(Array(viewModel.monsters.enumerated()), id: \.offset) { index, monster in
+            ForEach(Array(viewModel.sortedMonsters.enumerated()), id: \.offset) { index, monster in
                 NavigationLink {
                     EditSheetView()
                         .onAppear {
@@ -58,6 +58,7 @@ struct CreationView: View {
                 viewModel.deleteMonster(at: indexSet.first!)
             }
         }
+        .searchable(text: $viewModel.sortMonsterText)
         .navigationTitle("Dice Bags")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {

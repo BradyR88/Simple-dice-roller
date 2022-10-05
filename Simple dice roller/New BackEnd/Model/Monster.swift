@@ -8,13 +8,16 @@
 import Foundation
 
 // MARK: Monster
-struct Monster: Codable, Equatable, Identifiable {
+struct Monster: Codable, Comparable, Equatable, Identifiable {
+    
+    
     var id = UUID()
     var name: String
     var abilaty: [Ability]
     var isShowing: Bool
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
+    static func < (lhs: Monster, rhs: Monster) -> Bool { lhs.name < rhs.name }
     
     static let example = Monster(name: "BugBear", abilaty: [Ability.example, Ability.exampleLong, Ability.example], isShowing: true)
 }

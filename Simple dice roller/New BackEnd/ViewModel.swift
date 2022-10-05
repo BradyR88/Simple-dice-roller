@@ -55,6 +55,22 @@ import Foundation
     @Published var monsterIndex: Int? = nil
     @Published var abilityIndex: Int? = nil
     
+    // sorted list of monster to allow for filtering and organization by user
+    var sortedMonsters: [Monster] {
+        get {
+            var sorted: [Monster]
+            
+            if sortMonsterText.isEmpty {
+                sorted = monsters
+            } else {
+                sorted = monsters.filter { $0.name.contains(sortMonsterText) }
+            }
+            
+            return sorted
+        }
+    }
+    @Published var sortMonsterText: String = ""
+    
     // uses the index to return the specific monster or ability the user is interacting with anti-any changes they make back to the master list
     var indicatedMonster: Monster {
         get {
