@@ -167,6 +167,10 @@ import Foundation
         abilityIndex = index
     }
     
+    func move(from source: IndexSet, to destination: Int) {
+        indicatedMonster.abilaty.move(fromOffsets: source, toOffset: destination)
+    }
+    
     func tapOnDiscription() {
         if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
             descriptionReadMode.toggle()

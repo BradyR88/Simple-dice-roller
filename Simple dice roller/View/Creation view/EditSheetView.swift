@@ -39,6 +39,9 @@ struct EditSheetView: View {
                 .onDelete { offsets in
                     viewModel.deleteRoll(at: offsets)
                 }
+                .onMove { index, num in
+                    viewModel.move(from: index, to: num)
+                }
             }
         }
         .onDisappear { viewModel.resetAllIndexes() }
@@ -47,6 +50,8 @@ struct EditSheetView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
+                EditButton()
+                
                 Button {
                     viewModel.addNewRoll()
                 } label: {
