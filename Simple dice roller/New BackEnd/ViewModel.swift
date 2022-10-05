@@ -129,8 +129,14 @@ import Foundation
         guard let event = event else { return }
         pastEvents.insert(event, at: 0)
         
+        // handled user preferences from settings
         if settings.resetAdvantage {
             circumstance = .neutral
+        }
+        if settings.onlySaveRolls == true {
+            if pastEvents[1].hasRollResult == false {
+                pastEvents.remove(at: 1)
+            }
         }
     }
     
