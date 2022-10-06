@@ -9,10 +9,14 @@ import SwiftUI
 
 struct CreationView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State private var isActive = false
     
     var body: some View {
         List {
+            NavigationLink("new abilaty", isActive: $isActive) { EditSheetView() }.hidden()
+            
             ForEach(viewModel.sortedMonsters) { monster in
+                
                 NavigationLink {
                     EditSheetView()
                         .onAppear {
@@ -22,9 +26,9 @@ struct CreationView: View {
                     HStack {
                         Text(monster.name)
                             .foregroundColor(.primary)
-                        
+
                         Spacer()
-                        
+
                         if monster.isShowing {
                             Image(systemName: "checkmark.square.fill")
                         }
@@ -40,6 +44,7 @@ struct CreationView: View {
                     
                     Button {
                         viewModel.duplicateMonster(monster)
+                        isActive = true
                     } label: {
                         Label("Duplicate", systemImage: "arrow.right.doc.on.clipboard")
                     }

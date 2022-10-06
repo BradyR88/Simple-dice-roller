@@ -66,7 +66,7 @@ import Foundation
                 sorted = monsters.filter { $0.name.contains(sortMonsterText) }
             }
             
-            return sorted
+            return sorted.sorted()
         }
     }
     @Published var sortMonsterText: String = ""
