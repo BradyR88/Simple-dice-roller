@@ -12,11 +12,11 @@ struct CreationView: View {
     
     var body: some View {
         List {
-            ForEach(Array(viewModel.sortedMonsters.enumerated()), id: \.offset) { index, monster in
+            ForEach(viewModel.sortedMonsters) { monster in
                 NavigationLink {
                     EditSheetView()
                         .onAppear {
-                            viewModel.monsterIndex = index
+                            viewModel.setMonsterIndex(to: monster)
                         }
                 } label: {
                     HStack {
@@ -32,14 +32,14 @@ struct CreationView: View {
                 }
                 .swipeActions(edge: .leading) {
                     Button {
-                        viewModel.togalIsShowing(for: index)
+                        viewModel.togalIsShowing(for: monster)
                     } label: {
                         Label("Display", systemImage: "checkmark.square.fill")
                     }
                     .tint(.indigo)
                     
                     Button {
-                        viewModel.duplicateMonster(at: index)
+                        viewModel.duplicateMonster(monster)
                     } label: {
                         Label("Duplicate", systemImage: "arrow.right.doc.on.clipboard")
                     }
@@ -47,7 +47,7 @@ struct CreationView: View {
                 }
                 .swipeActions(edge: .trailing) {
                     Button {
-                        viewModel.deleteMonster(at: index)
+                        viewModel.deleteMonster(monster)
                     } label: {
                         Label("Delete", systemImage: "trash.circle")
                     }
@@ -55,7 +55,7 @@ struct CreationView: View {
                 }
             }
             .onDelete { indexSet in
-                viewModel.deleteMonster(at: indexSet.first!)
+                viewModel.deleteMonster(at: indexSet)
             }
         }
         .searchable(text: $viewModel.sortMonsterText)

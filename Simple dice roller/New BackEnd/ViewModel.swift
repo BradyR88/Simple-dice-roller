@@ -156,9 +156,10 @@ import Foundation
         }
     }
     
-    func togalIsShowing(for index: Int) {
-        // TODO: make safer by checking that the index exist first
-        monsters[index].isShowing.toggle()
+    func togalIsShowing(for monster: Monster) {
+        indexMatch(monster) { index in
+            monsters[index].isShowing.toggle()
+        }
     }
     
     func deleteRoll(at offsets: IndexSet) {
@@ -181,10 +182,6 @@ import Foundation
         pastEvents = []
     }
     
-    func deleteMonster(at index: Int) {
-        monsters.remove(at: index)
-    }
-    
     func tapOnAbility(at index: Int) {
         abilityIndex = index
     }
@@ -203,17 +200,44 @@ import Foundation
         monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
     }
     
-    func duplicateMonster(at index: Int) {
-        var new = monsters[index]
+    func addNewAbilaty() {
+        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        abilityIndex = indicatedMonster.abilaty.count - 1
+    }
+    
+    func deleteMonster(_ monster: Monster) {
+        indexMatch(monster) { index in
+            monsters.remove(at: index)
+        }
+    }
+    
+    func deleteMonster(at indexSet: IndexSet) {
+        if let index = indexSet.first {
+            indexMatch(sortedMonsters[index]) { index in
+                monsters.remove(at: index)
+            }
+        }
+    }
+    
+    func duplicateMonster(_ monster: Monster) {
+        var new = monster
         new.id = UUID()
         new.name = "coppy of \(new.name)"
         
         monsters.append(new)
     }
     
-    func addNewAbilaty() {
-        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
-        abilityIndex = indicatedMonster.abilaty.count - 1
+    func setMonsterIndex(to monster: Monster) {
+        indexMatch(monster) { index in monsterIndex = index }
+    }
+    
+    private func indexMatch(_ lookUp: Monster, action: (Int)->Void ) {
+        for (index, monster) in monsters.enumerated() {
+            if monster == lookUp {
+                action(index)
+                break
+            }
+        }
     }
     
     // MARK: background view management functions
