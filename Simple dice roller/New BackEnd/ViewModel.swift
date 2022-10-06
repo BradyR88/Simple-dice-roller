@@ -58,7 +58,7 @@ import Foundation
     // sorted list of monster to allow for filtering and organization by user
     var sortedMonsters: [Monster] {
         get {
-            var sorted: [Monster]
+            let sorted: [Monster]
             
             if sortMonsterText.isEmpty {
                 sorted = monsters
