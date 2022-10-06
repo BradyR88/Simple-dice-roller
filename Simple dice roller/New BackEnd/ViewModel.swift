@@ -102,7 +102,7 @@ import Foundation
     }
     
     // MARK: loading and saving --
-    func loadData<T: Codable>(from url: URL, to: inout [T]) {
+    private func loadData<T: Codable>(from url: URL, to: inout [T]) {
         do {
             let data = try Data(contentsOf: url)
             to = try JSONDecoder().decode([T].self, from: data)
@@ -110,7 +110,7 @@ import Foundation
             to = []
         }
     }
-    func saveData<T: Codable>(to url: URL, from: [T]) {
+    private func saveData<T: Codable>(to url: URL, from: [T]) {
         do {
             let data = try JSONEncoder().encode(from)
             try data.write(to: url)
@@ -121,6 +121,7 @@ import Foundation
     
     // MARK: user actions -
     
+    // content view -------------------------------------------------------------------------
     func addToEvent(_ event: Event?) {
         // stops a Visual bug from occurring
         descriptionReadMode = false
@@ -140,12 +141,45 @@ import Foundation
         }
     }
     
+    func tapOnDiscription() {
+        if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
+            descriptionReadMode.toggle()
+        }
+    }
+    
+    // creation view --------------------------------------------------------------------------
+    func addNewMonster() {
+        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
+    }
+    
+    func deleteMonster(at index: Int) {
+        monsters.remove(at: index)
+    }
+    
+    func duplicateMonster(at index: Int) {
+        var new = monsters[index]
+        new.id = UUID()
+        new.name = "coppy of \(new.name)"
+        
+        monsters.append(new)
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        indicatedMonster.abilaty.move(fromOffsets: source, toOffset: destination)
+    }
+    
     func togalIsShowing(for index: Int) {
         // TODO: make safer by checking that the index exist first
         monsters[index].isShowing.toggle()
     }
     
-    func deleteRoll(at offsets: IndexSet) {
+    // edit view --------------------------------------------------------------------------------
+    func addNewAbilaty() {
+        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        abilityIndex = indicatedMonster.abilaty.count - 1
+    }
+    
+    func deleteAbility(at offsets: IndexSet) {
         // Store the unique ID of the previous selected roll
         let selectedID = indicatedAbility.id
         // set roll index to nal so it won't accidentally reference an index at no longer exist
@@ -161,43 +195,13 @@ import Foundation
         }
     }
     
-    func deleteAllEvents() {
-        pastEvents = []
-    }
-    
-    func deleteMonster(at index: Int) {
-        monsters.remove(at: index)
-    }
-    
     func tapOnAbility(at index: Int) {
         abilityIndex = index
     }
     
-    func move(from source: IndexSet, to destination: Int) {
-        indicatedMonster.abilaty.move(fromOffsets: source, toOffset: destination)
-    }
-    
-    func tapOnDiscription() {
-        if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
-            descriptionReadMode.toggle()
-        }
-    }
-    
-    func addNewRollGroop() {
-        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
-    }
-    
-    func duplicateMonster(at index: Int) {
-        var new = monsters[index]
-        new.id = UUID()
-        new.name = "coppy of \(new.name)"
-        
-        monsters.append(new)
-    }
-    
-    func addNewAbilaty() {
-        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
-        abilityIndex = indicatedMonster.abilaty.count - 1
+    // setings view -----------------------------------------------------------------------------
+    func deleteAllEvents() {
+        pastEvents = []
     }
     
     // MARK: background view management functions

@@ -64,7 +64,7 @@ struct CreationView: View {
                 EditButton()
                 
                 Button {
-                    viewModel.addNewRollGroop()
+                    viewModel.addNewMonster()
                 } label: {
                     Image(systemName: "plus")
                 }
