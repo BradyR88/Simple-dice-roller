@@ -66,7 +66,7 @@ import Foundation
                 sorted = monsters.filter { $0.name.contains(sortMonsterText) }
             }
             
-            return sorted
+            return sorted.sorted()
         }
     }
     @Published var sortMonsterText: String = ""
@@ -198,6 +198,7 @@ import Foundation
     
     func addNewRollGroop() {
         monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
+        monsterIndex = monsters.count - 1
     }
     
     func addNewAbilaty() {
