@@ -137,6 +137,16 @@ import Foundation
     
     // MARK: user actions -
     
+    func addNewAbilaty() {
+        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        abilityIndex = indicatedMonster.abilaty.count - 1
+    }
+    
+    func addNewRollGroop() {
+        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
+        monsterIndex = monsters.count - 1
+    }
+    
     func addToEvent(_ event: Event?) {
         // stops a Visual bug from occurring
         descriptionReadMode = false
@@ -156,9 +166,20 @@ import Foundation
         }
     }
     
-    func togalIsShowing(for monster: Monster) {
+    func deleteAllEvents() {
+        pastEvents = []
+    }
+    
+    func deleteMonster(_ monster: Monster) {
         indexMatch(monster) { index in
-            monsters[index].isShowing.toggle()
+            monsters.remove(at: index)
+        }
+    }
+    func deleteMonster(at indexSet: IndexSet) {
+        if let index = indexSet.first {
+            indexMatch(sortedMonsters[index]) { index in
+                monsters.remove(at: index)
+            }
         }
     }
     
@@ -178,48 +199,6 @@ import Foundation
         }
     }
     
-    func deleteAllEvents() {
-        pastEvents = []
-    }
-    
-    func tapOnAbility(at index: Int) {
-        abilityIndex = index
-    }
-    
-    func move(from source: IndexSet, to destination: Int) {
-        indicatedMonster.abilaty.move(fromOffsets: source, toOffset: destination)
-    }
-    
-    func tapOnDiscription() {
-        if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
-            descriptionReadMode.toggle()
-        }
-    }
-    
-    func addNewRollGroop() {
-        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
-        monsterIndex = monsters.count - 1
-    }
-    
-    func addNewAbilaty() {
-        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
-        abilityIndex = indicatedMonster.abilaty.count - 1
-    }
-    
-    func deleteMonster(_ monster: Monster) {
-        indexMatch(monster) { index in
-            monsters.remove(at: index)
-        }
-    }
-    
-    func deleteMonster(at indexSet: IndexSet) {
-        if let index = indexSet.first {
-            indexMatch(sortedMonsters[index]) { index in
-                monsters.remove(at: index)
-            }
-        }
-    }
-    
     func duplicateMonster(_ monster: Monster) {
         var new = monster
         new.id = UUID()
@@ -228,10 +207,31 @@ import Foundation
         monsters.append(new)
     }
     
+    func move(from source: IndexSet, to destination: Int) {
+        indicatedMonster.abilaty.move(fromOffsets: source, toOffset: destination)
+    }
+    
     func setMonsterIndex(to monster: Monster) {
         indexMatch(monster) { index in monsterIndex = index }
     }
     
+    func tapOnAbility(at index: Int) {
+        abilityIndex = index
+    }
+    
+    func tapOnDiscription() {
+        if lastEvent!.abilaty.discription!.count >= 80 || descriptionReadMode {
+            descriptionReadMode.toggle()
+        }
+    }
+    
+    func togalIsShowing(for monster: Monster) {
+        indexMatch(monster) { index in
+            monsters[index].isShowing.toggle()
+        }
+    }
+    
+    // private funtions ----
     private func indexMatch(_ lookUp: Monster, action: (Int)->Void ) {
         for (index, monster) in monsters.enumerated() {
             if monster == lookUp {
