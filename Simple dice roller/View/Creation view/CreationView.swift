@@ -44,6 +44,7 @@ struct CreationView: View {
                         
                         Button {
                             viewModel.duplicateMonster(monster)
+                            isActive = true
                         } label: {
                             Label("Duplicate", systemImage: "arrow.right.doc.on.clipboard")
                         }

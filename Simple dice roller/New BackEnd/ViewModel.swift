@@ -203,9 +203,12 @@ import Foundation
     func duplicateMonster(_ monster: Monster) {
         var new = monster
         new.id = UUID()
+        new.isShowing = false
         new.name = "coppy of \(new.name)"
         
         monsters.append(new)
+        
+        monsterIndex = monsters.count - 1
     }
     
     func move(from source: IndexSet, to destination: Int) {
