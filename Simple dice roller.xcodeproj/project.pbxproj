@@ -40,7 +40,7 @@
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
 		737B187828BFF77600ED59D3 /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
 		73855B1F28C960DC00E59726 /* DiceCalculatorBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalculatorBoardView.swift; sourceTree = "<group>"; };
-		73B2516F28B9301400246515 /* Simple dice roller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple dice roller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B2516F28B9301400246515 /* Dice Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dice Master.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B2517228B9301400246515 /* Simple_dice_rollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simple_dice_rollerApp.swift; sourceTree = "<group>"; };
 		73B2517428B9301400246515 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		73B2517628B9301400246515 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		73B2517028B9301400246515 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73B2516F28B9301400246515 /* Simple dice roller.app */,
+				73B2516F28B9301400246515 /* Dice Master.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			);
 			name = "Simple dice roller";
 			productName = "Simple dice roller";
-			productReference = 73B2516F28B9301400246515 /* Simple dice roller.app */;
+			productReference = 73B2516F28B9301400246515 /* Dice Master.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -417,7 +417,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bradyrobshaw.Simple-dice-roller";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dice Master";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,7 +446,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bradyrobshaw.Simple-dice-roller";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dice Master";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -22,7 +22,7 @@ struct SettingsView: View {
                 Button(role: .destructive) {
                     isConfirming = true
                 } label: {
-                    Text("Deleat all Events")
+                    Text("Deleat All Events")
                 }
 
             }
