@@ -160,6 +160,7 @@ import Foundation
             circumstance = .neutral
         }
         if settings.onlySaveRolls == true {
+            guard pastEvents.count > 2 else { return }
             if pastEvents[1].hasRollResult == false {
                 pastEvents.remove(at: 1)
             }
