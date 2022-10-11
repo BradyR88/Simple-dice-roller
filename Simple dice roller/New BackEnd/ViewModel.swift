@@ -114,6 +114,9 @@ import Foundation
         #else
         loadData(from: Constance.savePathPastRolls, to: &pastEvents)
         loadData(from: Constance.savePathRollGroops, to: &monsters)
+        
+        // Single sort on launch to make certain operations in the application complete quicker
+        monsters.sort()
         #endif
     }
     
@@ -184,20 +187,8 @@ import Foundation
         }
     }
     
-    func deleteRoll(at offsets: IndexSet) {
-        // Store the unique ID of the previous selected roll
-        let selectedID = indicatedAbility.id
-        // set roll index to nal so it won't accidentally reference an index at no longer exist
-        abilityIndex = nil
-        // delete selected rolls
+    func deleteAbilaty(at offsets: IndexSet) {
         indicatedMonster.abilaty.remove(atOffsets: offsets)
-        // look back through the roles and see if the previously selected index is still there if it is re-select it
-        for (index, roll) in indicatedMonster.abilaty.enumerated() {
-            if roll.id == selectedID {
-                monsterIndex = index
-                break
-            }
-        }
     }
     
     func duplicateMonster(_ monster: Monster) {

@@ -37,7 +37,7 @@ struct EditSheetView: View {
                     }
                 }
                 .onDelete { offsets in
-                    viewModel.deleteRoll(at: offsets)
+                    viewModel.deleteAbilaty(at: offsets)
                 }
                 .onMove { index, num in
                     viewModel.move(from: index, to: num)
