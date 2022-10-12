@@ -58,7 +58,7 @@ struct Roll: Codable, Equatable {
     }
     
     func simpleCustumEvent() -> Event {
-        Ability(id: UUID(), name: "", roll: self, onHit: nil, discription: nil).genarateEvent(who: "Custum")
+        Ability(id: UUID(), name: "", roll: self, onHit: nil, discription: nil).genarateEvent(who: "Custom")
     }
     
     static let example20 = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 3)
