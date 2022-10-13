@@ -80,7 +80,7 @@ struct ContentView: View {
                 }
                 .frame(height: 337)
             }
-            .navigationTitle("Dice Master")
+            .navigationTitle("Die Master")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
