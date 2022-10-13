@@ -118,6 +118,11 @@ import Foundation
         // Single sort on launch to make certain operations in the application complete quicker
         monsters.sort()
         #endif
+        
+        if monsters.isEmpty {
+            // provide example Monster
+            monsters.append(Monster.example)
+        }
     }
     
     // MARK: loading and saving --

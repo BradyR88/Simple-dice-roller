@@ -19,7 +19,14 @@ struct Monster: Codable, Comparable, Equatable, Identifiable {
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
     static func < (lhs: Monster, rhs: Monster) -> Bool { lhs.name < rhs.name }
     
-    static let example = Monster(name: "BugBear", abilaty: [Ability.example, Ability.exampleLong, Ability.example], isShowing: true)
+    static let example = Monster(name: "Bugbear",
+                                 abilaty: [
+                                    Ability(id: UUID(), name: "Brute", roll: nil, onHit: nil, discription: " A melee weapon deals one extra die of its damage when the bugbear hits with it (included in the attack)."),
+                                    Ability(id: UUID(), name: "Surprise Attack", roll: nil, onHit: Roll(numberOfDice: 2, numberOfSides: 6, toAdd: 0), discription: "If the bugbear surprises a creature and hits it with an attack during the first round of combat, the target takes an extra 7 (2d6) damage from the attack."),
+                                    Ability(id: UUID(), name: "Morningstar", roll: Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 2), onHit: Roll(numberOfDice: 2, numberOfSides: 8, toAdd: 2), discription: nil),
+                                    Ability(id: UUID(), name: "Javelin", roll: Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 4), onHit: Roll(numberOfDice: 2, numberOfSides: 6, toAdd: 2), discription: nil) ],
+                                 isShowing: true)
+
 }
 
 // MARK: abilities - anything a monster can do whether that includes dice rolls or not
