@@ -142,6 +142,7 @@ import Foundation
     
     func addNewAbilaty() {
         indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        // is this still neaded ? 
         abilityIndex = indicatedMonster.abilaty.count - 1
     }
     
