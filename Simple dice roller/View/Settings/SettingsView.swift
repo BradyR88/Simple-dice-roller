@@ -19,6 +19,10 @@ struct SettingsView: View {
             }
             
             Section {
+                NavigationLink("Open Gaming License", destination: OGLView())
+            }
+            
+            Section {
                 Button(role: .destructive) {
                     isConfirming = true
                 } label: {

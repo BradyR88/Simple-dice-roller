@@ -52,7 +52,7 @@ struct ContentView: View {
                                     Button {
                                         viewModel.display = monster
                                     } label: {
-                                        Text(monster.name)
+                                        Text(monster.nameOGLSafe)
                                             .font(.title3)
                                             .frame(maxWidth: 125)
                                             .foregroundColor(.primary)

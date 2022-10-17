@@ -45,6 +45,7 @@ struct EditSheetView: View {
             }
         }
         .onDisappear { viewModel.resetAllIndexes() }
+        .navigationBarTitle(viewModel.indicatedMonster.OGLEmoji)
         .sheet(isPresented: $showingSheat) {
             EditAbilitySection()
         }

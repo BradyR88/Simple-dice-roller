@@ -24,7 +24,7 @@ struct CreationView: View {
                             }
                     } label: {
                         HStack {
-                            Text(monster.name)
+                            Text(monster.nameOGLSafe)
                                 .foregroundColor(.primary)
                             
                             Spacer()

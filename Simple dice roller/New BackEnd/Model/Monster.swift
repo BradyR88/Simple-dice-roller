@@ -15,6 +15,23 @@ struct Monster: Codable, Comparable, Equatable, Identifiable {
     var name: String
     var abilaty: [Ability]
     var isShowing: Bool
+    let OGLContent: Bool?
+    
+    // calculate variable
+    var nameOGLSafe: String {
+        if OGLContent == true {
+            return name + "🐉"
+        } else {
+            return name
+        }
+    }
+    var OGLEmoji: String {
+        if OGLContent == true {
+            return "🐉"
+        } else {
+            return ""
+        }
+    }
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
     static func < (lhs: Monster, rhs: Monster) -> Bool { lhs.name < rhs.name }
@@ -25,7 +42,22 @@ struct Monster: Codable, Comparable, Equatable, Identifiable {
                                     Ability(id: UUID(), name: "Surprise Attack", roll: nil, onHit: Roll(numberOfDice: 2, numberOfSides: 6, toAdd: 0), discription: "If the bugbear surprises a creature and hits it with an attack during the first round of combat, the target takes an extra 7 (2d6) damage from the attack."),
                                     Ability(id: UUID(), name: "Morningstar", roll: Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 2), onHit: Roll(numberOfDice: 2, numberOfSides: 8, toAdd: 2), discription: nil),
                                     Ability(id: UUID(), name: "Javelin", roll: Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 4), onHit: Roll(numberOfDice: 2, numberOfSides: 6, toAdd: 2), discription: nil) ],
-                                 isShowing: true)
+                                 isShowing: true,
+                                 OGLContent: true)
+    
+    init(name: String, abilaty: [Ability], isShowing: Bool) {
+        self.name = name
+        self.abilaty = abilaty
+        self.isShowing = isShowing
+        self.OGLContent = false
+    }
+    
+    init(name: String, abilaty: [Ability], isShowing: Bool, OGLContent: Bool) {
+        self.name = name
+        self.abilaty = abilaty
+        self.isShowing = isShowing
+        self.OGLContent = OGLContent
+    }
 
 }
 
