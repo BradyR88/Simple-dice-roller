@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7324440628C2A9E70056A8A7 /* EditSheetView.swift */; };
 		7370B81028FDC95000BFF175 /* AbilatyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B80F28FDC95000BFF175 /* AbilatyButton.swift */; };
+		7370B81228FDDB4000BFF175 /* OGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B81128FDDB4000BFF175 /* OGLView.swift */; };
 		7375BF9728ECBCDC0062A5FF /* LongPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */; };
 		7375BF9928ECC1CA0062A5FF /* CircumstanceEmblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */; };
 		737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		7324440628C2A9E70056A8A7 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		7370B80F28FDC95000BFF175 /* AbilatyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilatyButton.swift; sourceTree = "<group>"; };
+		7370B81128FDDB4000BFF175 /* OGLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGLView.swift; sourceTree = "<group>"; };
 		7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressButton.swift; sourceTree = "<group>"; };
 		7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircumstanceEmblem.swift; sourceTree = "<group>"; };
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				73D3D88C28EB4A3100117989 /* SettingsView.swift */,
 				73D3D88E28EB5B6D00117989 /* Settings.swift */,
+				7370B81128FDDB4000BFF175 /* OGLView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				73FA409528DA5C7300797223 /* Roll.swift in Sources */,
 				7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */,
 				73B2517328B9301400246515 /* Simple_dice_rollerApp.swift in Sources */,
+				7370B81228FDDB4000BFF175 /* OGLView.swift in Sources */,
 				73B2518C28B9814000246515 /* NumberToggleView.swift in Sources */,
 				73D3D88D28EB4A3100117989 /* SettingsView.swift in Sources */,
 			);

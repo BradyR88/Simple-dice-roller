@@ -46,6 +46,8 @@ struct DiceCalculatorBoardView: View {
                 }
                 .padding(.bottom)
             }
+            .dynamicTypeSize(.xSmall ... .accessibility2)
+            
         } else {
             EmptyView()
         }

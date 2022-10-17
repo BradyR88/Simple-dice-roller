@@ -22,9 +22,8 @@ struct SettingsView: View {
                 Button(role: .destructive) {
                     isConfirming = true
                 } label: {
-                    Text("Deleat All Events")
+                    Text("Delete All Events")
                 }
-
             }
         }
         .navigationTitle("Settings")
