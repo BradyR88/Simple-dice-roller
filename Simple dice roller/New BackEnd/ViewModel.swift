@@ -108,7 +108,7 @@ import Foundation
     // MARK: init -
     init() {
         #if targetEnvironment(simulator)
-        monsters = [Monster.example, Monster.example]
+        monsters = [Monster.example]
         //pastEvents = []
         loadData(from: Constance.savePathPastRolls, to: &pastEvents)
         #else
@@ -168,7 +168,7 @@ import Foundation
         if settings.resetAdvantage {
             circumstance = .neutral
         }
-        if settings.onlySaveRolls == true {
+        if settings.onlySaveRolls == false {
             guard pastEvents.count > 2 else { return }
             if pastEvents[1].hasRollResult == false {
                 pastEvents.remove(at: 1)

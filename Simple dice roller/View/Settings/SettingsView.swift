@@ -15,7 +15,7 @@ struct SettingsView: View {
         Form {
             Section {
                 Toggle("Advantage Reset", isOn: $viewModel.settings.resetAdvantage)
-                Toggle("Only Save Rolls", isOn: $viewModel.settings.onlySaveRolls)
+                Toggle("Show reference in past rolls", isOn: $viewModel.settings.onlySaveRolls)
             }
             
             Section {

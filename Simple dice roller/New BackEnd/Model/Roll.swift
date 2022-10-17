@@ -11,9 +11,21 @@ import SwiftUI
 // MARK: Roll - describes what a role is and how to save all the information for the result one
 struct Roll: Codable, Equatable {
     // simplest turn of what a roll of the dice can be 1d6 + 1
-    var numberOfDice: Int
+    var numberOfDice: Int {
+        didSet {
+            if numberOfDice < 1 {
+                numberOfDice = 1
+            }
+        }
+    }
     var numberOfSides: Int
-    var toAdd: Int
+    var toAdd: Int {
+        didSet {
+            if toAdd < 0 {
+                toAdd = 0
+            }
+        }
+    }
     
     // caculated var
     var stringName: String {
@@ -58,7 +70,7 @@ struct Roll: Codable, Equatable {
     }
     
     func simpleCustumEvent() -> Event {
-        Ability(id: UUID(), name: "", roll: self, onHit: nil, discription: nil).genarateEvent(who: "Custom")
+        Ability(id: UUID(), name: "", roll: self, onHit: nil, discription: nil).genarateEvent(who: "Roll")
     }
     
     static let example20 = Roll(numberOfDice: 1, numberOfSides: 20, toAdd: 3)
