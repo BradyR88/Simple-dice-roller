@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7324440628C2A9E70056A8A7 /* EditSheetView.swift */; };
+		7370B81028FDC95000BFF175 /* AbilatyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B80F28FDC95000BFF175 /* AbilatyButton.swift */; };
 		7375BF9728ECBCDC0062A5FF /* LongPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */; };
 		7375BF9928ECC1CA0062A5FF /* CircumstanceEmblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */; };
 		737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		7324440628C2A9E70056A8A7 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
+		7370B80F28FDC95000BFF175 /* AbilatyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilatyButton.swift; sourceTree = "<group>"; };
 		7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressButton.swift; sourceTree = "<group>"; };
 		7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircumstanceEmblem.swift; sourceTree = "<group>"; };
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				73B2518828B96B8800246515 /* RollReadoutView.swift */,
 				73B2518D28B988C300246515 /* GenericDiceRollingView.swift */,
 				737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */,
+				7370B80F28FDC95000BFF175 /* AbilatyButton.swift */,
 			);
 			path = "Content view";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				73B2518928B96B8800246515 /* RollReadoutView.swift in Sources */,
 				73B2518328B930DD00246515 /* Constance.swift in Sources */,
 				73B2518728B93E6E00246515 /* Extensions.swift in Sources */,
+				7370B81028FDC95000BFF175 /* AbilatyButton.swift in Sources */,
 				737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */,
 				73B2517528B9301400246515 /* ContentView.swift in Sources */,
 				737B187928BFF77600ED59D3 /* CreationView.swift in Sources */,

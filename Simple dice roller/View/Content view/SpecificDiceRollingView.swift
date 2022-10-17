@@ -11,42 +11,11 @@ struct SpecificDiceRollingView: View {
     @EnvironmentObject var viewModel: ViewModel
     let display: Monster
     
-    
     var body: some View {
         VStack (alignment: .leading) {
             ScrollView {
                 ForEach(display.abilaty) { abilaty in
-                    // TODO: add longTap funcshanalaty
-                    HStack {
-                        Button {
-                            viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: viewModel.circumstance))
-                        } label: {
-                            Text(abilaty.longName)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
-                                .background(.green)
-                                .clipShape(Capsule())
-                        }
-                        
-                        Spacer()
-                        
-                        if abilaty.hasOnHit {
-                            LongPressButton {
-                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .neutral, damageRoll: true))
-                            } longTapAction: {
-                                viewModel.addToEvent(abilaty.genarateEvent(who: display.name, circumstance: .crit, damageRoll: true))
-                            } label: {
-                                Text(abilaty.onHit!.stringName)
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 5)
-                                    .background(.blue)
-                                    .clipShape(Capsule())
-                            }
-                        }
-                    }
-                    
+                    AbilatyButton(display: display, abilaty: abilaty)
                 }
                 .padding(.horizontal)
             }
