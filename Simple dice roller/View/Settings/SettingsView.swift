@@ -29,6 +29,15 @@ struct SettingsView: View {
                     Text("Delete All Events")
                 }
             }
+//            Section {
+//                Button {
+//                    let data = try! Data(contentsOf: Constance.savePathRollGroops)
+//                    print(String(data: data, encoding: String.Encoding.utf8)!)
+//                } label: {
+//                    Text("Print JSON")
+//                }
+//
+//            }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)

@@ -10,6 +10,7 @@
 		7324440728C2A9E70056A8A7 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7324440628C2A9E70056A8A7 /* EditSheetView.swift */; };
 		7370B81028FDC95000BFF175 /* AbilatyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B80F28FDC95000BFF175 /* AbilatyButton.swift */; };
 		7370B81228FDDB4000BFF175 /* OGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370B81128FDDB4000BFF175 /* OGLView.swift */; };
+		7370B81628FF1F7F00BFF175 /* OGLData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7370B81328FF0E6C00BFF175 /* OGLData.json */; };
 		7375BF9728ECBCDC0062A5FF /* LongPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */; };
 		7375BF9928ECC1CA0062A5FF /* CircumstanceEmblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */; };
 		737B187528BF03CA00ED59D3 /* SpecificDiceRollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */; };
@@ -39,6 +40,7 @@
 		7324440628C2A9E70056A8A7 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		7370B80F28FDC95000BFF175 /* AbilatyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilatyButton.swift; sourceTree = "<group>"; };
 		7370B81128FDDB4000BFF175 /* OGLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGLView.swift; sourceTree = "<group>"; };
+		7370B81328FF0E6C00BFF175 /* OGLData.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = OGLData.json; sourceTree = "<group>"; };
 		7375BF9628ECBCDC0062A5FF /* LongPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressButton.swift; sourceTree = "<group>"; };
 		7375BF9828ECC1CA0062A5FF /* CircumstanceEmblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircumstanceEmblem.swift; sourceTree = "<group>"; };
 		737B187428BF03CA00ED59D3 /* SpecificDiceRollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificDiceRollingView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				73FA409B28DBC1CA00797223 /* ViewModel.swift */,
+				7370B81328FF0E6C00BFF175 /* OGLData.json */,
 				73FA409A28DBC19F00797223 /* Model */,
 			);
 			path = "New BackEnd";
@@ -249,6 +252,7 @@
 			files = (
 				73B2517A28B9301400246515 /* Preview Assets.xcassets in Resources */,
 				73B2517728B9301400246515 /* Assets.xcassets in Resources */,
+				7370B81628FF1F7F00BFF175 /* OGLData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

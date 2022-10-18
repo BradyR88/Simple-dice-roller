@@ -1,0 +1,207 @@
+[
+  {
+    "abilaty": [
+      {
+        "id": "9ED8654D-3886-498C-B9F0-B30A92AB5247",
+        "name": "Brute",
+        "discription": " A melee weapon deals one extra die of its damage when the bugbear hits with it (included in the attack)."
+      },
+      {
+        "discription": "If the bugbear surprises a creature and hits it with an attack during the first round of combat, the target takes an extra 7 (2d6) damage from the attack.",
+        "id": "CCA91B9A-3061-4544-8654-22231C2163E9",
+        "name": "Surprise Attack",
+        "onHit": {
+          "numberOfDice": 2,
+          "numberOfSides": 6,
+          "toAdd": 0
+        }
+      },
+      {
+        "id": "A776E7A0-90D2-4DAE-8A0B-99B585CB002F",
+        "name": "Morningstar",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 2
+        },
+        "onHit": {
+          "numberOfDice": 2,
+          "numberOfSides": 8,
+          "toAdd": 2
+        }
+      },
+      {
+        "discription": "range 30/120 ft.",
+        "id": "7C459A49-9710-4CB7-9BDA-DD5071C25537",
+        "name": "Javelin",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 4
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 6,
+          "toAdd": 2
+        }
+      }
+    ],
+    "id": "966E5EB7-BA6B-4390-B48D-9E26BD1988E6",
+    "isShowing": true,
+    "OGLContent": true,
+    "name": "Bugbear"
+  },
+  {
+    "abilaty": [
+      {
+        "id": "A570883B-7DC0-4130-8058-36D1FB4196A6",
+        "name": "Nimble Escape",
+        "discription": "The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+      },
+      {
+        "id": "5FC3100F-8F1B-45E9-B454-2E0C1DC42063",
+        "name": "Scimitar",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 4
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 6,
+          "toAdd": 2
+        }
+      },
+      {
+        "discription": "range 80/320 ft.",
+        "id": "1B217981-C00B-482B-8508-C8857C2EA256",
+        "name": "Shortbow",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 4
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 6,
+          "toAdd": 2
+        }
+      }
+    ],
+    "id": "AC25C5B7-AB80-4645-BA71-69565205D62A",
+    "isShowing": true,
+    "OGLContent": true,
+    "name": "Goblin"
+  },
+  {
+    "abilaty": [
+      {
+        "id": "4B34D824-0008-484A-83B4-C7E13A30409B",
+        "name": "Dark Devotion",
+        "discription": "The cultist has advantage on saving throws against being charmed or frightened."
+      },
+      {
+        "id": "3D3E8363-27A7-4853-834B-F9655BC01421",
+        "name": "Scimitar",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 3
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 6,
+          "toAdd": 1
+        }
+      }
+    ],
+    "id": "8E22CE94-1CAE-4BCD-BD37-C0FB579ED970",
+    "isShowing": false,
+    "OGLContent": true,
+    "name": "Cultist"
+  },
+  {
+    "abilaty": [
+      {
+        "discription": "Once per turn, the hobgoblin can deal an extra 7 (2d6) damage to a creature it hits with a weapon attack if that creature is within 5 feet of an ally of the hobgoblin that isn’t incapacitated.",
+        "id": "9ED8654D-3886-498C-B9F0-B30A92AB5247",
+        "name": "Martial Advantage",
+        "onHit": {
+          "numberOfDice": 2,
+          "numberOfSides": 6,
+          "toAdd": 0
+        }
+      },
+      {
+        "id": "A776E7A0-90D2-4DAE-8A0B-99B585CB002F",
+        "name": "Longsword",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 3
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 8,
+          "toAdd": 1
+        }
+      },
+      {
+        "discription": "range 150/600 ft.",
+        "id": "7C459A49-9710-4CB7-9BDA-DD5071C25537",
+        "name": "Longbow",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 3
+        },
+        "onHit": {
+          "numberOfDice": 1,
+          "numberOfSides": 8,
+          "toAdd": 1
+        }
+      }
+    ],
+    "id": "BBA36DA8-BC50-41D6-A3F5-6BDD56A2066F",
+    "isShowing": false,
+    "OGLContent": true,
+    "name": "Hobgoblin"
+  },
+  {
+    "abilaty": [
+      {
+        "id": "FC2611F2-BB34-4A8B-AF1E-253660C28F9E",
+        "name": "Bite",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 2
+        },
+        "onHit": {
+          "numberOfDice": 2,
+          "numberOfSides": 6,
+          "toAdd": 2
+        }
+      },
+      {
+        "discription": "If the target is a creature other than an elf or undead, it must succeed on a DC 10 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+        "id": "7DC900B3-6A8D-4D34-8B18-0E39446FD0A8",
+        "name": "Claws",
+        "roll": {
+          "numberOfDice": 1,
+          "numberOfSides": 20,
+          "toAdd": 4
+        },
+        "onHit": {
+          "numberOfDice": 2,
+          "numberOfSides": 4,
+          "toAdd": 2
+        }
+      }
+    ],
+    "id": "4126F7BA-7222-4542-B7F4-03FE4E239D9A",
+    "isShowing": false,
+    "OGLContent": true,
+    "name": "Ghoul"
+  }
+]

@@ -108,7 +108,7 @@ import Foundation
     // MARK: init -
     init() {
         #if targetEnvironment(simulator)
-        monsters = [Monster.example]
+        monsters = []
         //pastEvents = []
         loadData(from: Constance.savePathPastRolls, to: &pastEvents)
         #else
@@ -121,7 +121,9 @@ import Foundation
         
         if monsters.isEmpty {
             // provide example Monster
-            monsters.append(Monster.example)
+            //monsters.append(Monster.example)
+            
+            monsters = Bundle.main.decode([Monster].self, from: "OGLData.json")
         }
     }
     
