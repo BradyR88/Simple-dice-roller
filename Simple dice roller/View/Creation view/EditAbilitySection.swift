@@ -12,6 +12,7 @@ struct EditAbilitySection: View {
     @State private var showingInput: InputState = .nothing
     @FocusState private var discriptionFocus: Bool
     @FocusState private var nameFocus: Bool
+    @Environment(\.dismiss) var dismiss
 
     enum InputState {
         case nothing, roll, subroll
@@ -74,7 +75,8 @@ struct EditAbilitySection: View {
                     DiceCalculatorBoardView(roll: $viewModel.indicatedAbility.onHit)
                 }
             }
-            .navigationBarHidden(true)
+            //.navigationBarHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
             .onDisappear {
                 viewModel.abilityIndex = nil
             }
@@ -85,6 +87,12 @@ struct EditAbilitySection: View {
                     Button("Done") {
                         nameFocus = false
                         discriptionFocus = false
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        dismiss()
                     }
                 }
             }
