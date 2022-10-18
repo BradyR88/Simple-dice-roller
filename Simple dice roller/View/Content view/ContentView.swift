@@ -71,7 +71,7 @@ struct ContentView: View {
                     
                     // MARK: Roll Display
                     if viewModel.display == nil {
-                        GenericDiceRollingView(text: "Roll!") { roll in viewModel.addToEvent(roll.simpleCustumEvent()) }
+                        GenericDiceRollingView(text: "Roll") { roll in viewModel.addToEvent(roll.simpleCustumEvent()) }
                         
                     } else {
                         // the user has selected a specific display to show (it is not nill)
