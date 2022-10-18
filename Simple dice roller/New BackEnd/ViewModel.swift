@@ -148,13 +148,13 @@ import Foundation
     // MARK: user actions -
     
     func addNewAbilaty() {
-        indicatedMonster.abilaty.append(Ability(name: "New Ability"))
+        indicatedMonster.abilaty.append(Ability(name: "New Action"))
         // is this still neaded ? 
         abilityIndex = indicatedMonster.abilaty.count - 1
     }
     
     func addNewRollGroop() {
-        monsters.append(Monster(name: "New Monster", abilaty: [Ability(name: "New Ability")], isShowing: false))
+        monsters.append(Monster(name: "New Creature", abilaty: [Ability(name: "New Action")], isShowing: false))
         monsterIndex = monsters.count - 1
     }
     
@@ -200,10 +200,10 @@ import Foundation
     }
     
     func duplicateMonster(_ monster: Monster) {
-        var new = monster
-        new.id = UUID()
-        new.isShowing = false
-        new.name = "coppy of \(new.name)"
+        let new = Monster(name: "copy of " + monster.name,
+                          abilaty: monster.abilaty,
+                          isShowing: false,
+                          OGLContent: false)
         
         monsters.append(new)
         

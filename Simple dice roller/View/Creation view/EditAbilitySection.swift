@@ -25,26 +25,29 @@ struct EditAbilitySection: View {
                         TextField("Ability Name", text: $viewModel.indicatedAbility.name)
                             .focused($nameFocus)
                         
-                        Toggle("Primary Roll", isOn: $viewModel.indicatedAbility.hasRoll)
-                        
+                        Toggle("Initial Roll", isOn: $viewModel.indicatedAbility.hasRoll)
+                            .onChange(of: viewModel.indicatedAbility.hasRoll) { newValue in
+                                if newValue {
+                                    edit(.roll)
+                                }
+                            }
                         if viewModel.indicatedAbility.hasRoll {
                             Button {
-                                // edit this
-                                discriptionFocus = false
-                                nameFocus = false
-                                showingInput = .roll
+                                edit(.roll)
                             } label: {
                                 Text(viewModel.indicatedAbility.roll?.stringName ?? "error")
                             }
                         }
                         
-                        Toggle("On Hit Roll", isOn: $viewModel.indicatedAbility.hasOnHit)
+                        Toggle("Damage Roll", isOn: $viewModel.indicatedAbility.hasOnHit)
+                            .onChange(of: viewModel.indicatedAbility.hasOnHit) { newValue in
+                                if newValue {
+                                    edit(.subroll)
+                                }
+                            }
                         if viewModel.indicatedAbility.hasOnHit {
                             Button {
-                                // edit this
-                                discriptionFocus = false
-                                nameFocus = false
-                                showingInput = .subroll
+                                edit(.subroll)
                             } label: {
                                 Text(viewModel.indicatedAbility.onHit?.stringName ?? "error")
                             }
@@ -52,8 +55,16 @@ struct EditAbilitySection: View {
                     }
                     
                     Section("Discription") {
-                        TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
-                            .focused($discriptionFocus)
+                        // all the things visible to the user here is the TextEditor everything else is a hack to get it to take up the right amount of space on the screen
+                        ZStack(alignment: .topLeading) {
+                            Text(viewModel.indicatedAbility.safeDiscription)
+                                .padding(.leading, 4)
+                                .foregroundColor(.white)
+                            TextEditor(text: $viewModel.indicatedAbility.safeDiscription)
+                                .focused($discriptionFocus)
+                            
+                        }
+                        
                     }
                 }
                 
@@ -79,6 +90,12 @@ struct EditAbilitySection: View {
             }
         }
     }
+    
+    private func edit(_ input: InputState) {
+        discriptionFocus = false
+        nameFocus = false
+        showingInput = input
+    }
 }
 
 struct EditAbilitySection_Previews: PreviewProvider {
@@ -87,7 +104,11 @@ struct EditAbilitySection_Previews: PreviewProvider {
         viewModel.monsterIndex = 0
         viewModel.abilityIndex = 0
         
-         return EditAbilitySection()
-                .environmentObject(viewModel)
+        return Text("test")
+            .sheet(isPresented: .constant(true)) {
+                EditAbilitySection()
+                        .environmentObject(viewModel)
+            }
+        
     }
 }

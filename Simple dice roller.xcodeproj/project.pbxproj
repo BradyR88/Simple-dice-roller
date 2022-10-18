@@ -176,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				73FA409B28DBC1CA00797223 /* ViewModel.swift */,
-				7370B81328FF0E6C00BFF175 /* OGLData.json */,
 				73FA409A28DBC19F00797223 /* Model */,
+				7370B81328FF0E6C00BFF175 /* OGLData.json */,
 			);
 			path = "New BackEnd";
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Simple dice roller/Preview Content\"";
 				DEVELOPMENT_TEAM = F4APFPN2XP;
 				ENABLE_PREVIEWS = YES;
@@ -428,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bradyrobshaw.die-master";
 				PRODUCT_NAME = "Die Master";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -443,7 +443,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Simple dice roller/Preview Content\"";
 				DEVELOPMENT_TEAM = F4APFPN2XP;
 				ENABLE_PREVIEWS = YES;
@@ -458,7 +458,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bradyrobshaw.die-master";
 				PRODUCT_NAME = "Die Master";
 				SWIFT_EMIT_LOC_STRINGS = YES;

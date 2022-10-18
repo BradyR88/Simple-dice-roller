@@ -23,7 +23,7 @@ struct EditSheetView: View {
                 Toggle("On Roll Screen", isOn: $viewModel.indicatedMonster.isShowing)
             }
             
-            Section("Abilities") {
+            Section("ACTIONS") {
                 ForEach(Array(viewModel.indicatedMonster.abilaty.enumerated()), id: \.offset) { index, abilaty in
                     Button {
                         viewModel.tapOnAbility(at: index)
