@@ -200,10 +200,10 @@ import Foundation
     }
     
     func duplicateMonster(_ monster: Monster) {
-        let new = Monster(name: "copy of " + monster.name,
+        let new = Monster(name: "Copy of " + monster.name,
                           abilaty: monster.abilaty,
                           isShowing: false,
-                          OGLContent: false)
+                          OGLContent: monster.OGLContent ?? false)
         
         monsters.append(new)
         

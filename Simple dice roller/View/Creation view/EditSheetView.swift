@@ -20,7 +20,7 @@ struct EditSheetView: View {
             }
             
             Section {
-                Toggle("On Roll Screen", isOn: $viewModel.indicatedMonster.isShowing)
+                Toggle("Display On Roll Screen", isOn: $viewModel.indicatedMonster.isShowing)
             }
             
             Section("ACTIONS") {
