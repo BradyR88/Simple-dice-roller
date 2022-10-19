@@ -15,7 +15,7 @@ struct RollReadoutView: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text(event.longName)
+                Text(event.longNameInRollReadout)
                 Spacer()
                 if event.hasRollResult {
                     Text(String(event.rollResult!.result))

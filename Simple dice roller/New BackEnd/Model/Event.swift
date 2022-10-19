@@ -42,6 +42,15 @@ struct Event: Codable, Identifiable {
         }
         return longName
     }
+    
+    var longNameInRollReadout: String {
+        if longName == "Dice" && hasRollResult {
+            return rollResult!.roll.stringName
+        } else {
+            return longName
+        }
+    }
+    
     var showHitButton: Bool {
         if !isDamageRoll && abilaty.onHit != nil {
             return true
