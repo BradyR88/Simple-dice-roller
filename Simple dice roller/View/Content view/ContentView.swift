@@ -21,10 +21,8 @@ struct ContentView: View {
                 }
                 
                 if !viewModel.descriptionReadMode {
-                    List {
-                        ForEach(viewModel.pastEventsDropFirst) { event in
-                            RollReadoutView(event: event)
-                        }
+                    List(viewModel.pastEventsDropFirst) { event in
+                        RollReadoutView(event: event)
                     }
                 }
                 

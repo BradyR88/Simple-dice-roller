@@ -21,8 +21,6 @@ struct RollReadoutView: View {
                     Text(String(event.rollResult!.result))
                     CircumstanceEmblem(circumstance: event.rollResult!.circumstance)
                 }
-                
-
             }
             
             if infoPainVisible {
@@ -34,6 +32,7 @@ struct RollReadoutView: View {
                 }
             }
         }
+        .contentShape(Rectangle())
         .onTapGesture { infoPainVisible.toggle() }
     }
 }
