@@ -26,7 +26,7 @@ struct EditAbilitySection: View {
                         TextField("Ability Name", text: $viewModel.indicatedAbility.name)
                             .focused($nameFocus)
                         
-                        Toggle("Initial Roll", isOn: $viewModel.indicatedAbility.hasRoll)
+                        Toggle("Initial Roll", isOn: $viewModel.indicatedAbility.hasRoll.animation())
                             .onChange(of: viewModel.indicatedAbility.hasRoll) { newValue in
                                 if newValue {
                                     edit(.roll)
@@ -40,7 +40,7 @@ struct EditAbilitySection: View {
                             }
                         }
                         
-                        Toggle("Damage Roll", isOn: $viewModel.indicatedAbility.hasOnHit)
+                        Toggle("Damage Roll", isOn: $viewModel.indicatedAbility.hasOnHit.animation())
                             .onChange(of: viewModel.indicatedAbility.hasOnHit) { newValue in
                                 if newValue {
                                     edit(.subroll)

@@ -26,17 +26,24 @@ struct SettingsView: View {
                 Button(role: .destructive) {
                     isConfirming = true
                 } label: {
-                    Text("Delete All Events")
+                    Text("Clear the log of past rolls")
                 }
             }
-//            Section {
+//            Section("Dev stuf") {
 //                Button {
 //                    let data = try! Data(contentsOf: Constance.savePathRollGroops)
 //                    print(String(data: data, encoding: String.Encoding.utf8)!)
 //                } label: {
 //                    Text("Print JSON")
 //                }
-//
+//                
+//                Button {
+//                    for _ in 1...100 {
+//                        viewModel.addNewRollGroop()
+//                    }
+//                } label: {
+//                    Text("add 100 monsters")
+//                }
 //            }
         }
         .navigationTitle("Settings")

@@ -77,7 +77,10 @@ import Foundation
             guard let monsterIndex = monsterIndex else {
                 return Monster(name: "Error", abilaty: [], isShowing: false)
             }
-            // TODO: make safer by checking that the index exist first
+            guard monsterIndex < monsters.count else {
+                return Monster(name: "Error", abilaty: [], isShowing: false)
+            }
+
             return monsters[monsterIndex]
         }
         set {
