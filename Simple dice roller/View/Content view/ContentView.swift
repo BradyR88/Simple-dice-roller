@@ -55,7 +55,7 @@ struct ContentView: View {
                                             .frame(maxWidth: 125)
                                             .foregroundColor(.primary)
                                             .padding(6)
-                                            .background((monster == (viewModel.display ?? Monster(name: "", abilaty: [], isShowing: false))) ? .red : .purple)
+                                            .background(monster.matchesDisplay(viewModel.display) ? .red : .purple)
                                             .clipShape(Capsule())
                                     }
                                 }

@@ -9,8 +9,6 @@ import Foundation
 
 // MARK: Monster
 struct Monster: Codable, Comparable, Equatable, Identifiable {
-    
-    
     var id = UUID()
     var name: String
     var abilaty: [Ability]
@@ -31,6 +29,14 @@ struct Monster: Codable, Comparable, Equatable, Identifiable {
         } else {
             return ""
         }
+    }
+    
+    func matchesDisplay(_ display: Monster?) -> Bool {
+        guard let display = display else {
+            return false
+        }
+
+        return self == display
     }
     
     static func == (lhs: Monster, rhs: Monster) -> Bool { lhs.id == rhs.id }
